@@ -1,21 +1,21 @@
 <template>
   <Form ref="loginForm" :model="form" :rules="rules" @keydown.enter.native="handleSubmit">
     <FormItem prop="userName">
-      <Input v-model="form.userName" placeholder="请输入用户名">
+      <Input v-model="form.userName" :placeholder="$t('login.form.username')">
         <span slot="prepend">
           <Icon :size="16" type="ios-person"></Icon>
         </span>
       </Input>
     </FormItem>
     <FormItem prop="password">
-      <Input type="password" v-model="form.password" placeholder="请输入密码">
+      <Input type="password" v-model="form.password" :placeholder="$t('login.form.password')">
         <span slot="prepend">
           <Icon :size="14" type="md-lock"></Icon>
         </span>
       </Input>
     </FormItem>
     <FormItem>
-      <Button @click="handleSubmit" type="primary" long>登录</Button>
+      <Button @click="handleSubmit" type="primary" long>{{$t('login.form.login')}}</Button>
     </FormItem>
   </Form>
 </template>
@@ -25,17 +25,17 @@ export default {
   props: {
     userNameRules: {
       type: Array,
-      default: () => {
+      default: function () {
         return [
-          { required: true, message: '账号不能为空', trigger: 'blur' }
+          { required: true, message: this.$t('login.messages.error.username'), trigger: 'blur' }
         ]
       }
     },
     passwordRules: {
       type: Array,
-      default: () => {
+      default: function () {
         return [
-          { required: true, message: '密码不能为空', trigger: 'blur' }
+          { required: true, message: this.$t('login.messages.error.password'), trigger: 'blur' }
         ]
       }
     }

@@ -23,12 +23,14 @@ export default {
       langList: {
         'zh-CN': '语言',
         'zh-TW': '語言',
-        'en-US': 'Lang'
+        'en-US': 'Lang',
+        'es-ES': 'Lenguaje'
       },
       localList: {
         'zh-CN': '中文简体',
         'zh-TW': '中文繁体',
-        'en-US': 'English'
+        'en-US': 'English',
+        'es-ES': 'Español'
       }
     }
   },
