@@ -1,6 +1,27 @@
 export default {
   home: {
-    title: 'Home'
+    title: 'Home',
+    new_users: 'New Users',
+    total_clicks: 'Total Clicks',
+    total_QnA: 'Total Q&A',
+    total_share: 'Total Share',
+    total_chat: 'Total Chat',
+    total_pages: 'Total Pages',
+    total_interview: 'Total Interviews',
+    email_marketing: 'Email Marketing',
+    affiliate_advertising: 'Affiliate Advertising',
+    video_advertising: 'Video Advertising',
+    search_engine: 'Search Engine',
+    users_access: 'Users Access',
+    users_activity: 'Users Activity'
+  },
+  example: {
+    total: 'Total',
+    carrier_network: 'Carrier/Network Services',
+    bank_securities: 'Bank/Securities',
+    gaming_video: 'Gaming/Video',
+    catering_takeaway: 'Catering/Takeaway',
+    courier_ecommerce: 'Courier/e-commerce'
   },
   login: {
     title: 'Login',
@@ -8,7 +29,8 @@ export default {
       title: 'Login please',
       username: 'Please enter your username',
       password: 'Please enter your password',
-      login: 'Login'
+      login: 'Login',
+      logout: 'Logout'
     },
     messages: {
       error: {
@@ -19,6 +41,15 @@ export default {
     tips: {
       bottom: 'Enter any username and password'
     }
+  },
+  i18n: {
+    title: 'Internationalization',
+    modalTitle: 'Modal Title',
+    content: 'This is the modal box content.',
+    buttonText: 'Show Modal',
+    tip: 'Note: Only this page is multi-language, other pages do not add language content to the multi-language package.',
+    select_date: 'Select date',
+    select_time: 'Select time'
   },
   menu: {
     components: {
@@ -125,23 +156,37 @@ export default {
     tools_methods_page: {
       title: 'Tools Methods'
     },
-    i18n_page: {
-      title: 'Internationalization'
-    },
-    modalTitle: 'Modal Title',
-    content: 'This is the modal box content.',
-    buttonText: 'Show Modal',
-    'i18n-tip': 'Note: Only this page is multi-language, other pages do not add language content to the multi-language package.',
     error_store_page: {
       title: 'Error Collection'
     },
-    error_logger_page: 'Error Logger',
+    error_logger_page: {
+      title: 'Error Logger'
+    },
     query: 'Query',
     params: 'Params'
   },
   top: {
     message_page: {
       title: 'Message Center'
+    },
+    fullscreen: {
+      open: 'Fullscreen',
+      exit: 'Exit fullscreen'
+    },
+    tags: {
+      close_all: 'Close All',
+      close_other: 'Close Others'
+    }
+  },
+  date: {
+    week: {
+      Mon: 'Mon',
+      Tue: 'Tue',
+      Wed: 'Wed',
+      Thu: 'Thu',
+      Fri: 'Fri',
+      Sat: 'Sat',
+      Sun: 'Sun'
     }
   }
 }

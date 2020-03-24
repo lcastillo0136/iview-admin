@@ -39,7 +39,15 @@ export default {
         {
           type: 'category',
           boundaryGap: false,
-          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+          data: [
+            this.$t('date.week.Mon'),
+            this.$t('date.week.Tue'),
+            this.$t('date.week.Wed'),
+            this.$t('date.week.Thu'),
+            this.$t('date.week.Fri'),
+            this.$t('date.week.Sat'),
+            this.$t('date.week.Sun')
+          ]
         }
       ],
       yAxis: [
@@ -49,45 +57,45 @@ export default {
       ],
       series: [
         {
-          name: '运营商/网络服务',
+          name: this.$t('example.carrier_network'),
           type: 'line',
-          stack: '总量',
+          stack: this.$t('example.total'),
           areaStyle: { normal: {
             color: '#2d8cf0'
           } },
           data: [120, 132, 101, 134, 90, 230, 210]
         },
         {
-          name: '银行/证券',
+          name: this.$t('example.bank_securities'),
           type: 'line',
-          stack: '总量',
+          stack: this.$t('example.total'),
           areaStyle: { normal: {
             color: '#10A6FF'
           } },
           data: [257, 358, 278, 234, 290, 330, 310]
         },
         {
-          name: '游戏/视频',
+          name: this.$t('example.gaming_video'),
           type: 'line',
-          stack: '总量',
+          stack: this.$t('example.total'),
           areaStyle: { normal: {
             color: '#0C17A6'
           } },
           data: [379, 268, 354, 269, 310, 478, 358]
         },
         {
-          name: '餐饮/外卖',
+          name: this.$t('example.catering_takeaway'),
           type: 'line',
-          stack: '总量',
+          stack: this.$t('example.total'),
           areaStyle: { normal: {
             color: '#4608A6'
           } },
           data: [320, 332, 301, 334, 390, 330, 320]
         },
         {
-          name: '快递/电商',
+          name: this.$t('example.courier_ecommerce'),
           type: 'line',
-          stack: '总量',
+          stack: this.$t('example.total'),
           label: {
             normal: {
               show: true,

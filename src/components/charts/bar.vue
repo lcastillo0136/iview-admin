@@ -26,8 +26,8 @@ export default {
   },
   mounted () {
     this.$nextTick(() => {
-      let xAxisData = Object.keys(this.value)
-      let seriesData = Object.values(this.value)
+      let xAxisData = (this.value || []).map(x => x.text)
+      let seriesData = (this.value || []).map(s => s.value)
       let option = {
         title: {
           text: this.text,

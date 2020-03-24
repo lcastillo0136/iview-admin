@@ -4,9 +4,9 @@
       <i-col span="6">
         <Card>
           <div class="i18n-card-box">
-            <DatePicker type="date" placeholder="Select date"></DatePicker>
-            <TimePicker type="timerange" placement="bottom-end" placeholder="Select time" style="display: block;margin-top: 10px;"></TimePicker>
-            <Button type="primary" @click="modalVisible = true" style="margin-top: 10px;">{{ $t('buttonText') }}</Button>
+            <DatePicker type="date" :placeholder="$t('i18n.select_date')"></DatePicker>
+            <TimePicker type="timerange" placement="bottom-end" :placeholder="$t('i18n.select_time')" style="display: block;margin-top: 10px;"></TimePicker>
+            <Button type="primary" @click="modalVisible = true" style="margin-top: 10px;">{{ $t('i18n.buttonText') }}</Button>
             <Modal
                 v-model="modalVisible"
                 :title="$t('modalTitle')">
@@ -14,7 +14,7 @@
                 <p>{{ content }}</p>
                 <p>{{ content }}</p>
             </Modal>
-            <i class="tip">{{ $t('i18n-tip') }}</i>
+            <i class="tip">{{ $t('i18n.tip') }}</i>
           </div>
         </Card>
       </i-col>
@@ -32,7 +32,7 @@ export default {
   },
   computed: {
     content () {
-      return this.$t('content')
+      return this.$t('i18n.content')
     }
   }
 }

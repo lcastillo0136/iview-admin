@@ -44,10 +44,11 @@ import Fullscreen from './components/fullscreen'
 import Language from './components/language'
 import ErrorStore from './components/error-store'
 import { mapMutations, mapActions, mapGetters } from 'vuex'
-import { getNewTagList, routeEqual } from '@/libs/util'
+import { getNewTagList, routeEqual, localRead, localSave } from '@/libs/util'
 import routers from '@/router/routers'
 import minLogo from '@/assets/images/logo-min.jpg'
 import maxLogo from '@/assets/images/logo.jpg'
+
 import './main.less'
 export default {
   name: 'Main',
@@ -63,7 +64,7 @@ export default {
   },
   data () {
     return {
-      collapsed: false,
+      collapsed: (!!localRead('collapsed')) || false,
       minLogo,
       maxLogo,
       isFullscreen: false
@@ -132,6 +133,7 @@ export default {
     },
     handleCollapsedChange (state) {
       this.collapsed = state
+      localSave('collapsed', state)
     },
     handleCloseTag (res, type, route) {
       if (type !== 'others') {

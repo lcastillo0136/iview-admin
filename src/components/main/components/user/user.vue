@@ -7,9 +7,9 @@
       <Icon :size="18" type="md-arrow-dropdown"></Icon>
       <DropdownMenu slot="list">
         <DropdownItem name="message">
-          消息中心<Badge style="margin-left: 10px" :count="messageUnreadCount"></Badge>
+          {{ $t('top.message_page.title') }}<Badge style="margin-left: 10px" :count="messageUnreadCount"></Badge>
         </DropdownItem>
-        <DropdownItem name="logout">退出登录</DropdownItem>
+        <DropdownItem name="logout">{{ $t('login.form.logout') }}</DropdownItem>
       </DropdownMenu>
     </Dropdown>
   </div>

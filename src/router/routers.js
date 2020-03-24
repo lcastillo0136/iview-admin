@@ -308,7 +308,7 @@ export default [
         name: 'i18n_page',
         meta: {
           icon: 'md-planet',
-          title: 'i18n - {{ menu.i18n_page.title }}'
+          title: 'i18n - {{ i18n.title }}'
         },
         component: () => import('@/view/i18n/i18n-page.vue')
       }
@@ -347,7 +347,7 @@ export default [
         name: 'error_logger_page',
         meta: {
           icon: 'ios-bug',
-          title: 'menu.error_logger.title'
+          title: 'menu.error_logger_page.title'
         },
         component: () => import('@/view/single-page/error-logger.vue')
       }

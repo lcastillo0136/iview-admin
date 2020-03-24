@@ -1,6 +1,27 @@
 export default {
   home: {
-    title: 'Inicio'
+    title: 'Inicio',
+    new_users: 'Nuevos usuarios',
+    total_clicks: 'Total clicks',
+    total_QnA: 'Total PyR',
+    total_share: 'Veces Compartidas',
+    total_chat: 'Mensajes Totales',
+    total_pages: 'Paginas Totales',
+    total_interview: 'Entrevistas Totales',
+    email_marketing: 'Correo Publicidad',
+    affiliate_advertising: 'Publicidad Afiliada',
+    video_advertising: 'Publicidad Video',
+    search_engine: 'Motor de busqueda',
+    users_access: 'Acceso de usuarios',
+    users_activity: 'Actividad de usuarios'
+  },
+  example: {
+    total: 'Total',
+    carrier_network: 'Servicios de operador/Red',
+    bank_securities: 'Banco/Valoes',
+    gaming_video: 'Juegos/Video',
+    catering_takeaway: 'Catering/Comida para llevar',
+    courier_ecommerce: 'Mensajería/e-commerce'
   },
   login: {
     title: 'Entrar en sesion',
@@ -8,7 +29,8 @@ export default {
       title: 'Ingresa, por favor',
       username: 'Por favor, ingrese su nombre de usuario',
       password: 'Por favor, ingrese su contraseña',
-      login: 'Login'
+      login: 'Iniciar Sesion',
+      logout: 'Cerrar Sesion'
     },
     messages: {
       error: {
@@ -19,6 +41,15 @@ export default {
     tips: {
       bottom: 'Captura cualquier usuario y contraseña'
     }
+  },
+  i18n: {
+    title: 'Internacionalizacíon',
+    content: 'este es el contenido del modal.',
+    modalTitle: 'Titulo Modal',
+    buttonText: 'Mostrar Modal',
+    tip: 'Nota: Solo esta pagina es multi-languaje, otras paginas no agregan contenido de lenguaje al paquete multi-languaje.',
+    select_date: 'Selecciona fecha',
+    select_time: 'Selecciona el tiempo'
   },
   menu: {
     components: {
@@ -125,23 +156,37 @@ export default {
     tools_methods_page: {
       title: 'Métodos de herramientas'
     },
-    i18n_page: {
-      title: 'Internacionalizacíon'
-    },
-    modalTitle: 'Titulo Modal',
-    content: 'este es el contenido del modal.',
-    buttonText: 'Mostrar Modal',
-    'i18n-tip': 'Nota: Solo esta pagina es multi-languaje, otras paginas no agregan contenido de lenguaje al paquete multi-languaje.',
     error_store_page: {
       title: 'Coleccion de errores'
     },
-    error_logger_page: 'Registro de Errores',
+    error_logger_page: {
+      title: 'Registro de Errores'
+    },
     query: 'Query',
     params: 'Params'
   },
   top: {
     message_page: {
       title: 'Centro de mensajes'
+    },
+    fullscreen: {
+      open: 'Pantalla Completa',
+      exit: 'Salir de pantalla completa'
+    },
+    tags: {
+      close_all: 'Cerrar todo',
+      close_other: 'Cerrar otras'
+    }
+  },
+  date: {
+    week: {
+      Mon: 'Lun',
+      Tue: 'Mar',
+      Wed: 'Mie',
+      Thu: 'Jue',
+      Fri: 'Vie',
+      Sat: 'Sab',
+      Sun: 'Dom'
     }
   }
 }
