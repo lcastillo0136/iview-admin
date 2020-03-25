@@ -122,7 +122,7 @@ export default {
           title: 'Listas arrastrable'
         },
         drag_drawer_page: {
-          title: 'Cajon arrastrable'
+          title: 'Modal Lateral'
         },
         org_tree_page: {
           title: 'Árbol organigrama'

@@ -50,6 +50,18 @@
       <Button @click="showBDrawer3 = true">{{ $t('dragDrawer.show_miltilayer') }}</Button>
       <p v-for="n in 200" :key="n">{{ n }}</p>
     </drag-drawer>
+    <drag-drawer v-model="showBDrawer3"
+      :width.sync="width1"
+      :min-width="300"
+      :placement="placementInverted"
+      :draggable="draggable"
+      :scrollable="true">
+      <div slot="header">
+        <Icon type="md-aperture" :size="18"></Icon>
+        <b>{{ $t('dragDrawer.example.title') }}</b>
+      </div>
+      <p v-for="n in 200" :key="n">{{ n }}</p>
+    </drag-drawer>
   </Card>
 </template>
 
@@ -74,6 +86,9 @@ export default {
   computed: {
     placementComputed () {
       return this.placement ? 'left' : 'right'
+    },
+    placementInverted () {
+      return this.placement ? 'right' : 'left'
     }
   },
   methods: {
@@ -89,7 +104,9 @@ export default {
 <style lang="less">
 .drag-drawer-inner-box{
   position: relative;
-  width: 500px;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
   height: 400px;
   background: pink;
   border: 1px solid pink;
