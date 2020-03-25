@@ -20,24 +20,7 @@
 
 <script>
 import { on, off } from '@/libs/tools'
-const menuList = [
-  {
-    key: 'edit',
-    label: '编辑部门'
-  },
-  {
-    key: 'detail',
-    label: '查看部门'
-  },
-  {
-    key: 'new',
-    label: '新增子部门'
-  },
-  {
-    key: 'delete',
-    label: '删除部门'
-  }
-]
+
 export default {
   name: 'OrgView',
   props: {
@@ -68,6 +51,17 @@ export default {
         marginLeft: `${this.orgTreeOffsetLeft}px`,
         marginTop: `${this.orgTreeOffsetTop}px`
       }
+    },
+    menuList () {
+      return [{
+        key: 'edit', label: this.$t('orgTree.menu.editorial_department')
+      }, {
+        key: 'detail', label: this.$t('orgTree.menu.view_department')
+      }, {
+        key: 'new', label: this.$t('orgTree.menu.new_sector')
+      }, {
+        key: 'delete', label: this.$t('orgTree.menu.delete_department')
+      }]
     }
   },
   methods: {
@@ -108,7 +102,7 @@ export default {
             v-click-outside={this.closeMenu}
           >
             <dropdown-menu slot="list">
-              {menuList.map(item => {
+              {this.menuList.map(item => {
                 return (
                   <dropdown-item name={item.key}>{item.label}</dropdown-item>
                 )

@@ -108,6 +108,16 @@ export default {
     },
     show_miltilayer: 'Mostrar múltiples capas'
   },
+  orgTree: {
+    documentation: 'Documentación',
+    menu: {
+      editorial_department: 'Departamento Editorial',
+      view_department: 'Ver Departamento',
+      new_sector: 'Nuevo subsector',
+      delete_department: 'Eliminar Departamento',
+      click: 'Click en el menu \'{key}\' del nodo "{label}"'
+    }
+  },
   menu: {
     components: {
       title: 'Componentes',

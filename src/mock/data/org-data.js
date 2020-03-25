@@ -1,45 +1,45 @@
 export default {
   id: 0,
-  label: 'XXX科技有限公司',
+  label: 'XXX Technology Co., Ltd.',
   children: [
     {
       id: 2,
-      label: '产品研发部',
+      label: 'Product research and development',
       children: [
         {
           id: 5,
-          label: '研发-前端'
+          label: 'R & D-Front End'
         }, {
           id: 6,
-          label: '研发-后端'
+          label: 'R & D-backend'
         }, {
           id: 9,
-          label: 'UI设计'
+          label: 'UI Designer'
         }, {
           id: 10,
-          label: '产品经理'
+          label: 'Product Manager'
         }
       ]
     },
     {
       id: 3,
-      label: '销售部',
+      label: 'Sales',
       children: [
         {
           id: 7,
-          label: '销售一部'
+          label: 'Sell one'
         }, {
           id: 8,
-          label: '销售二部'
+          label: 'Sales Department II'
         }
       ]
     },
     {
       id: 4,
-      label: '财务部'
+      label: 'Finance Department'
     }, {
       id: 11,
-      label: 'HR人事'
+      label: 'HR personnel'
     }
   ]
 }

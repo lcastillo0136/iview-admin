@@ -108,6 +108,16 @@ export default {
     },
     show_miltilayer: 'Show multiple layers'
   },
+  orgTree: {
+    documentation: 'Documentation',
+    menu: {
+      editorial_department: 'Editorial Department',
+      view_department: 'View Department',
+      new_sector: 'New sub-sector',
+      delete_department: 'Delete department',
+      click: 'Clicked on the \'{key}\' menu of the "{label}" node'
+    }
+  },
   menu: {
     components: {
       title: 'Components',

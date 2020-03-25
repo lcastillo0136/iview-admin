@@ -108,6 +108,16 @@ export default {
     },
     show_miltilayer: '显示多层'
   },
+  orgTree: {
+    documentation: '文档',
+    menu: {
+      editorial_department: '编辑部门',
+      view_department: '查看部门',
+      new_sector: '新增子部门',
+      delete_department: '删除部门',
+      click: '点击了《{label}》节点的\'{key}\'菜单'
+    }
+  },
   menu: {
     components: {
       title: '组件',

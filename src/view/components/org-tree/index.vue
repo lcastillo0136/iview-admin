@@ -3,7 +3,7 @@
     <div class="department-outer">
       <div class="tip-box">
         <b style="margin-right: 20px;">powered by <a target="blank" href="https://github.com/lison16">Lison</a></b>
-        <a target="blank" href="https://github.com/lison16/v-org-tree" style="margin-right: 10px;">v-org-tree文档</a>
+        <a target="blank" href="https://github.com/lison16/v-org-tree" style="margin-right: 10px;">v-org-tree {{ $t('orgTree.documentation') }}</a>
       </div>
       <div class="zoom-box">
         <zoom-controller v-model="zoom" :min="20" :max="200"></zoom-controller>
@@ -25,12 +25,7 @@ import OrgView from './components/org-view.vue'
 import ZoomController from './components/zoom-controller.vue'
 import { getOrgData } from '@/api/data'
 import './index.less'
-const menuDic = {
-  edit: '编辑部门',
-  detail: '查看部门',
-  new: '新增子部门',
-  delete: '删除部门'
-}
+
 export default {
   name: 'org_tree_page',
   components: {
@@ -46,6 +41,14 @@ export default {
   computed: {
     zoomHandled () {
       return this.zoom / 100
+    },
+    menuDic () {
+      return {
+        edit: this.$t('orgTree.menu.editorial_department'),
+        detail: this.$t('orgTree.menu.view_department'),
+        new: this.$t('orgTree.menu.new_sector'),
+        delete: this.$t('orgTree.menu.delete_department')
+      }
     }
   },
   methods: {
@@ -56,7 +59,7 @@ export default {
     handleMenuClick ({ data, key }) {
       this.$Message.success({
         duration: 5,
-        content: `点击了《${data.label}》节点的'${menuDic[key]}'菜单`
+        content: this.$t('orgTree.menu.click', { label: data.label, key: this.menuDic[key] })
       })
     },
     getDepartmentData () {
