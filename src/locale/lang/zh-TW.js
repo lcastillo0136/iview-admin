@@ -134,6 +134,16 @@ export default {
       likes: '喜欢'
     }
   },
+  cropper: {
+    button: '确认提交',
+    button_crop: '裁剪',
+    upload_image: '上传图片',
+    messages: {
+      success: {
+        upload: '上传成功〜'
+      }
+    }
+  },
   menu: {
     components: {
       title: '组件',

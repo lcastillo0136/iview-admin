@@ -8,7 +8,7 @@
       <div class="button-box">
         <slot>
           <Upload action="image/upload" :before-upload="beforeUpload">
-            <Button style="width: 150px;" type="primary">上传图片</Button>
+            <Button style="width: 150px;" type="primary">{{ $t('cropper.upload_image') }}</Button>
           </Upload>
         </slot>
         <div v-show="insideSrc">
@@ -67,7 +67,7 @@ export default {
     },
     cropButtonText: {
       type: String,
-      default: '裁剪'
+      default: function () { return this.$t('cropper.button_crop') }
     }
   },
   data () {

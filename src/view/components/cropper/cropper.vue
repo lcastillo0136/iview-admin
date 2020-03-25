@@ -6,7 +6,7 @@
           <div class="cropper-example cropper-first">
             <cropper
               :src="exampleImageSrc"
-              crop-button-text="确认提交"
+              :crop-button-text="$t('cropper.button')"
               @on-crop="handleCroped"
             ></cropper>
           </div>
@@ -34,7 +34,7 @@ export default {
       const formData = new FormData()
       formData.append('croppedImg', blob)
       uploadImg(formData).then(() => {
-        this.$Message.success('Upload success~')
+        this.$Message.success(this.$t('cropper.messages.success.upload'))
       })
     }
   }
@@ -42,7 +42,5 @@ export default {
 </script>
 
 <style lang="less">
-.cropper-example{
-  height: 400px;
-}
+.cropper-example{}
 </style>

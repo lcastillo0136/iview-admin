@@ -134,6 +134,16 @@ export default {
       likes: 'Likes'
     }
   },
+  cropper: {
+    button: 'Confirm Submit',
+    button_crop: 'Crop',
+    upload_image: 'Upload Image',
+    messages: {
+      success: {
+        upload: 'Upload success~'
+      }
+    }
+  },
   menu: {
     components: {
       title: 'Components',

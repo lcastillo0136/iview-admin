@@ -134,6 +134,16 @@ export default {
       likes: 'Hobbies'
     }
   },
+  cropper: {
+    button: 'Confirmar Envio',
+    button_crop: 'Cortar',
+    upload_image: 'Cargar Imagen',
+    messages: {
+      success: {
+        upload: 'Imagen guardada~'
+      }
+    }
+  },
   menu: {
     components: {
       title: 'Componentes',
