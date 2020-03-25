@@ -6,8 +6,8 @@
           <paste-editor v-model="pasteDataArr" @on-success="handleSuccess" @on-error="handleError"/>
         </div>
         <div class="update-paste-btn-con">
-          <span class="paste-tip">使用Tab键换列，使用回车键换行</span>
-          <Button type="primary" style="float: right;" @click="handleShow">显示表格数据</Button>
+          <span class="paste-tip">{{ $t('pasteTable.paste_tip') }}</span>
+          <Button type="primary" style="float: right;" @click="handleShow">{{ $t('pasteTable.show_data') }}</Button>
         </div>
       </Card>
     </i-col>
@@ -47,11 +47,11 @@ export default {
     handleShow () {
       if (!this.validated) {
         this.$Notice.error({
-          title: '您的内容不规范',
-          desc: `您的第${this.errorIndex + 1}行数据不规范，请修改`
+          title: this.$t('pasteTable.messages.error.irregular'),
+          desc: this.$t('pasteTable.messages.error.row_irregular', { errorIndex: this.errorIndex + 1 })
         })
       } else {
-        let { columns, tableData } = getTableDataFromArray(this.pasteDataArr)
+        let { columns, tableData } = getTableDataFromArray(this.pasteDataArr, true)
         this.columns = columns
         this.tableData = tableData
       }

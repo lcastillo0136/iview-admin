@@ -177,6 +177,16 @@ export default {
     only_csv_files: '只能上传Csv文件',
     only_csv_files_again: '只能上传Csv文件，请重新上传'
   },
+  pasteTable: {
+    paste_tip: '使用Tab键换列，使用回车键换行',
+    show_data: '显示表格数据',
+    messages: {
+      error: {
+        irregular: '您的内容不规范',
+        row_irregular: '您的第{errorIndex}行数据不规范，请修改'
+      }
+    }
+  },
   menu: {
     components: {
       title: '组件',

@@ -177,6 +177,16 @@ export default {
     only_csv_files: 'Can only upload Csv files',
     only_csv_files_again: 'Only Csv files can be uploaded, please upload again'
   },
+  pasteTable: {
+    paste_tip: 'Use the Tab key to change columns, use the Enter key to wrap',
+    show_data: 'Show tabular data',
+    messages: {
+      error: {
+        irregular: 'Your content is irregular',
+        row_irregular: 'Your {errorIndex} row data is irregular, please modify'
+      }
+    }
+  },
   menu: {
     components: {
       title: 'Components',

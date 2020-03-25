@@ -177,6 +177,16 @@ export default {
     only_csv_files: 'Solo se pueden subir archivos .Csv',
     only_csv_files_again: 'Solo archivos .Csv son permitidos, por favor intente de nuevo.'
   },
+  pasteTable: {
+    paste_tip: 'Usa la tecla \'Tab\' para cambiar de columnas, usa la tecla \'Enter\' para ajustar el texto',
+    show_data: 'Mostrar datos tabulares',
+    messages: {
+      error: {
+        irregular: 'Tu contenido es irregular',
+        row_irregular: 'Tu información en la fila {errorIndex} es irregular，por favor modificalo'
+      }
+    }
+  },
   menu: {
     components: {
       title: 'Componentes',
