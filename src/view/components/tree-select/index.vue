@@ -12,8 +12,8 @@
         @on-select-change="handleTreeSelectClick"
         :data="treeData"
       ></tree-select>
-      <Button @click="changeTreeSelectData">更新选中数据</Button>
-      <Button @click="changeTreeData">更新树数据</Button>
+      <Button @click="changeTreeSelectData">{{ $t('treeSelect.update_selected_data') }}</Button>
+      <Button @click="changeTreeData">{{ $t('treeSelect.update_tree_data') }}</Button>
   </div>
 </template>
 

@@ -43,13 +43,70 @@ export default {
     }
   },
   i18n: {
-    title: 'Internacionalizacíon',
+    title: 'Internacionalización',
     content: 'este es el contenido del modal.',
     modalTitle: 'Titulo Modal',
     buttonText: 'Mostrar Modal',
     tip: 'Nota: Solo esta pagina es multi-languaje, otras paginas no agregan contenido de lenguaje al paquete multi-languaje.',
     select_date: 'Selecciona fecha',
     select_time: 'Selecciona el tiempo'
+  },
+  join: {
+    title: 'Comunidad',
+    qq_number: 'QQ Numero de grupo: {number}',
+    zhihu_column: 'iView conoce la columna',
+    juejin: 'Juejin',
+    bilibili: 'Sala de eventos en vivo',
+    twitter: 'Twitter'
+  },
+  treeSelect: {
+    update_selected_data: 'Actualizar datos seleccionados',
+    update_tree_data: 'Actualizar datos del árbol'
+  },
+  countTo: {
+    title: 'Count-to uso basico del componente',
+    total: 'Total',
+    times: 'de veces',
+    left_right: 'Agregar texto izq. y der.',
+    custom_style: 'Estilo personalizado',
+    format_data: 'Formato de datos',
+    convert_data: 'Convertir unidades para simplificar datos',
+    custom_units: {
+      title: 'Unidades personalizadas',
+      raw: 'Datos sin procesar：{number} => '
+    },
+    async_data: 'Los datos pueden ser actualizados asyncronamente',
+    example: 'Ejemplo completo',
+    qty: {
+      thousand: 'Mil',
+      tenthousand: 'Diez mil',
+      over_hundred_thousand: 'arriba de 100,000',
+      over_million: 'arriba del millon',
+      over_ten_million: 'arriba de diez millones',
+      billion: 'Billon',
+      dozen: 'Dozena',
+      hundred: 'Cien'
+    }
+  },
+  dragList: {
+    toDo: 'To-Do',
+    completion: 'Completion',
+    operation_record: 'Operation record'
+  },
+  dragDrawer: {
+    content: 'El componente drawer es una encapsulación del componente drawer dentro de iview. Adminte ranuras arrastrables y de pie de página con base en el soporte de todas las apis del drawer',
+    direction: 'Dirección',
+    left: 'Izq',
+    right: 'Der',
+    whether_draggable: 'Arrastrable',
+    close: 'Apagar',
+    open: 'Encender',
+    container_drawer: 'Contenedor Drawer',
+    open_fullscreen: 'Abrir en pantalla completa',
+    example: {
+      title: 'Este es el titulo'
+    },
+    show_miltilayer: 'Mostrar múltiples capas'
   },
   menu: {
     components: {
@@ -80,7 +137,7 @@ export default {
           title: 'Tablas'
         },
         split_pane_page: {
-          title: 'Panel con divisíon'
+          title: 'Panel con división'
         },
         markdown_page: {
           title: 'Editor de marcado'
@@ -109,7 +166,7 @@ export default {
       title: 'Grupo QQ'
     },
     doc: {
-      title: 'Documentacíon'
+      title: 'Documentación'
     },
     multilevel: {
       title: 'Multi-nivel',

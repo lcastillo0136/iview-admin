@@ -51,6 +51,63 @@ export default {
     select_date: 'Select date',
     select_time: 'Select time'
   },
+  join: {
+    title: '社区',
+    qq_number: 'QQ 群号: {number}',
+    zhihu_column: 'iView 知乎专栏',
+    juejin: '掘金',
+    bilibili: '活动直播间',
+    twitter: '推特'
+  },
+  treeSelect: {
+    update_selected_data: '更新选中数据',
+    update_tree_data: '更新树数据'
+  },
+  countTo: {
+    title: 'count-to组件基础用法',
+    total: '总',
+    times: '次',
+    left_right: '可添加左右文字',
+    custom_style: '自定义样式',
+    format_data: '设置数据格式',
+    convert_data: '转换单位简化数据',
+    custom_units: {
+      title: '自定义单位',
+      raw: '原始数据：{number} => '
+    },
+    async_data: '可异步更新数据',
+    example: '综合实例',
+    qty: {
+      thousand: '千多',
+      tenthousand: '万多',
+      over_hundred_thousand: '十万多',
+      over_million: '百万多',
+      over_ten_million: '千万多',
+      billion: '亿多',
+      dozen: '十多',
+      hundred: '百多'
+    }
+  },
+  dragList: {
+    toDo: '待办事项',
+    completion: '完成事项',
+    operation_record: '操作记录'
+  },
+  dragDrawer: {
+    content: 'drawer组件是对iview的drawer组件的封装，在支持drawer所有api的基础上，支持可拖动和footer底部插槽',
+    direction: '方向',
+    left: '左',
+    right: '右',
+    whether_draggable: '是否可拖动',
+    close: '关闭',
+    open: '打开',
+    container_drawer: '容器内抽屉',
+    open_fullscreen: '打开全屏抽屉',
+    example: {
+      title: '这是标题'
+    },
+    show_miltilayer: '显示多层'
+  },
   menu: {
     components: {
       title: '组件',

@@ -20,7 +20,7 @@ export const getDragList = req => {
   let dragList = []
   doCustomTimes(5, () => {
     dragList.push(Mock.mock({
-      name: Random.csentence(10, 13),
+      name: Random.sentence(10, 13),
       id: Random.increment(10)
     }))
   })

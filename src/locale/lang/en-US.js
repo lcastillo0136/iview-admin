@@ -51,6 +51,63 @@ export default {
     select_date: 'Select date',
     select_time: 'Select time'
   },
+  join: {
+    title: 'Community',
+    qq_number: 'QQ Group number: {number}',
+    zhihu_column: 'iView meet the column',
+    juejin: 'Juejin',
+    bilibili: 'Event Live Room',
+    twitter: 'Twitter'
+  },
+  treeSelect: {
+    update_selected_data: 'Update selected data',
+    update_tree_data: 'Update tree data'
+  },
+  countTo: {
+    title: 'Count-to component basic usage',
+    total: 'Total',
+    times: 'times',
+    left_right: 'Add left and right text',
+    custom_style: 'Custom style',
+    format_data: 'Format he data',
+    convert_data: 'Convert units to simplify data',
+    custom_units: {
+      title: 'Custom units',
+      raw: 'Raw data：{number} => '
+    },
+    async_data: 'Data can be updated asynchronously',
+    example: 'Comprehensive example',
+    qty: {
+      thousand: 'Thousand',
+      tenthousand: 'Ten thousand',
+      over_hundred_thousand: 'Over 100,000',
+      over_million: 'Over a million',
+      over_ten_million: 'Over ten million',
+      billion: 'Billion',
+      dozen: 'Dozen',
+      hundred: 'Hundred'
+    }
+  },
+  dragList: {
+    toDo: 'To-Do',
+    completion: 'Completion',
+    operation_record: 'Operation record'
+  },
+  dragDrawer: {
+    content: 'drawer component is an encapsulation of the iview\'s drawer component. It supports draggable and footer bottom slots on the basis of supporting all apis of the drawer',
+    direction: 'Direction',
+    left: 'left',
+    right: 'Right',
+    whether_draggable: 'Whether draggable',
+    close: 'Shutdown',
+    open: 'Turn On',
+    container_drawer: 'Container Drawer',
+    open_fullscreen: 'Open fullscreen',
+    example: {
+      title: 'This is the title'
+    },
+    show_miltilayer: 'Show multiple layers'
+  },
   menu: {
     components: {
       title: 'Components',
