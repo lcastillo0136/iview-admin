@@ -157,6 +157,14 @@ export default {
     search_placeholder: 'Enter keyword search',
     search_button: 'Search For'
   },
+  richEditor: {
+    button: 'Modify editor content'
+  },
+  icons: {
+    builtin_icon: 'iView built-in icon',
+    feature: 'The Icons component supports the display of custom icons. For the creation of custom icon font files, please refer to the document.',
+    feature2: 'CommonIcon component supports both iView built-in icon type and custom icon type. In order to distinguish these two types, you need to underline the custom icon name"_"'
+  },
   menu: {
     components: {
       title: 'Components',

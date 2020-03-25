@@ -157,6 +157,14 @@ export default {
     search_placeholder: 'Buscar por palabra clave',
     search_button: 'Buscar'
   },
+  richEditor: {
+    button: 'Modificar contenido del editor'
+  },
+  icons: {
+    builtin_icon: 'icono incorporado de iView',
+    feature: 'El componente Icons soporta mostrar iconos personalizados. Para la creación de fuentes con iconos personalizados, por favor refiérase a la documentación.',
+    feature2: 'El componente CommonIcon soporta ambos icono incorporado tipo iView y tipo personalizado. Para distinguir estos dos tipos, necesita agregar un guion-bajo al nombre del icono personalizado "_"'
+  },
   menu: {
     components: {
       title: 'Componentes',

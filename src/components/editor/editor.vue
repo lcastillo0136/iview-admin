@@ -58,6 +58,16 @@ export default {
       this.$emit('input', this.valueType === 'html' ? html : text)
       this.$emit('on-change', html, text)
     }
+    this.editor.customConfig.lang = {
+      '设置标题': 'title',
+      '正文': 'p',
+      '链接文字': 'link text',
+      '链接': 'link',
+      '上传图片': 'upload image',
+      '上传': 'upload',
+      '创建': 'init'
+      // 还可自定添加更多
+    }
     this.editor.customConfig.onchangeTimeout = this.changeInterval
     // create这个方法一定要在所有配置项之后调用
     this.editor.create()

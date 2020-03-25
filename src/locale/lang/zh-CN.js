@@ -157,6 +157,14 @@ export default {
     search_placeholder: '输入关键字搜索',
     search_button: '搜索'
   },
+  richEditor: {
+    button: '修改编辑器内容'
+  },
+  icons: {
+    builtin_icon: 'iView内置图标',
+    feature: 'Icons组件支持自定义图标的显示，具体自定义图标字体文件的制作请参考文档。',
+    feature2: 'CommonIcon组件同时支持iView内置图标类型和自定义图标类型，为了区别这两种类型，需要在自定义图标名称前加下划线"_"'
+  },
   menu: {
     components: {
       title: '组件',
