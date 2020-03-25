@@ -165,6 +165,18 @@ export default {
     feature: 'Icons组件支持自定义图标的显示，具体自定义图标字体文件的制作请参考文档。',
     feature2: 'CommonIcon组件同时支持iView内置图标类型和自定义图标类型，为了区别这两种类型，需要在自定义图标名称前加下划线"_"'
   },
+  uploadTable: {
+    upload_csv: '上传Csv文件',
+    tip_upload: '点击上传Csv文件',
+    utilsjs: {
+      tip: 'util.js提供两个方法用来实现这个功能',
+      get_array: '将Csv文件解析为二维数组',
+      get_table: '将二维数组转为表格数据，具体请看文档'
+    },
+    csv_first_row: '第一行是標題',
+    only_csv_files: '只能上传Csv文件',
+    only_csv_files_again: '只能上传Csv文件，请重新上传'
+  },
   menu: {
     components: {
       title: '组件',

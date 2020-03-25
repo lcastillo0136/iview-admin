@@ -165,6 +165,18 @@ export default {
     feature: 'El componente Icons soporta mostrar iconos personalizados. Para la creación de fuentes con iconos personalizados, por favor refiérase a la documentación.',
     feature2: 'El componente CommonIcon soporta ambos icono incorporado tipo iView y tipo personalizado. Para distinguir estos dos tipos, necesita agregar un guion-bajo al nombre del icono personalizado "_"'
   },
+  uploadTable: {
+    upload_csv: 'Subir archivo .Csv',
+    tip_upload: 'Sube le archivo .Csv con el boton',
+    utilsjs: {
+      tip: 'util.js usa dos funcioneas para completar esta accion',
+      get_array: 'Convierte un archivo .Csv en una matriz bidimencional',
+      get_table: 'Convierte una matriz bidimencional en datos tabulares, consulta la documentación para mas detalles'
+    },
+    csv_first_row: 'Primera linea es cabezera',
+    only_csv_files: 'Solo se pueden subir archivos .Csv',
+    only_csv_files_again: 'Solo archivos .Csv son permitidos, por favor intente de nuevo.'
+  },
   menu: {
     components: {
       title: 'Componentes',

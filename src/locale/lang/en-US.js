@@ -165,6 +165,18 @@ export default {
     feature: 'The Icons component supports the display of custom icons. For the creation of custom icon font files, please refer to the document.',
     feature2: 'CommonIcon component supports both iView built-in icon type and custom icon type. In order to distinguish these two types, you need to underline the custom icon name"_"'
   },
+  uploadTable: {
+    upload_csv: 'Upload Csv file',
+    tip_upload: 'Click to upload Csv file',
+    utilsjs: {
+      tip: 'util.js provides two methods to achieve this function',
+      get_array: 'Parsing a Csv file into a two-dimensional array',
+      get_table: 'Convert two-dimensional arrays into tabular data, see the documentation for details'
+    },
+    csv_first_row: 'First row is header',
+    only_csv_files: 'Can only upload Csv files',
+    only_csv_files_again: 'Only Csv files can be uploaded, please upload again'
+  },
   menu: {
     components: {
       title: 'Components',

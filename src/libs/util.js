@@ -1,4 +1,5 @@
 import Cookies from 'js-cookie'
+import Papa from 'papaparse'
 // cookie保存的天数
 import config from '@/config'
 import { forEach, hasOneOf, objEqual } from '@/libs/tools'
@@ -248,16 +249,30 @@ export const getArrayFromFile = (file) => {
   })
 }
 
+export const getArrayFromPapa = (file) => {
+  let nameSplit = file.name.split('.')
+  let format = nameSplit[nameSplit.length - 1]
+  return new Promise((resolve, reject) => {
+    if (format === 'csv') {
+      Papa.parse(file, {
+        complete: resolve
+      })
+    } else {
+      reject(new Error('[Format Error]:你上传的不是Csv文件'))
+    }
+  })
+}
+
 /**
  * @param {Array} array 表格数据二维数组
  * @returns {Object} { columns, tableData }
  * @description 从二维数组中获取表头和表格数据，将第一行作为表头，用于在iView的表格中展示数据
  */
-export const getTableDataFromArray = (array) => {
+export const getTableDataFromArray = (array, header = false) => {
   let columns = []
   let tableData = []
   if (array.length > 1) {
-    let titles = array.shift()
+    let titles = header ? array.shift() : array[0].map((s, si) => `Column ${si + 1}`)
     columns = titles.map(item => {
       return {
         title: item,
@@ -266,11 +281,12 @@ export const getTableDataFromArray = (array) => {
     })
     tableData = array.map(item => {
       let res = {}
+      let rowValid = (item.filter(f => f !== '') || []).length > 0
       item.forEach((col, i) => {
         res[titles[i]] = col
       })
-      return res
-    })
+      return rowValid ? res : false
+    }).filter(item => item)
   }
   return {
     columns,
