@@ -118,6 +118,22 @@ export default {
       click: '点击了《{label}》节点的\'{key}\'菜单'
     }
   },
+  treeTable: {
+    name: '树状表格组件',
+    based_on: '基于',
+    develop: '进行开发',
+    fixed_some: '修复了一些bug',
+    add_features: '添加了一些新属性',
+    supported_slot: '支持使用',
+    perfom_custom_column: '进行自定义列渲染内容',
+    see_documentation: '文档请看',
+    columns: {
+      name: '名称',
+      gender: '性别',
+      score: '得分了',
+      likes: '喜欢'
+    }
+  },
   menu: {
     components: {
       title: '组件',

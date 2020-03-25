@@ -1,14 +1,15 @@
 <template>
   <div>
     <Card shadow>
-      树状表格组件tree-table-vue，基于<a href="https://github.com/MisterTaki/vue-table-with-tree-grid">vue-table-with-tree-grid</a>进行开发，修复了一些bug，添加了一些新属性
-      <p><b>支持使用slot-scope进行自定义列渲染内容</b></p>
-      <p>文档请看<a href="https://github.com/lison16/tree-table-vue">https://github.com/lison16/tree-table-vue</a></p>
+      {{ $t('treeTable.name') }} tree-table-vue，{{ $t('treeTable.based_on') }} <a href="https://github.com/MisterTaki/vue-table-with-tree-grid">vue-table-with-tree-grid</a> {{ $t('treeTable.develop') }}，{{ $t('treeTable.fixed_some') }}，{{ $t('treeTable.add_features') }}
+      <p><b>{{ $t('treeTable.supported_slot') }} slot-scope {{ $t('treeTable.perfom_custom_column') }}</b></p>
+      <p>{{ $t('treeTable.see_documentation') }} <a href="https://github.com/lison16/tree-table-vue">https://github.com/lison16/tree-table-vue</a></p>
       <tree-table expand-key="sex" :expand-type="false" :selectable="false" :columns="columns" :data="data" >
         <template slot="likes" slot-scope="scope">
           <Button @click="handle(scope)">123</Button>
         </template>
       </tree-table>
+      <textarea v-model="content"></textarea>
     </Card>
   </div>
 </template>
@@ -20,21 +21,21 @@ export default {
     return {
       columns: [
         {
-          title: 'name',
+          title: this.$t('treeTable.columns.name'),
           key: 'name',
           width: '400px'
         },
         {
-          title: 'sex',
+          title: this.$t('treeTable.columns.gender'),
           key: 'sex',
           minWidth: '50px'
         },
         {
-          title: 'score',
+          title: this.$t('treeTable.columns.score'),
           key: 'score'
         },
         {
-          title: 'likes',
+          title: this.$t('treeTable.columns.likes'),
           key: 'likes',
           minWidth: '200px',
           type: 'template',
@@ -178,17 +179,22 @@ export default {
             }
           ]
         }
-      ]
+      ],
+      content: []
     }
   },
   methods: {
     handle (scope) {
-      console.log(scope)
+      this.content = JSON.stringify(scope)
     }
   }
 }
 </script>
 
 <style>
-
+  textarea {
+    width: 100%;
+    margin-top: 1rem;
+    height: 150px;
+  }
 </style>

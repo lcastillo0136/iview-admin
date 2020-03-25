@@ -118,6 +118,22 @@ export default {
       click: 'Clicked on the \'{key}\' menu of the "{label}" node'
     }
   },
+  treeTable: {
+    name: 'Tree table component',
+    based_on: 'based on',
+    develop: 'develop',
+    fixed_some: 'Fixed some bugs',
+    add_features: 'Added some new attributes',
+    supported_slot: 'Supported use',
+    perfom_custom_column: 'Perform custom column rendering',
+    see_documentation: 'See the documentation',
+    columns: {
+      name: 'Name',
+      gender: 'Gender',
+      score: 'Score',
+      likes: 'Likes'
+    }
+  },
   menu: {
     components: {
       title: 'Components',
