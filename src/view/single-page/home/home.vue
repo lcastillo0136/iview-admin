@@ -22,7 +22,7 @@
     </Row>
     <Row>
       <Card shadow>
-        <example style="height: 310px;"/>
+        <example style="height: 310px;" :value="barData"/>
       </Card>
     </Row>
   </div>
@@ -43,23 +43,33 @@ export default {
     Example
   },
   data () {
-    return {
-      inforCardData: [
+    return {}
+  },
+  mounted () {
+    //
+  },
+  computed: {
+    topCards () {
+      return [
         { title: this.$t('home.new_users'), icon: 'md-person-add', count: 803, color: '#2d8cf0' },
         { title: this.$t('home.total_clicks'), icon: 'md-locate', count: 232, color: '#19be6b' },
         { title: this.$t('home.total_QnA'), icon: 'md-help-circle', count: 142, color: '#ff9900' },
         { title: this.$t('home.total_share'), icon: 'md-share', count: 657, color: '#ed3f14' },
         { title: this.$t('home.total_chat'), icon: 'md-chatbubbles', count: 12, color: '#E46CBB' },
         { title: this.$t('home.total_pages'), icon: 'md-map', count: 14, color: '#9A66E4' }
-      ],
-      pieData: [
+      ]
+    },
+    pieData () {
+      return [
         { value: 335, name: this.$t('home.total_interview') },
         { value: 310, name: this.$t('home.email_marketing') },
         { value: 234, name: this.$t('home.affiliate_advertising') },
         { value: 135, name: this.$t('home.video_advertising') },
         { value: 1548, name: this.$t('home.search_engine') }
-      ],
-      barData: [
+      ]
+    },
+    barData () {
+      return [
         { text: this.$t('date.week.Mon'), value: 13253 },
         { text: this.$t('date.week.Tue'), value: 34235 },
         { text: this.$t('date.week.Wed'), value: 26321 },
@@ -68,14 +78,6 @@ export default {
         { text: this.$t('date.week.Sat'), value: 1322 },
         { text: this.$t('date.week.Sun'), value: 1324 }
       ]
-    }
-  },
-  mounted () {
-    //
-  },
-  computed: {
-    topCards () {
-      return this.inforCardData
     }
   }
 }

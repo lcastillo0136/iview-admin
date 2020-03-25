@@ -144,6 +144,19 @@ export default {
       }
     }
   },
+  table: {
+    export_csv: 'Exportar como archivo .Csv',
+    columns: {
+      name: 'Nombre',
+      email: 'Email',
+      create_time: 'Fecha de Creación',
+      handle: 'Acciones',
+      delete_message: '¿Estas seguro que lo quieres eliminar?',
+      delete_button: 'Eliminar personalizado'
+    },
+    search_placeholder: 'Buscar por palabra clave',
+    search_button: 'Buscar'
+  },
   menu: {
     components: {
       title: 'Componentes',

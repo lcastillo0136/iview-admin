@@ -3,7 +3,7 @@ const btns = {
     return h('Poptip', {
       props: {
         confirm: true,
-        title: '你确定要删除吗?'
+        title: vm.$t('table.columns.delete_message')
       },
       on: {
         'on-ok': () => {

@@ -144,6 +144,19 @@ export default {
       }
     }
   },
+  table: {
+    export_csv: '导出为Csv文件',
+    columns: {
+      name: '名称',
+      email: '电子邮件',
+      create_time: '创建时间',
+      handle: '处理',
+      delete_message: '你确定要删除吗?',
+      delete_button: '自定义删除'
+    },
+    search_placeholder: '输入关键字搜索',
+    search_button: '搜索'
+  },
   menu: {
     components: {
       title: '组件',

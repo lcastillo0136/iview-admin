@@ -1,8 +1,8 @@
 <template>
   <div>
     <Card>
-      <tables ref="tables" editable searchable search-place="top" v-model="tableData" :columns="columns" @on-delete="handleDelete"/>
-      <Button style="margin: 10px 0;" type="primary" @click="exportExcel">导出为Csv文件</Button>
+      <tables ref="tables" editable searchable search-place="top" v-model="tableData" :columns="columns()" @on-delete="handleDelete"/>
+      <Button style="margin: 10px 0;" type="primary" @click="exportExcel">{{ $t('table.export_csv') }}</Button>
     </Card>
   </div>
 </template>
@@ -17,34 +17,6 @@ export default {
   },
   data () {
     return {
-      columns: [
-        { title: 'Name', key: 'name', sortable: true },
-        { title: 'Email', key: 'email', editable: true },
-        { title: 'Create-Time', key: 'createTime' },
-        {
-          title: 'Handle',
-          key: 'handle',
-          options: ['delete'],
-          button: [
-            (h, params, vm) => {
-              return h('Poptip', {
-                props: {
-                  confirm: true,
-                  title: '你确定要删除吗?'
-                },
-                on: {
-                  'on-ok': () => {
-                    vm.$emit('on-delete', params)
-                    vm.$emit('input', params.tableData.filter((item, index) => index !== params.row.initRowIndex))
-                  }
-                }
-              }, [
-                h('Button', '自定义删除')
-              ])
-            }
-          ]
-        }
-      ],
       tableData: []
     }
   },
@@ -56,6 +28,36 @@ export default {
       this.$refs.tables.exportCsv({
         filename: `table-${(new Date()).valueOf()}.csv`
       })
+    },
+    columns () {
+      return [
+        { title: this.$t('table.columns.name'), key: 'name', sortable: true },
+        { title: this.$t('table.columns.email'), key: 'email', editable: true },
+        { title: this.$t('table.columns.create_time'), key: 'createTime' },
+        {
+          title: this.$t('table.columns.handle'),
+          key: 'handle',
+          options: ['delete'],
+          button: [
+            (h, params, vm) => {
+              return h('Poptip', {
+                props: {
+                  confirm: true,
+                  title: vm.$t('table.columns.delete_message')
+                },
+                on: {
+                  'on-ok': () => {
+                    vm.$emit('on-delete', params)
+                    vm.$emit('input', params.tableData.filter((item, index) => index !== params.row.initRowIndex))
+                  }
+                }
+              }, [
+                h('Button', vm.$t('table.columns.delete_button'))
+              ])
+            }
+          ]
+        }
+      ]
     }
   },
   mounted () {
