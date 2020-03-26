@@ -6,7 +6,7 @@ export const getMessageInit = () => {
   let unreadList = []
   doCustomTimes(3, () => {
     unreadList.push(Mock.mock({
-      title: Random.cword(10, 15),
+      title: Random.word(10, 15),
       create_time: '@date',
       msg_id: Random.increment(100)
     }))
@@ -14,7 +14,7 @@ export const getMessageInit = () => {
   let readedList = []
   doCustomTimes(4, () => {
     readedList.push(Mock.mock({
-      title: Random.cword(10, 15),
+      title: Random.word(10, 15),
       create_time: '@date',
       msg_id: Random.increment(100)
     }))
@@ -22,7 +22,7 @@ export const getMessageInit = () => {
   let trashList = []
   doCustomTimes(2, () => {
     trashList.push(Mock.mock({
-      title: Random.cword(10, 15),
+      title: Random.word(10, 15),
       create_time: '@date',
       msg_id: Random.increment(100)
     }))
@@ -35,7 +35,7 @@ export const getMessageInit = () => {
 }
 
 export const getContentByMsgId = () => {
-  return `<divcourier new',="" monospace;font-weight:="" normal;font-size:="" 12px;line-height:="" 18px;white-space:="" pre;"=""><div>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: medium;">这是消息内容，这个内容是使用<span style="color: rgb(255, 255, 255); background-color: rgb(28, 72, 127);">富文本编辑器</span>编辑的，所以你可以看到一些<span style="text-decoration-line: underline; font-style: italic; color: rgb(194, 79, 74);">格式</span></span></div><ol><li>你可以查看Mock返回的数据格式，和api请求的接口，来确定你的后端接口的开发</li><li>使用你的真实接口后，前端页面基本不需要修改即可满足基本需求</li><li>快来试试吧</li></ol><p>${Random.csentence(100, 200)}</p></divcourier>`
+  return `<divcourier new',="" monospace;font-weight:="" normal;font-size:="" 12px;line-height:="" 18px;white-space:="" pre;"=""><div>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: medium;">This is the message content, this content is using<span style="color: rgb(255, 255, 255); background-color: rgb(28, 72, 127);">Rich text editor</span>Edited so you can see some<span style="text-decoration-line: underline; font-style: italic; color: rgb(194, 79, 74);">format</span></span></div><ol><li>You can check the data format returned by Mock and the API requested interface to determine the development of your back-end interface</li><li>After using your real interface, the front-end page basically does not need to be modified to meet the basic needs</li><li>Come try it out</li></ol><p>${Random.sentence(100, 200)}</p></divcourier>`
 }
 
 export const hasRead = () => {

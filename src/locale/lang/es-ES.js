@@ -276,6 +276,13 @@ export default {
       third: 'Nivel {third}-{forth}'
     }
   },
+  messageCenter: {
+    unread_message: 'Mensajes sin leer',
+    read_message: 'Mensajes leidos',
+    recycle_bin: 'Basura',
+    title_delete: 'Borrar',
+    title_restore: 'Restaurar'
+  },
   menu: {
     components: {
       title: 'Componentes',

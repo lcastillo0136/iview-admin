@@ -276,6 +276,13 @@ export default {
       third: '{third}级{forth}'
     }
   },
+  messageCenter: {
+    unread_message: '未读消息',
+    read_message: '已读消息',
+    recycle_bin: '回收站',
+    title_delete: '删除',
+    title_restore: '还原'
+  },
   menu: {
     components: {
       title: '组件',
