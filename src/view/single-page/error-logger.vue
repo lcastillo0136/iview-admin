@@ -74,7 +74,7 @@ export default {
     ]),
     exportData () {
       this.$refs.table.exportCsv({
-        filename: `${$t('errorLogger.file_name')}.csv`
+        filename: `${this.$t('errorLogger.file_name')}.csv`
       })
     }
   },
