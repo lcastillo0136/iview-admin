@@ -3,9 +3,9 @@
 </style>
 <template>
   <div>
-    <Card title="导出EXCEL">
+    <Card :title="$t('exportExcel.title')">
       <Row>
-        <Button icon="md-download" :loading="exportLoading" @click="exportExcel">导出文件</Button>
+        <Button icon="md-download" :loading="exportLoading" @click="exportExcel">{{ $t('exportExcel.export_file') }}</Button>
       </Row>
     </Card>
     <Row class="margin-top-10">
@@ -20,20 +20,6 @@ export default {
   data () {
     return {
       exportLoading: false,
-      tableTitle: [
-        {
-          title: '一级分类',
-          key: 'category1'
-        },
-        {
-          title: '二级分类',
-          key: 'category2'
-        },
-        {
-          title: '三级分类',
-          key: 'category3'
-        }
-      ],
       tableData: [
         {
           category1: 1,
@@ -53,21 +39,39 @@ export default {
       ]
     }
   },
+  computed: {
+    tableTitle () {
+      return [
+        {
+          title: this.$t('exportExcel.example.columns.primary'),
+          key: 'category1'
+        },
+        {
+          title: this.$t('exportExcel.example.columns.secondary'),
+          key: 'category2'
+        },
+        {
+          title: this.$t('exportExcel.example.columns.tertiary'),
+          key: 'category3'
+        }
+      ]
+    }
+  },
   methods: {
     exportExcel () {
       if (this.tableData.length) {
         this.exportLoading = true
         const params = {
-          title: ['一级分类', '二级分类', '三级分类'],
+          title: [this.$t('exportExcel.example.columns.primary'), this.$t('exportExcel.example.columns.secondary'), this.$t('exportExcel.example.columns.tertiary')],
           key: ['category1', 'category2', 'category3'],
           data: this.tableData,
           autoWidth: true,
-          filename: '分类列表'
+          filename: this.$t('exportExcel.example.result')
         }
         excel.export_array_to_excel(params)
         this.exportLoading = false
       } else {
-        this.$Message.info('表格数据不能为空！')
+        this.$Message.info(this.$t('exportExcel.messages.error.empty'))
       }
     }
   },

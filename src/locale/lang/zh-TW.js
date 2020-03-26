@@ -205,6 +205,39 @@ export default {
       }
     }
   },
+  exportExcel: {
+    title: '导出EXCEL',
+    export_file: '导出文件',
+    example: {
+      columns: {
+        primary: '一级分类',
+        secondary: '二级分类',
+        tertiary: '三级分类'
+      },
+      result: '分类列表'
+    },
+    messages: {
+      error: {
+        empty: '表格数据不能为空！'
+      }
+    }
+  },
+  toolsMethods: {
+    add_label: '添加一个标签',
+    dynamic_routing: '动态路由',
+    add: '添加',
+    parameter: '参数',
+    close_this: '关闭工具方法页',
+    close_manually: '手动关闭页面'
+  },
+  arguPage: {
+    params: {
+      close_button: '调用closeTag方法关闭本页'
+    },
+    query: {
+      close_button: '调用closeTag方法关闭本页'
+    }
+  },
   menu: {
     components: {
       title: '组件',
@@ -341,6 +374,11 @@ export default {
       Fri: '周五',
       Sat: '周六',
       Sun: '周日'
+    }
+  },
+  modal: {
+    close: {
+      title: '确定要关闭这一页吗?'
     }
   }
 }

@@ -2,7 +2,7 @@
   <div>
     <Card>
       <h2>ID: {{ $route.params.id }}</h2>
-      <Button @click="close">调用closeTag方法关闭本页</Button>
+      <Button @click="close">{{ $t('arguPage.params.close_button') }}</Button>
     </Card>
   </div>
 </template>

@@ -6,7 +6,7 @@ export default {
     total_QnA: 'Total PyR',
     total_share: 'Veces Compartidas',
     total_chat: 'Mensajes Totales',
-    total_pages: 'Paginas Totales',
+    total_pages: 'páginas Totales',
     total_interview: 'Entrevistas Totales',
     email_marketing: 'Correo Publicidad',
     affiliate_advertising: 'Publicidad Afiliada',
@@ -47,7 +47,7 @@ export default {
     content: 'este es el contenido del modal.',
     modalTitle: 'Titulo Modal',
     buttonText: 'Mostrar Modal',
-    tip: 'Nota: Solo esta pagina es multi-languaje, otras paginas no agregan contenido de lenguaje al paquete multi-languaje.',
+    tip: 'Nota: Solo esta página es multi-languaje, otras páginas no agregan contenido de lenguaje al paquete multi-languaje.',
     select_date: 'Selecciona fecha',
     select_time: 'Selecciona el tiempo'
   },
@@ -205,6 +205,39 @@ export default {
       }
     }
   },
+  exportExcel: {
+    title: 'Exportar Excel',
+    export_file: 'Exportar Archivo',
+    example: {
+      columns: {
+        primary: 'Clasificación primaria',
+        secondary: 'Clasificación secundaria',
+        tertiary: 'Clasificación terciaria'
+      },
+      result: 'Lista de categorias'
+    },
+    messages: {
+      error: {
+        empty: 'El formulario no puede estar vacío！'
+      }
+    }
+  },
+  toolsMethods: {
+    add_label: 'Agregar etiqueta',
+    dynamic_routing: 'Router dynamico',
+    add: 'Agregar ',
+    parameter: 'Parameter',
+    close_this: 'Cerrar página Tools Methods',
+    close_manually: 'Cerrar página manualmente'
+  },
+  arguPage: {
+    params: {
+      close_button: 'Llama la función \'closeTag\' para cerrar esta página'
+    },
+    query: {
+      close_button: 'Llama la función \'closeTag\' para cerrar esta página'
+    }
+  },
   menu: {
     components: {
       title: 'Componentes',
@@ -341,6 +374,11 @@ export default {
       Fri: 'Vie',
       Sat: 'Sab',
       Sun: 'Dom'
+    }
+  },
+  modal: {
+    close: {
+      title: 'Esta seguro que quiere cerrar esta pagina?'
     }
   }
 }

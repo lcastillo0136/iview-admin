@@ -122,7 +122,11 @@ export default {
     },
     handleClose (current) {
       if (current.meta && current.meta.beforeCloseName && current.meta.beforeCloseName in beforeClose) {
-        new Promise(beforeClose[current.meta.beforeCloseName]).then(close => {
+        new Promise(resolve => {
+          beforeClose[current.meta.beforeCloseName](this).then(result => {
+            resolve(result)
+          })
+        }).then(close => {
           if (close) {
             this.close(current)
           }

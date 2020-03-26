@@ -205,6 +205,39 @@ export default {
       }
     }
   },
+  exportExcel: {
+    title: 'Export Excel',
+    export_file: 'Export File',
+    example: {
+      columns: {
+        primary: 'Primary classification',
+        secondary: 'Secondary classification',
+        tertiary: 'Tertiary classification'
+      },
+      result: 'Category List'
+    },
+    messages: {
+      error: {
+        empty: 'Form data cannot be empty！'
+      }
+    }
+  },
+  toolsMethods: {
+    add_label: 'Add Label',
+    dynamic_routing: 'Dynamic routing',
+    add: 'Add ',
+    parameter: 'parameter',
+    close_this: 'Close the tool method page',
+    close_manually: 'Close the page manually'
+  },
+  arguPage: {
+    params: {
+      close_button: 'Call closeTag method to close this page'
+    },
+    query: {
+      close_button: 'Call closeTag method to close this page'
+    }
+  },
   menu: {
     components: {
       title: 'Components',
@@ -341,6 +374,11 @@ export default {
       Fri: 'Fri',
       Sat: 'Sat',
       Sun: 'Sun'
+    }
+  },
+  modal: {
+    close: {
+      title: 'Are you sure you want to close this page?'
     }
   }
 }

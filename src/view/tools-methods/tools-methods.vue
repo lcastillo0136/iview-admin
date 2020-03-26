@@ -1,32 +1,32 @@
 <template>
   <div>
     <Card shadow>
-      <Row>
+      <Row type="flex" align="middle">
         <i-col span="4">
-          <Button @click="createTagParams">添加一个标签</Button>
+          <Button @click="createTagParams">{{ $t('toolsMethods.add_label') }}</Button>
         </i-col>
         <i-col span="20">
-          <p>动态路由，添加params</p>
+          <p>{{ $t('toolsMethods.dynamic_routing') }}，{{ $t('toolsMethods.add') }}params</p>
         </i-col>
       </Row>
     </Card>
     <Card shadow style="margin-top: 10px;">
-      <Row>
+      <Row type="flex" align="middle">
         <i-col span="4">
-          <Button @click="createTagQuery">添加一个标签</Button>
+          <Button @click="createTagQuery">{{ $t('toolsMethods.add_label') }}</Button>
         </i-col>
         <i-col span="20">
-          <p>动态路由，添加query</p>
+          <p>{{ $t('toolsMethods.dynamic_routing') }}，{{ $t('toolsMethods.add') }}query</p>
         </i-col>
       </Row>
     </Card>
     <Card shadow style="margin-top: 10px;">
-      <Row>
+      <Row type="flex" align="middle">
         <i-col span="4">
-          <Button @click="handleCloseTag">关闭工具方法页</Button>
+          <Button @click="handleCloseTag">{{ $t('toolsMethods.close_this') }}</Button>
         </i-col>
         <i-col span="20">
-          <p>手动关闭页面</p>
+          <p>{{ $t('toolsMethods.close_manually') }}</p>
         </i-col>
       </Row>
     </Card>
@@ -46,10 +46,12 @@ export default {
       const route = {
         name: 'params',
         params: {
-          id
+          id: id,
+          title: '{{ toolsMethods.dynamic_routing }}'
         },
         meta: {
-          title: `动态路由-${id}`
+          title: '{{ toolsMethods.dynamic_routing }}',
+          beforeCloseName: 'before_close_normal'
         }
       }
       this.$router.push(route)
@@ -62,7 +64,7 @@ export default {
           id
         },
         meta: {
-          title: `参数-${id}`
+          title: this.$t('toolsMethods.parameter') + `-${id}`
         }
       }
       this.$router.push(route)

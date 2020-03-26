@@ -445,7 +445,7 @@ export default [
         name: 'params',
         meta: {
           icon: 'md-flower',
-          title: route => `{{ params }}-${route.params.id}`,
+          title: route => `${route.params.title}-${route.params.id}`,
           notCache: true,
           beforeCloseName: 'before_close_normal'
         },
@@ -456,7 +456,7 @@ export default [
         name: 'query',
         meta: {
           icon: 'md-flower',
-          title: route => `{{ query }}-${route.query.id}`,
+          title: route => `{{ toolsMethods.dynamic_routing }}-${route.query.id}`,
           notCache: true
         },
         component: () => import('@/view/argu-page/query.vue')
