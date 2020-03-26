@@ -187,6 +187,24 @@ export default {
       }
     }
   },
+  uploadExcel: {
+    title: '导入EXCEL',
+    upload_file: '上传文件',
+    success: '成功',
+    messages: {
+      info: {
+        file_deleted: '上传的文件已删除！'
+      },
+      error: {
+        file_type: '文件类型错误',
+        no_excel: '文件：{name}不是EXCEL文件，请选择后缀为.xlsx或者.xls的EXCEL文件。',
+        reading: '文件读取出错'
+      },
+      success: {
+        read: '文件读取成功'
+      }
+    }
+  },
   menu: {
     components: {
       title: '组件',

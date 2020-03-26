@@ -187,6 +187,24 @@ export default {
       }
     }
   },
+  uploadExcel: {
+    title: 'Importar Excel',
+    upload_file: 'Subir archivos',
+    success: 'Éxito',
+    messages: {
+      info: {
+        file_deleted: 'El archivo a sido eliminado！'
+      },
+      error: {
+        file_type: 'Tipo de archivo invalido',
+        no_excel: 'Archivo：{name} no es un archivo de excel，por favor elija un archivo con extensión .xlsx o .xls。',
+        reading: 'Error extrayendo información del archivo'
+      },
+      success: {
+        read: 'Información leida correctamente'
+      }
+    }
+  },
   menu: {
     components: {
       title: 'Componentes',

@@ -187,6 +187,24 @@ export default {
       }
     }
   },
+  uploadExcel: {
+    title: 'Import Excel',
+    upload_file: 'Upload files',
+    success: 'Success',
+    messages: {
+      info: {
+        file_deleted: 'The uploaded file has been deleted！'
+      },
+      error: {
+        file_type: 'File type error',
+        no_excel: 'File：{name} not an excel file，please select an excel file with a .xlsx or .xls extension。',
+        reading: 'File reading error'
+      },
+      success: {
+        read: 'File read successfully'
+      }
+    }
+  },
   menu: {
     components: {
       title: 'Components',
