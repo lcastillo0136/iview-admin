@@ -1,5 +1,5 @@
 <template>
-  <div>多级菜单 -> 二级-1</div>
+  <div>{{ $t('multilevel.level.menu') }} -> {{ $t('multilevel.level.second', { second: 1}) }}</div>
 </template>
 <script>
 export default {

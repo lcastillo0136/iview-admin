@@ -259,6 +259,23 @@ export default {
     },
     file_name: '错误日志'
   },
+  directives: {
+    show_modal: '显示可拖动弹窗',
+    this_button_draggable: '这个按钮也是可以拖动的',
+    modal_title: '标题',
+    drag_here: '拖动这里即可拖动整个弹窗',
+    copy_button: '複製',
+    copy_succed: '复制成功',
+    copy_failedd: '复制失败',
+    entered_input: '这是输入的内容'
+  },
+  multilevel: {
+    level: {
+      menu: '多级菜单',
+      second: '二级-{second}',
+      third: '{third}级{forth}'
+    }
+  },
   menu: {
     components: {
       title: '组件',

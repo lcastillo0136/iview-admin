@@ -259,6 +259,23 @@ export default {
     },
     file_name: 'Error log'
   },
+  directives: {
+    show_modal: 'Show draggable popup',
+    this_button_draggable: 'This button is also draggable',
+    modal_title: 'Title',
+    drag_here: 'Drag here to drag the entire popup',
+    copy_button: 'Copy',
+    copy_succed: 'Copy succeeded',
+    copy_failedd: 'Copy failed',
+    entered_input: 'This is what is entered'
+  },
+  multilevel: {
+    level: {
+      menu: 'Multi-level menu',
+      second: 'Level-{second}',
+      third: 'Level {third}-{forth}'
+    }
+  },
   menu: {
     components: {
       title: 'Components',

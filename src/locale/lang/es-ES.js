@@ -259,6 +259,23 @@ export default {
     },
     file_name: 'Error log'
   },
+  directives: {
+    show_modal: 'Mostrar ventana emergente arrastrable',
+    this_button_draggable: 'Este botón también es arrastrable',
+    modal_title: 'Titulo',
+    drag_here: 'Agarra aquí para arrastrar toda la ventana emergente',
+    copy_button: 'Copiar',
+    copy_succed: 'Copia exitosa',
+    copy_failedd: 'Copia fallida',
+    entered_input: 'Esto es lo que se ingresa'
+  },
+  multilevel: {
+    level: {
+      menu: 'Multi-nivel menu',
+      second: 'Nivel-{second}',
+      third: 'Nivel {third}-{forth}'
+    }
+  },
   menu: {
     components: {
       title: 'Componentes',
