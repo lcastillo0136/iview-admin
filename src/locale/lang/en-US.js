@@ -238,6 +238,27 @@ export default {
       close_button: 'Call closeTag method to close this page'
     }
   },
+  errorStore: {
+    content1: 'iview-admin will automatically collect errors in your program, you can send the error log to the backend to save it. If you do not need this feature, delete the \'error-store\' attribute of the plugin in \'./src/config/index.js\'.',
+    content2: 'In addition, in the development environment, errors in your program will be collected. This may not help you troubleshoot errors. You can change \'./src/config/index.js\'\'error-store\'\'developmentOff\' is set to true.',
+    content3: 'If you just want to collect error logs and don\'t want logged in users to see the error logs, you can not provide an entry to view the logs, just add \'./src/config/index.js\' \'error-store\' \'ShowInHeader\' is set to false.',
+    click_test_error: 'Click test trigger error',
+    click_test_ajax_error: 'Click test triggers ajax interface request error',
+    ajax_error_404: 'The ajax interface request is a non-existing interface for the easy-mock request, so the server will report a 404 error, and the error collection mechanism will collect this error. There is a certain network delay during the test, so it will be collected after you click the button. error.'
+  },
+  errorLogger: {
+    button_export: 'Export logging',
+    logger_note: 'Note: Only the error log saved to the server will be displayed here, and the page error log will not be stored persistently in the browser, and the page will be lost when refresh',
+    columns: {
+      serial_number: 'Serial Number',
+      type: 'Type',
+      code: 'Code',
+      information: 'Information',
+      url: 'URL',
+      time: 'Time'
+    },
+    file_name: 'Error log'
+  },
   menu: {
     components: {
       title: 'Components',

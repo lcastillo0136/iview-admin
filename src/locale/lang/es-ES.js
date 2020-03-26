@@ -43,13 +43,13 @@ export default {
     }
   },
   i18n: {
-    title: 'Internacionalización',
+    title: 'Internaciónalización',
     content: 'este es el contenido del modal.',
     modalTitle: 'Titulo Modal',
     buttonText: 'Mostrar Modal',
     tip: 'Nota: Solo esta página es multi-languaje, otras páginas no agregan contenido de lenguaje al paquete multi-languaje.',
-    select_date: 'Selecciona fecha',
-    select_time: 'Selecciona el tiempo'
+    select_date: 'Seleccióna fecha',
+    select_time: 'Seleccióna el tiempo'
   },
   join: {
     title: 'Comunidad',
@@ -60,7 +60,7 @@ export default {
     twitter: 'Twitter'
   },
   treeSelect: {
-    update_selected_data: 'Actualizar datos seleccionados',
+    update_selected_data: 'Actualizar datos selecciónados',
     update_tree_data: 'Actualizar datos del árbol'
   },
   countTo: {
@@ -123,7 +123,7 @@ export default {
     based_on: 'basado en',
     develop: '',
     fixed_some: 'Varios errores arreglados',
-    add_features: 'Agregadas nuevas funcionalidades',
+    add_features: 'Agregadas nuevas funciónalidades',
     supported_slot: 'Soporta el uso',
     perfom_custom_column: 'para realizar renderizado de columna personalizado',
     see_documentation: 'Ver la documentación',
@@ -150,7 +150,7 @@ export default {
       name: 'Nombre',
       email: 'Email',
       create_time: 'Fecha de Creación',
-      handle: 'Acciones',
+      handle: 'Acciónes',
       delete_message: '¿Estas seguro que lo quieres eliminar?',
       delete_button: 'Eliminar personalizado'
     },
@@ -169,9 +169,9 @@ export default {
     upload_csv: 'Subir archivo .Csv',
     tip_upload: 'Sube le archivo .Csv con el boton',
     utilsjs: {
-      tip: 'util.js usa dos funcioneas para completar esta accion',
-      get_array: 'Convierte un archivo .Csv en una matriz bidimencional',
-      get_table: 'Convierte una matriz bidimencional en datos tabulares, consulta la documentación para mas detalles'
+      tip: 'util.js usa dos funcióneas para completar esta acción',
+      get_array: 'Convierte un archivo .Csv en una matriz bidimenciónal',
+      get_table: 'Convierte una matriz bidimenciónal en datos tabulares, consulta la documentación para mas detalles'
     },
     csv_first_row: 'Primera linea es cabezera',
     only_csv_files: 'Solo se pueden subir archivos .Csv',
@@ -237,6 +237,27 @@ export default {
     query: {
       close_button: 'Llama la función \'closeTag\' para cerrar esta página'
     }
+  },
+  errorStore: {
+    content1: 'iview-admin automaticamente recogera errores en tu programa, puedes enviar el registro de errores al back-end para guardarlo. Si no necesitas esta mejora, elimina el atributo \'error-store\' del plugin en esta ruta \'./src/config/index.js\'.',
+    content2: 'Adiciónalemnte, en el ambiente de desarrollo, los errores en tu programa seran recogidos. Esto puede no ayudarte a corregir los errores. Tu puedes cambiar \'./src/config/index.js\'\'error-store\'\'developmentOff\' y ponerlo en true.',
+    content3: 'Si tu quieres recoger errores en el registro y no buscas que usuarios en sesion vean el registro de errores, puedes negarles el acceso a la vista de registros, solo agrega \'./src/config/index.js\' \'error-store\' \'ShowInHeader\' y ponerlo en false.',
+    click_test_error: 'Click para probar el disparo de error',
+    click_test_ajax_error: 'Click para probar la funciónalidad request de ajax respondiendo error',
+    ajax_error_404: 'La interface de peticiónes ajax es una interfaz no existente para el easy-mock request, por lo tanto el servidor responera un error 404, y el mecanismo recolector de errores cachara este error. Existe un cierto retardo de red durante la prueba, por lo tanto sera recolectado despues de que le des al boton de error.'
+  },
+  errorLogger: {
+    button_export: 'Exportar Registros',
+    logger_note: 'Nota: Solo los registros mostrados aqui seran los que se guarden en el servidor, y el listado no se quedara persistente en el navegador, la información sera eliminada cuando se recargue la página',
+    columns: {
+      serial_number: 'Numero de Serie',
+      type: 'Tipo',
+      code: 'Codigo',
+      information: 'Información',
+      url: 'URL',
+      time: 'Hora / Fecha'
+    },
+    file_name: 'Error log'
   },
   menu: {
     components: {
@@ -344,7 +365,7 @@ export default {
       title: 'Métodos de herramientas'
     },
     error_store_page: {
-      title: 'Coleccion de errores'
+      title: 'Colección de errores'
     },
     error_logger_page: {
       title: 'Registro de Errores'
