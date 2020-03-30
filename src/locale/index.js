@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
 import { localRead } from '@/libs/util'
+import config from '@/config'
 import customZhCn from './lang/zh-CN'
 import customZhTw from './lang/zh-TW'
 import customEnUs from './lang/en-US'
@@ -9,6 +10,8 @@ import zhCnLocale from 'iview/src/locale/lang/zh-CN'
 import enUsLocale from 'iview/src/locale/lang/en-US'
 import zhTwLocale from 'iview/src/locale/lang/zh-TW'
 import esEsLocale from 'iview/src/locale/lang/es-ES'
+
+const { defaultLang } = config
 
 Vue.use(VueI18n)
 
@@ -23,7 +26,7 @@ const messages = {
 
 // 自动根据浏览器系统语言设置语言
 const localLang = navigator.language
-let lang = localRead('local') || (messages[localLang] && localLang) || 'en-US'
+let lang = localRead('local') || (messages[localLang] && localLang) || defaultLang || 'en-US'
 
 Vue.config.lang = lang
 const i18n = new VueI18n({
