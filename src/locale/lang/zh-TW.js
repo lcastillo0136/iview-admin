@@ -26,16 +26,17 @@ export default {
   login: {
     title: '登錄',
     form: {
-      title: 'Login please',
-      username: 'Please enter your username',
-      password: 'Please enter your password',
-      login: 'Login',
+      title: '欢迎登录',
+      username: '请输入用户名',
+      password: '请输入密码',
+      login: '登录',
       logout: '退出登录'
     },
     messages: {
       error: {
         username: 'Username cannot be empty',
-        password: 'Password cannot be empty'
+        password: 'Password cannot be empty',
+        email: '無效的電子郵件格式'
       }
     },
     tips: {

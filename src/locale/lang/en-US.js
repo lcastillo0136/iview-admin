@@ -35,7 +35,8 @@ export default {
     messages: {
       error: {
         username: 'Username cannot be empty',
-        password: 'Password cannot be empty'
+        password: 'Password cannot be empty',
+        email: 'Invalid email format'
       }
     },
     tips: {

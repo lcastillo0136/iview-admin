@@ -35,7 +35,8 @@ export default {
     messages: {
       error: {
         username: '账号不能为空',
-        password: '密码不能为空'
+        password: '密码不能为空',
+        email: '無效的電子郵件格式'
       }
     },
     tips: {

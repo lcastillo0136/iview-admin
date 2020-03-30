@@ -1,5 +1,6 @@
 import Main from '@/components/main'
 import parentView from '@/components/parent-view'
+import config from '@/config'
 
 /**
  * iview-admin中meta除了原生参数外可配置的参数:
@@ -25,7 +26,7 @@ export default [
       title: 'login.title',
       hideInMenu: true
     },
-    component: () => import('@/view/login/login.vue')
+    component: () => import('@/view/' + config.theme + '/login/login.vue')
   },
   {
     path: '/',
@@ -46,7 +47,7 @@ export default [
           notCache: true,
           icon: 'md-home'
         },
-        component: () => import('@/view/single-page/home')
+        component: () => import('@/view/' + config.theme + '/single-page/home')
       }
     ]
   },
@@ -74,7 +75,7 @@ export default [
           icon: '_qq',
           title: 'menu.join_page.title'
         },
-        component: () => import('@/view/join-page.vue')
+        component: () => import('@/view/' + config.theme + '/join-page.vue')
       }
     ]
   },
@@ -94,7 +95,7 @@ export default [
           icon: 'md-notifications',
           title: 'top.message_page.title'
         },
-        component: () => import('@/view/single-page/message/index.vue')
+        component: () => import('@/view/' + config.theme + '/single-page/message/index.vue')
       }
     ]
   },
@@ -114,7 +115,7 @@ export default [
           icon: 'md-arrow-dropdown-circle',
           title: 'menu.components.submenu.tree_select_page.title'
         },
-        component: () => import('@/view/components/tree-select/index.vue')
+        component: () => import('@/view/' + config.theme + '/components/tree-select/index.vue')
       },
       {
         path: 'count_to_page',
@@ -123,7 +124,7 @@ export default [
           icon: 'md-trending-up',
           title: 'menu.components.submenu.count_to_page.title'
         },
-        component: () => import('@/view/components/count-to/count-to.vue')
+        component: () => import('@/view/' + config.theme + '/components/count-to/count-to.vue')
       },
       {
         path: 'drag_list_page',
@@ -132,7 +133,7 @@ export default [
           icon: 'ios-infinite',
           title: 'menu.components.submenu.drag_list_page.title'
         },
-        component: () => import('@/view/components/drag-list/drag-list.vue')
+        component: () => import('@/view/' + config.theme + '/components/drag-list/drag-list.vue')
       },
       {
         path: 'drag_drawer_page',
@@ -141,7 +142,7 @@ export default [
           icon: 'md-list',
           title: 'menu.components.submenu.drag_drawer_page.title'
         },
-        component: () => import('@/view/components/drag-drawer')
+        component: () => import('@/view/' + config.theme + '/components/drag-drawer')
       },
       {
         path: 'org_tree_page',
@@ -150,7 +151,7 @@ export default [
           icon: 'ios-people',
           title: 'menu.components.submenu.org_tree_page.title'
         },
-        component: () => import('@/view/components/org-tree')
+        component: () => import('@/view/' + config.theme + '/components/org-tree')
       },
       {
         path: 'tree_table_page',
@@ -159,7 +160,7 @@ export default [
           icon: 'md-git-branch',
           title: 'menu.components.submenu.tree_table_page.title'
         },
-        component: () => import('@/view/components/tree-table/index.vue')
+        component: () => import('@/view/' + config.theme + '/components/tree-table/index.vue')
       },
       {
         path: 'cropper_page',
@@ -168,7 +169,7 @@ export default [
           icon: 'md-crop',
           title: 'menu.components.submenu.cropper_page.title'
         },
-        component: () => import('@/view/components/cropper/cropper.vue')
+        component: () => import('@/view/' + config.theme + '/components/cropper/cropper.vue')
       },
       {
         path: 'tables_page',
@@ -177,7 +178,7 @@ export default [
           icon: 'md-grid',
           title: 'menu.components.submenu.tables_page.title'
         },
-        component: () => import('@/view/components/tables/tables.vue')
+        component: () => import('@/view/' + config.theme + '/components/tables/tables.vue')
       },
       {
         path: 'split_pane_page',
@@ -186,7 +187,7 @@ export default [
           icon: 'md-pause',
           title: 'menu.components.submenu.split_pane_page.title'
         },
-        component: () => import('@/view/components/split-pane/split-pane.vue')
+        component: () => import('@/view/' + config.theme + '/components/split-pane/split-pane.vue')
       },
       {
         path: 'markdown_page',
@@ -195,7 +196,7 @@ export default [
           icon: 'logo-markdown',
           title: 'menu.components.submenu.markdown_page.title'
         },
-        component: () => import('@/view/components/markdown/markdown.vue')
+        component: () => import('@/view/' + config.theme + '/components/markdown/markdown.vue')
       },
       {
         path: 'editor_page',
@@ -204,7 +205,7 @@ export default [
           icon: 'ios-create',
           title: 'menu.components.submenu.editor_page.title'
         },
-        component: () => import('@/view/components/editor/editor.vue')
+        component: () => import('@/view/' + config.theme + '/components/editor/editor.vue')
       },
       {
         path: 'icons_page',
@@ -213,7 +214,7 @@ export default [
           icon: '_bear',
           title: 'menu.components.submenu.icons_page.title'
         },
-        component: () => import('@/view/components/icons/icons.vue')
+        component: () => import('@/view/' + config.theme + '/components/icons/icons.vue')
       }
     ]
   },
@@ -233,7 +234,7 @@ export default [
           icon: 'ios-document',
           title: 'menu.update.submenu.update_table_page.title'
         },
-        component: () => import('@/view/update/update-table.vue')
+        component: () => import('@/view/' + config.theme + '/update/update-table.vue')
       },
       {
         path: 'update_paste_page',
@@ -242,7 +243,7 @@ export default [
           icon: 'md-clipboard',
           title: 'menu.update.submenu.update_paste_page.title'
         },
-        component: () => import('@/view/update/update-paste.vue')
+        component: () => import('@/view/' + config.theme + '/update/update-paste.vue')
       }
     ]
   },
@@ -262,7 +263,7 @@ export default [
           icon: 'md-add',
           title: 'menu.excel.submenu.upload-excel.title'
         },
-        component: () => import('@/view/excel/upload-excel.vue')
+        component: () => import('@/view/' + config.theme + '/excel/upload-excel.vue')
       },
       {
         path: 'export-excel',
@@ -271,7 +272,7 @@ export default [
           icon: 'md-download',
           title: 'menu.excel.submenu.export-excel.title'
         },
-        component: () => import('@/view/excel/export-excel.vue')
+        component: () => import('@/view/' + config.theme + '/excel/export-excel.vue')
       }
     ]
   },
@@ -291,7 +292,7 @@ export default [
           title: 'menu.tools_methods_page.title',
           beforeCloseName: 'before_close_normal'
         },
-        component: () => import('@/view/tools-methods/tools-methods.vue')
+        component: () => import('@/view/' + config.theme + '/tools-methods/tools-methods.vue')
       }
     ]
   },
@@ -310,7 +311,7 @@ export default [
           icon: 'md-planet',
           title: 'i18n - {{ i18n.title }}'
         },
-        component: () => import('@/view/i18n/i18n-page.vue')
+        component: () => import('@/view/' + config.theme + '/i18n/i18n-page.vue')
       }
     ]
   },
@@ -329,7 +330,7 @@ export default [
           icon: 'ios-bug',
           title: 'menu.error_store_page.title'
         },
-        component: () => import('@/view/error-store/error-store.vue')
+        component: () => import('@/view/' + config.theme + '/error-store/error-store.vue')
       }
     ]
   },
@@ -349,7 +350,7 @@ export default [
           icon: 'ios-bug',
           title: 'menu.error_logger_page.title'
         },
-        component: () => import('@/view/single-page/error-logger.vue')
+        component: () => import('@/view/' + config.theme + '/single-page/error-logger.vue')
       }
     ]
   },
@@ -368,7 +369,7 @@ export default [
           icon: 'ios-navigate',
           title: 'menu.directive_page.title'
         },
-        component: () => import('@/view/directive/directive.vue')
+        component: () => import('@/view/' + config.theme + '/directive/directive.vue')
       }
     ]
   },
@@ -388,7 +389,7 @@ export default [
           icon: 'md-funnel',
           title: 'menu.multilevel.submenu.level_2_1.title'
         },
-        component: () => import('@/view/multilevel/level-2-1.vue')
+        component: () => import('@/view/' + config.theme + '/multilevel/level-2-1.vue')
       },
       {
         path: 'level_2_2',
@@ -408,7 +409,7 @@ export default [
               icon: 'md-funnel',
               title: 'menu.multilevel.submenu.level_2_2.submenu.level_2_2_1.title'
             },
-            component: () => import('@/view/multilevel/level-2-2/level-2-2-1.vue')
+            component: () => import('@/view/' + config.theme + '/multilevel/level-2-2/level-2-2-1.vue')
           },
           {
             path: 'level_2_2_2',
@@ -417,7 +418,7 @@ export default [
               icon: 'md-funnel',
               title: 'menu.multilevel.submenu.level_2_2.submenu.level_2_2_2.title'
             },
-            component: () => import('@/view/multilevel/level-2-2/level-2-2-2.vue')
+            component: () => import('@/view/' + config.theme + '/multilevel/level-2-2/level-2-2-2.vue')
           }
         ]
       },
@@ -428,7 +429,7 @@ export default [
           icon: 'md-funnel',
           title: 'menu.multilevel.submenu.level_2_3.title'
         },
-        component: () => import('@/view/multilevel/level-2-3.vue')
+        component: () => import('@/view/' + config.theme + '/multilevel/level-2-3.vue')
       }
     ]
   },
@@ -449,7 +450,7 @@ export default [
           notCache: true,
           beforeCloseName: 'before_close_normal'
         },
-        component: () => import('@/view/argu-page/params.vue')
+        component: () => import('@/view/' + config.theme + '/argu-page/params.vue')
       },
       {
         path: 'query',
@@ -459,7 +460,7 @@ export default [
           title: route => `{{ toolsMethods.dynamic_routing }}-${route.query.id}`,
           notCache: true
         },
-        component: () => import('@/view/argu-page/query.vue')
+        component: () => import('@/view/' + config.theme + '/argu-page/query.vue')
       }
     ]
   },
@@ -469,7 +470,7 @@ export default [
     meta: {
       hideInMenu: true
     },
-    component: () => import('@/view/error-page/401.vue')
+    component: () => import('@/view/' + config.theme + '/error-page/401.vue')
   },
   {
     path: '/500',
@@ -477,7 +478,7 @@ export default [
     meta: {
       hideInMenu: true
     },
-    component: () => import('@/view/error-page/500.vue')
+    component: () => import('@/view/' + config.theme + '/error-page/500.vue')
   },
   {
     path: '*',
@@ -485,6 +486,6 @@ export default [
     meta: {
       hideInMenu: true
     },
-    component: () => import('@/view/error-page/404.vue')
+    component: () => import('@/view/' + config.theme + '/error-page/404.vue')
   }
 ]

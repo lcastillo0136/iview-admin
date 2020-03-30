@@ -35,7 +35,8 @@ export default {
     messages: {
       error: {
         username: 'El nombre de usaurio no puede estar vacío',
-        password: 'La contraseña no puede estar vacía'
+        password: 'La contraseña no puede estar vacía',
+        email: 'Formato de email invalido'
       }
     },
     tips: {
