@@ -78,11 +78,13 @@ export default {
     handleSubmit () {
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
+          this.$Spin.show()
           this.handleLogin({
             userName: this.form.userName,
             password: this.form.password
           }).then(res => {
             this.getUserInfo().then(res => {
+              this.$Spin.hide()
               this.$router.push({
                 name: this.$config.homeName
               })
