@@ -64,7 +64,7 @@ export default {
   },
   data () {
     return {
-      collapsed: (!!localRead('collapsed')) || false,
+      collapsed: (localRead('collapsed') && localRead('collapsed') === 'true') || false,
       minLogo,
       maxLogo,
       isFullscreen: false
