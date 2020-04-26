@@ -223,6 +223,41 @@ export default {
       }
     }
   },
+  uploadPDF: {
+    title: 'Importar PDF',
+    upload_file: 'Subir archivos',
+    success: 'Éxito',
+    messages: {
+      info: {
+        file_deleted: '¡El archivos a sido eliminado！'
+      },
+      error: {
+        file_type: 'Tipo de archivo invalido',
+        no_pdf: 'Archivo：{name} no es un archivo de pdf，por favor elija un archivo con extensión .pdf。',
+        reading: 'Error extrayendo información del archivo'
+      },
+      success: {
+        read: 'Información leida correctamente'
+      }
+    }
+  },
+  exportPDF: {
+    title: 'Exportar PDF',
+    export_file: 'Exportar Archivo',
+    example: {
+      columns: {
+        primary: 'Clasificación primaria',
+        secondary: 'Clasificación secundaria',
+        tertiary: 'Clasificación terciaria'
+      },
+      result: 'Lista de categorias'
+    },
+    messages: {
+      error: {
+        empty: 'El formulario no puede estar vacío！'
+      }
+    }
+  },
   toolsMethods: {
     add_label: 'Agregar etiqueta',
     dynamic_routing: 'Router dynamico',
@@ -383,6 +418,17 @@ export default {
         },
         'export-excel': {
           title: 'Exportar Excel'
+        }
+      }
+    },
+    pdf: {
+      title: 'PDF',
+      submenu: {
+        'upload-pdf': {
+          title: 'Cargar PDF'
+        },
+        'export-pdf': {
+          title: 'Exportar PDF'
         }
       }
     },

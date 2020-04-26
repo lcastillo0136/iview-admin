@@ -277,6 +277,35 @@ export default [
     ]
   },
   {
+    path: '/pdf',
+    name: 'pdf',
+    meta: {
+      icon: 'md-document',
+      title: 'menu.pdf.title'
+    },
+    component: Main,
+    children: [
+      {
+        path: 'upload-pdf',
+        name: 'upload-pdf',
+        meta: {
+          icon: 'md-add',
+          title: 'menu.pdf.submenu.upload-pdf.title'
+        },
+        component: () => import('@/view/' + config.theme + '/pdf/upload-pdf.vue')
+      },
+      {
+        path: 'export-pdf',
+        name: 'export-pdf',
+        meta: {
+          icon: 'md-download',
+          title: 'menu.pdf.submenu.export-pdf.title'
+        },
+        component: () => import('@/view/' + config.theme + '/pdf/export-pdf.vue')
+      }
+    ]
+  },
+  {
     path: '/tools_methods',
     name: 'tools_methods',
     meta: {

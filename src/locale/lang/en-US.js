@@ -223,6 +223,41 @@ export default {
       }
     }
   },
+  uploadPDF: {
+    title: 'Import PDF',
+    upload_file: 'Upload files',
+    success: 'Success',
+    messages: {
+      info: {
+        file_deleted: 'The uploaded file has been deleted！'
+      },
+      error: {
+        file_type: 'File type error',
+        no_pdf: 'File：{name} not an pdf file，please select an pdf file with a .pdf extension。',
+        reading: 'File reading error'
+      },
+      success: {
+        read: 'File read successfully'
+      }
+    }
+  },
+  exportPDF: {
+    title: 'Export PDF',
+    export_file: 'Export File',
+    example: {
+      columns: {
+        primary: 'Primary classification',
+        secondary: 'Secondary classification',
+        tertiary: 'Tertiary classification'
+      },
+      result: 'Category List'
+    },
+    messages: {
+      error: {
+        empty: 'Form data cannot be empty！'
+      }
+    }
+  },
   toolsMethods: {
     add_label: 'Add Label',
     dynamic_routing: 'Dynamic routing',
@@ -383,6 +418,17 @@ export default {
         },
         'export-excel': {
           title: 'Export Excel'
+        }
+      }
+    },
+    pdf: {
+      title: 'PDF',
+      submenu: {
+        'upload-pdf': {
+          title: 'Upload PDF'
+        },
+        'export-pdf': {
+          title: 'Export PDF'
         }
       }
     },
