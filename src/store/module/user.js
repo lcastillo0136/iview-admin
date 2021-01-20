@@ -74,17 +74,21 @@ export default {
   },
   actions: {
     // 登录
-    handleLogin ({ commit }, { userName, password, remember }) {
-      userName = userName.trim()
+    handleLogin ({ commit }, { user, password, remember }) {
+      user = user.trim()
       return new Promise((resolve, reject) => {
         login({
-          userName,
+          user,
           password,
           remember
-        }).then(res => {
-          const data = res.data
-          commit('setToken', data.token)
-          resolve()
+        }).then(result => {
+          const response = result.response
+          if (response.success) {
+            commit('setToken', response.data.token.token_key)
+            resolve()
+          } else {
+            reject(response.message)
+          }
         }).catch(err => {
           reject(err)
         })
@@ -110,14 +114,18 @@ export default {
     getUserInfo ({ state, commit }) {
       return new Promise((resolve, reject) => {
         try {
-          getUserInfo(state.token).then(res => {
-            const data = res.data
-            commit('setAvatar', data.avatar)
-            commit('setUserName', data.name)
-            commit('setUserId', data.user_id)
-            commit('setAccess', data.access)
-            commit('setHasGetInfo', true)
-            resolve(data)
+          getUserInfo(state.token).then(result => {
+            const response = result.response
+            if (response.success) {
+              commit('setAvatar', response.data.avatar)
+              commit('setUserName', `${response.data.first_name} ${response.data.last_name}`)
+              commit('setUserId', response.data.id)
+              commit('setAccess', response.data.Role.name)
+              commit('setHasGetInfo', true)
+              resolve(response)
+            } else {
+              reject(response.message)
+            }
           }).catch(err => {
             reject(err)
           })

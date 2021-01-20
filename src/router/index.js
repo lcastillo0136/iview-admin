@@ -44,6 +44,7 @@ router.beforeEach((to, from, next) => {
         turnTo(to, user.access, next)
       }).catch(() => {
         setToken('')
+        this.$Message.error(err.toString())
         next({
           name: 'login'
         })
