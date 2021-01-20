@@ -119,7 +119,7 @@ export default {
         if (valid) {
           this.$Spin.show()
           this.handleLogin({
-            userName: this.form.userName,
+            user: this.form.userName,
             password: this.form.password,
             remember: this.form.rememberme
           }).then(res => {
@@ -128,7 +128,13 @@ export default {
               this.$router.push({
                 name: this.$config.homeName
               })
+            }).catch(err => {
+              this.$Spin.hide()
+              this.$Message.error(err.toString())
             })
+          }).catch((err) => {
+            this.$Spin.hide()
+            this.$Message.error(err.toString())
           })
         }
       })
