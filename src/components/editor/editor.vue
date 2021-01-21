@@ -81,5 +81,8 @@ export default {
 <style lang="less">
 .editor-wrapper *{
   z-index: 100 !important;
+  .w-e-text-container {
+    background: #FFF;
+  }
 }
 </style>
