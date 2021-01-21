@@ -36,7 +36,12 @@ export default {
       error: {
         username: '账号不能为空',
         password: '密码不能为空',
-        email: '無效的電子郵件格式'
+        email: '無效的電子郵件格式',
+        wrong_user_password: 'Wrong username or password',
+        unauthorized: 'Unauthorized. You can\'t access',
+        user_inactive: 'Please activate your account',
+        email_no_verified: 'Please validate your email',
+        please_accept_terms: 'Please accept our terms and conditions'
       }
     },
     tips: {

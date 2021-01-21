@@ -77,7 +77,7 @@ export default {
   data () {
     return {
       form: {
-        userName: 'super_admin',
+        userName: '',
         password: '',
         rememberme: false,
         spinShow: true
@@ -114,11 +114,11 @@ export default {
               })
             }).catch(err => {
               this.$Spin.hide()
-              this.message(err.toString())
+              this.message((err.response && err.response.data && err.response.data.message) || err.toString())
             })
           }).catch((err) => {
             this.$Spin.hide()
-            this.message(err.toString())
+            this.message((err.response && err.response.data && err.response.data.message) || err.toString())
           })
         }
       })
@@ -126,7 +126,7 @@ export default {
     message (message) {
       this.error = true
       this.$nextTick().then(() => {
-        this.$refs.fallback.$scopedSlots.default()[0].elm.data = message
+        this.$refs.fallback.$scopedSlots.default()[0].elm.data = this.$t('login.messages.error.' + message)
         setTimeout(() => { this.error = false }, 5000)
       })
     }

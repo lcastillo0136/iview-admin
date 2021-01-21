@@ -18,6 +18,8 @@ import config from '@/config'
  * }
  */
 
+if (!config.theme) config.theme = 'iview-theme'
+
 export default [
   {
     path: '/login',

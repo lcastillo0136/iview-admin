@@ -36,7 +36,12 @@ export default {
       error: {
         username: 'El nombre de usaurio no puede estar vacío',
         password: 'La contraseña no puede estar vacía',
-        email: 'Formato de email invalido'
+        email: 'Formato de email invalido',
+        wrong_user_password: 'Nombre de usuario o contraseña incorrectos',
+        unauthorized: 'No se puede acceder al sistema',
+        user_inactive: 'Favor de activar su cuenta',
+        email_no_verified: 'Favor de verificar su correo electrónico',
+        please_accept_terms: 'Favor de aceptar nuestros términos y condiciones'
       }
     },
     tips: {

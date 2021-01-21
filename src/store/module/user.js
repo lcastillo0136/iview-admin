@@ -38,9 +38,9 @@ export default {
     setAccess (state, access) {
       state.access = access
     },
-    setToken (state, token) {
+    setToken (state, { token, date }) {
       state.token = token
-      setToken(token)
+      setToken(token, date)
     },
     setHasGetInfo (state, status) {
       state.hasGetInfo = status
@@ -84,7 +84,10 @@ export default {
         }).then(result => {
           const response = result.response
           if (response.success) {
-            commit('setToken', response.data.token.token_key)
+            commit('setToken', {
+              token: response.data.token.token_key,
+              date: new Date(response.data.token.expiration_date)
+            })
             resolve()
           } else {
             reject(response.message)
@@ -98,7 +101,7 @@ export default {
     handleLogOut ({ state, commit }) {
       return new Promise((resolve, reject) => {
         logout(state.token).then(() => {
-          commit('setToken', '')
+          commit('setToken', { token: '' })
           commit('setAccess', [])
           resolve()
         }).catch(err => {

@@ -34,6 +34,6 @@ export default {
       developmentOff: false // 设为true后在开发环境不会收集错误信息，方便开发中排查错误
     }
   },
-  theme: 'iview-theme',
+  theme: 'iview-theme', // iview-theme | FormV2 | FormV3
   defaultLang: 'zh-CN'
 }
