@@ -125,11 +125,13 @@ export default {
         window.open(name.split('_')[1])
         return
       }
-      this.$router.push({
-        name,
-        params,
-        query
-      })
+      if (this.$route.name !== route) {
+        this.$router.push({
+          name,
+          params,
+          query
+        })
+      }
     },
     handleCollapsedChange (state) {
       this.collapsed = state

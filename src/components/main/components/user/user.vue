@@ -42,7 +42,7 @@ export default {
       })
     },
     message () {
-      this.$router.push({
+      this.$route.name !== 'message_page' && this.$router.push({
         name: 'message_page'
       })
     },
