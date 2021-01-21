@@ -17,8 +17,8 @@ export default {
    * @description api请求基础路径
    */
   baseUrl: {
-    development: 'http://localhost/',
-    production: 'https://produce.com',
+    development: 'http://apidev.onix-software.com/',
+    production: 'https://api.onix-software.com/',
     localhost: 'http://localhost/'
   },
   /**
