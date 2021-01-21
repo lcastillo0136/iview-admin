@@ -32,6 +32,8 @@
               </div>
             </FormItem>
 
+            <Alert closable type="error" show-icon ref="fallback" v-if="error">...</Alert>
+
             <div class="container-login100-form-btn">
               <div class="wrap-login100-form-btn">
                 <div class="login100-form-bgbtn"></div>
@@ -68,6 +70,7 @@ export default {
               if (value.trim().match(/^([a-zA-Z0-9_\-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/) == null) {
                 return callback(new Error('generic error'))
               }
+              return true
             },
             message: this.$t('login.messages.error.email'),
             trigger: 'blur'
@@ -91,7 +94,8 @@ export default {
         password: '',
         rememberme: false
       },
-      isPassword: true
+      isPassword: true,
+      error: false
     }
   },
   computed: {
@@ -130,13 +134,20 @@ export default {
               })
             }).catch(err => {
               this.$Spin.hide()
-              this.$Message.error(err.toString())
+              this.message(err.toString())
             })
           }).catch((err) => {
             this.$Spin.hide()
-            this.$Message.error(err.toString())
+            this.message(err.toString())
           })
         }
+      })
+    },
+    message (message) {
+      this.error = true
+      this.$nextTick().then(() => {
+        this.$refs.fallback.$scopedSlots.default()[0].elm.data = message
+        setTimeout(() => { this.error = false }, 5000)
       })
     }
   }

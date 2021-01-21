@@ -35,6 +35,7 @@
               Remember me
             </label>
           </div>
+          <Alert closable type="error" show-icon ref="fallback" v-if="error">...</Alert>
 
           <div class="container-login100-form-btn">
             <Button @click="handleSubmit" type="primary" class="login100-form-btn">{{$t('login.form.login')}}</Button>
@@ -80,7 +81,8 @@ export default {
         password: '',
         rememberme: false,
         spinShow: true
-      }
+      },
+      error: false
     }
   },
   computed: {
@@ -112,13 +114,20 @@ export default {
               })
             }).catch(err => {
               this.$Spin.hide()
-              this.$Message.error(err.toString())
+              this.message(err.toString())
             })
           }).catch((err) => {
             this.$Spin.hide()
-            this.$Message.error(err.toString())
+            this.message(err.toString())
           })
         }
+      })
+    },
+    message (message) {
+      this.error = true
+      this.$nextTick().then(() => {
+        this.$refs.fallback.$scopedSlots.default()[0].elm.data = message
+        setTimeout(() => { this.error = false }, 5000)
       })
     }
   }

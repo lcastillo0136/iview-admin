@@ -22,6 +22,7 @@
                 </span>
               </Input>
             </FormItem>
+            <Alert closable type="error" show-icon ref="fallback" v-if="error">...</Alert>
             <FormItem>
               <Button @click="handleSubmit" type="primary" long>{{$t('login.form.login')}}</Button>
             </FormItem>
@@ -59,7 +60,8 @@ export default {
       form: {
         userName: 'super_admin',
         password: ''
-      }
+      },
+      error: false
     }
   },
   computed: {
@@ -90,13 +92,20 @@ export default {
               })
             }).catch(err => {
               this.$Spin.hide()
-              this.$Message.error(err.toString())
+              this.message(err.toString())
             })
           }).catch((err) => {
             this.$Spin.hide()
-            this.$Message.error(err.toString())
+            this.message(err.toString())
           })
         }
+      })
+    },
+    message (message) {
+      this.error = true
+      this.$nextTick().then(() => {
+        this.$refs.fallback.$scopedSlots.default()[0].elm.data = message
+        setTimeout(() => { this.error = false }, 5000)
       })
     }
   }
