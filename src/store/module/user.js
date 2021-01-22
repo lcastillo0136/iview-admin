@@ -138,6 +138,7 @@ export default {
               getPermissions({ token: response.data.token.token_key, userId: response.data.user.id }).then(resultPermission => {
                 const permissions = resultPermission.response
                 if (permissions.success) {
+                  commit('setPermissions', permissions.data.permissions)
                   resolve({ user: response.data.user, permission: permissions.data })
                 } else {
                   reject(responsePermission.message)

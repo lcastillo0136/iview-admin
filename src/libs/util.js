@@ -23,9 +23,10 @@ export const hasChild = (item) => {
 
 const showThisMenuEle = (item, access) => {
   if (item.meta && item.meta.access && item.meta.access.length) {
-    if (hasOneOf(item.meta.access, access)) return true
+    let foundAccess = access.map(r => { return { url: `${r.controller}/${r.action}`, access: r.value } }).find(f => item.meta.access.indexOf(f.url) > -1 && f.access !== 'disabled')
+    if (foundAccess) return true
     else return false
-  } else return true
+  } else return false
 }
 /**
  * @param {Array} list 通过路由列表得到菜单列表
@@ -40,11 +41,13 @@ export const getMenuByRouter = (list, access) => {
         name: item.name,
         meta: item.meta
       }
-      if ((hasChild(item) || (item.meta && item.meta.showAlways)) && showThisMenuEle(item, access)) {
+      if ((hasChild(item) || (item.meta && item.meta.showAlways))) {
         obj.children = getMenuByRouter(item.children, access)
       }
       if (item.meta && item.meta.href) obj.href = item.meta.href
-      if (showThisMenuEle(item, access)) res.push(obj)
+      if (showThisMenuEle(item, access) || (obj.children && obj.children.length > 0)) {
+        res.push(obj)
+      }
     }
   })
   return res

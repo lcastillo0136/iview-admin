@@ -101,7 +101,8 @@ export default [
         name: 'message_page',
         meta: {
           icon: 'md-notifications',
-          title: 'top.message_page.title'
+          title: 'top.message_page.title',
+          access: ['users/getComments']
         },
         component: () => import('@/view/' + config.theme + '/single-page/message/index.vue')
       }
@@ -121,7 +122,8 @@ export default [
         name: 'tree_select_page',
         meta: {
           icon: 'md-arrow-dropdown-circle',
-          title: 'menu.components.submenu.tree_select_page.title'
+          title: 'menu.components.submenu.tree_select_page.title',
+          access: ['users/getComments']
         },
         component: () => import('@/view/' + config.theme + '/components/tree-select/index.vue')
       },

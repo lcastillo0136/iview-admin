@@ -36,7 +36,14 @@ export default {
     guestAccess: []
   },
   getters: {
-    menuList: (state, getters, rootState) => getMenuByRouter(routers, rootState.user.access),
+    menuList: (state, getters, rootState) => getMenuByRouter(routers.map(r => {
+      return {
+        ...r,
+        ...{
+          children: r.children && r.children.filter(f => f.meta && f.meta.access)
+        }
+      }
+    }).filter(f => (f.meta && f.meta.access) || (f.children && f.children.length > 0)), rootState.user.permissions),
     errorCount: state => state.errorList.length
   },
   mutations: {
