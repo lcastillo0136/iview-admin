@@ -49,3 +49,10 @@ export const getTreeSelectData = () => {
     method: 'get'
   })
 }
+
+export const getGuestAccess = () => {
+  return axios.request({
+    url: 'ManagePermission/getGuestAccess',
+    method: 'get'
+  })
+}

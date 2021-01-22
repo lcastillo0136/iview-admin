@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import routes from './routers'
 import store from '@/store'
 import iView from 'iview'
-import { setToken, getToken, canTurnTo, setTitle } from '@/libs/util'
+import { setToken, getToken, setTitle } from '@/libs/util'
 import config from '@/config'
 const { homeName } = config
 
@@ -14,46 +14,53 @@ const router = new Router({
 })
 const LOGIN_PAGE_NAME = 'login'
 
-const turnTo = (to, access, next) => {
-  if (canTurnTo(to.name, access, routes)) next() // 有权限，可访问
-  else next({ replace: true, name: 'error_401' }) // 无权限，重定向到401页面
+const turnTo = (to, access, next, token) => {
+  if (to.meta && to.meta.access) {
+    let foundAccess = access.map(r => { return { url: `${r.controller}/${r.action}`, access: r.value } }).find(f => to.meta.access.indexOf(f.url) > -1 && f.access !== 'disabled')
+    if (foundAccess) {
+      if (token && to.name === LOGIN_PAGE_NAME) next({ name: homeName, params: { hasAccess: true } })
+      else next({ ...to, ...{ params: { hasAccess: true } } })
+    } else {
+      next({
+        name: 'error_401',
+        params: { hasAccess: true }
+      })
+    }
+  } else {
+    next({
+      name: 'error_401',
+      params: { hasAccess: true }
+    })
+  }
 }
 
 router.beforeEach((to, from, next) => {
   iView.LoadingBar.start()
-  const token = getToken()
-  if (!token && to.name !== LOGIN_PAGE_NAME) {
-    // 未登录且要跳转的页面不是登录页
-    next({
-      name: LOGIN_PAGE_NAME // 跳转到登录页
-    })
-  } else if (!token && to.name === LOGIN_PAGE_NAME) {
-    // 未登陆且要跳转的页面是登录页
-    next() // 跳转
-  } else if (token && to.name === LOGIN_PAGE_NAME) {
-    store.dispatch('getUserInfo').then(response => {
-      // 已登录且要跳转的页面是登录页
-      next({
-        name: homeName // 跳转到homeName页
+  if (!to.params.hasAccess) {
+    const token = getToken()
+    if (token) {
+      store.dispatch('getUserInfo').then(({ user, permission }) => {
+        turnTo(to, permission.permissions, next, token)
+      }).catch(() => {
+        setToken('', new Date())
+        next({
+          name: 'login',
+          params: { redirect: to.fullPath }
+        })
       })
-    }).catch((err) => {
-      setToken('')
-      iView.Message.error((err.response && err.response.data && err.response.data.message) || err.message || err.toString())
-      next({
-        name: 'login'
+    } else {
+      store.dispatch('getGuestAccess').then(result => {
+        let login = router.resolve({ name: 'login' })
+        turnTo({ ...login.resolved, ...{ params: { redirect: to.fullPath } } }, result, next)
+      }).catch(() => {
+        next({
+          name: 'error_401',
+          params: { hasAccess: true }
+        })
       })
-    })
+    }
   } else {
-    store.dispatch('getUserInfo').then(response => {
-      // 拉取用户信息，通过用户权限和跳转的页面的name来判断是否有权限访问;access必须是一个数组，如：['super_admin'] ['super_admin', 'admin']
-      turnTo(to, response.data.user.Role.name, next)
-    }).catch((err) => {
-      setToken('')
-      iView.Message.error((err.response && err.response.data && err.response.data.message) || err.message || err.toString())
-      next({
-        name: 'login'
-      })
-    })
+    next()
   }
 })
 

@@ -26,7 +26,10 @@ export default [
     name: 'login',
     meta: {
       title: 'login.title',
-      hideInMenu: true
+      hideInMenu: true,
+      access: [
+        'users/login'
+      ]
     },
     component: () => import('@/view/' + config.theme + '/login/login.vue')
   },
@@ -47,7 +50,10 @@ export default [
           hideInMenu: true,
           title: 'home.title',
           notCache: true,
-          icon: 'md-home'
+          icon: 'md-home',
+          access: [
+            'users/login'
+          ]
         },
         component: () => import('@/view/' + config.theme + '/single-page/home')
       }
@@ -426,7 +432,7 @@ export default [
         path: 'level_2_2',
         name: 'level_2_2',
         meta: {
-          access: ['super_admin'],
+          access: ['client'],
           icon: 'md-funnel',
           showAlways: true,
           title: 'menu.multilevel.submenu.level_2_2.title'

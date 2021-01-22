@@ -21,6 +21,14 @@ export const getUserInfo = (token) => {
   })
 }
 
+export const getPermissions = ({ token, userId }) => {
+  return axios.request({
+    url: `ManagePermission/ByUserId/${userId}`,
+    headers: { Authorization: `Bearer ${token}` },
+    method: 'get'
+  })
+}
+
 export const logout = (token) => {
   return axios.request({
     url: 'logout',

@@ -11,7 +11,7 @@ import {
   localSave,
   localRead
 } from '@/libs/util'
-import { saveErrorLogger } from '@/api/data'
+import { saveErrorLogger, getGuestAccess } from '@/api/data'
 import router from '@/router'
 import routers from '@/router/routers'
 import config from '@/config'
@@ -32,7 +32,8 @@ export default {
     homeRoute: {},
     local: localRead('local'),
     errorList: [],
-    hasReadErrorPage: false
+    hasReadErrorPage: false,
+    guestAccess: []
   },
   getters: {
     menuList: (state, getters, rootState) => getMenuByRouter(routers, rootState.user.access),
@@ -85,6 +86,9 @@ export default {
     },
     setHasReadErrorLoggerStatus (state, status = true) {
       state.hasReadErrorPage = status
+    },
+    setGuestAccess (state, guestAccess) {
+      state.guestAccess = guestAccess
     }
   },
   actions: {
@@ -100,6 +104,25 @@ export default {
       }
       saveErrorLogger(info).then(() => {
         commit('addError', data)
+      })
+    },
+    getGuestAccess ({ state, commit }) {
+      return new Promise((resolve, reject) => {
+        try {
+          getGuestAccess().then(result => {
+            const response = result.response
+            if (response.success) {
+              commit('setGuestAccess', response.data)
+              resolve(response.data)
+            } else {
+              reject(response.message)
+            }
+          }).catch(err => {
+            reject(err)
+          })
+        } catch (error) {
+          reject(error)
+        }
       })
     }
   }

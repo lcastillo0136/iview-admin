@@ -2,6 +2,7 @@ import {
   login,
   logout,
   getUserInfo,
+  getPermissions,
   getMessage,
   getContentByMsgId,
   hasRead,
@@ -23,7 +24,8 @@ export default {
     messageUnreadList: [],
     messageReadedList: [],
     messageTrashList: [],
-    messageContentStore: {}
+    messageContentStore: {},
+    permissions: []
   },
   mutations: {
     setAvatar (state, avatarPath) {
@@ -44,6 +46,9 @@ export default {
     },
     setHasGetInfo (state, status) {
       state.hasGetInfo = status
+    },
+    setPermissions (state, permissions) {
+      state.permissions = permissions
     },
     setMessageCount (state, count) {
       state.unreadCount = count
@@ -117,6 +122,7 @@ export default {
     getUserInfo ({ state, commit }) {
       return new Promise((resolve, reject) => {
         try {
+          if (!state.token) reject(new Error('no_autorized'))
           getUserInfo(state.token).then(result => {
             const response = result.response
             if (response.success) {
@@ -129,7 +135,14 @@ export default {
                 token: response.data.token.token_key,
                 date: new Date(response.data.token.expiration_date)
               })
-              resolve(response)
+              getPermissions({ token: response.data.token.token_key, userId: response.data.user.id }).then(resultPermission => {
+                const permissions = resultPermission.response
+                if (permissions.success) {
+                  resolve({ user: response.data.user, permission: permissions.data })
+                } else {
+                  reject(responsePermission.message)
+                }
+              })
             } else {
               reject(response.message)
             }
