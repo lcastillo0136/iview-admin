@@ -58,8 +58,8 @@ export default {
   data () {
     return {
       form: {
-        userName: '',
-        password: ''
+        userName: 'client@mail.com',
+        password: 'client321'
       },
       error: false
     }
@@ -74,8 +74,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'handleLogin',
-      'getUserInfo'
+      'handleLogin'
     ]),
     handleSubmit () {
       this.$refs.loginForm.validate((valid) => {
@@ -85,14 +84,9 @@ export default {
             user: this.form.userName,
             password: this.form.password
           }).then(res => {
-            this.getUserInfo().then(res => {
-              this.$Spin.hide()
-              this.$router.push({
-                name: this.$config.homeName
-              })
-            }).catch(err => {
-              this.$Spin.hide()
-              this.message((err.response && err.response.data && err.response.data.message) || err.toString())
+            this.$Spin.hide()
+            this.$router.push({
+              name: this.$config.homeName
             })
           }).catch((err) => {
             this.$Spin.hide()

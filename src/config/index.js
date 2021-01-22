@@ -35,5 +35,5 @@ export default {
     }
   },
   theme: 'iview-theme', // iview-theme | FormV2 | FormV3
-  defaultLang: 'zh-CN'
+  defaultLang: 'en-US'
 }

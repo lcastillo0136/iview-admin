@@ -88,7 +88,7 @@ export default {
               token: response.data.token.token_key,
               date: new Date(response.data.token.expiration_date)
             })
-            resolve()
+            resolve(response)
           } else {
             reject(response.message)
           }
@@ -120,11 +120,15 @@ export default {
           getUserInfo(state.token).then(result => {
             const response = result.response
             if (response.success) {
-              commit('setAvatar', response.data.avatar)
-              commit('setUserName', `${response.data.first_name} ${response.data.last_name}`)
-              commit('setUserId', response.data.id)
-              commit('setAccess', response.data.Role.name)
+              commit('setAvatar', response.data.user.avatar)
+              commit('setUserName', `${response.data.user.first_name} ${response.data.user.last_name}`)
+              commit('setUserId', response.data.user.id)
+              commit('setAccess', response.data.user.Role.name)
               commit('setHasGetInfo', true)
+              commit('setToken', {
+                token: response.data.token.token_key,
+                date: new Date(response.data.token.expiration_date)
+              })
               resolve(response)
             } else {
               reject(response.message)
