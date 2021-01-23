@@ -73,7 +73,10 @@ export default [
     name: 'join',
     component: Main,
     meta: {
-      hideInBread: true
+      hideInBread: true,
+      access: [
+        'users/login'
+      ]
     },
     children: [
       {
@@ -81,7 +84,10 @@ export default [
         name: 'join_page',
         meta: {
           icon: '_qq',
-          title: 'menu.join_page.title'
+          title: 'menu.join_page.title',
+          access: [
+            'users/login'
+          ]
         },
         component: () => import('@/view/' + config.theme + '/join-page.vue')
       }
@@ -93,7 +99,10 @@ export default [
     component: Main,
     meta: {
       hideInBread: true,
-      hideInMenu: true
+      hideInMenu: true,
+      access: [
+        'users/login'
+      ]
     },
     children: [
       {
@@ -123,7 +132,9 @@ export default [
         meta: {
           icon: 'md-arrow-dropdown-circle',
           title: 'menu.components.submenu.tree_select_page.title',
-          access: ['users/getComments']
+          access: [
+            'users/login'
+          ]
         },
         component: () => import('@/view/' + config.theme + '/components/tree-select/index.vue')
       },
@@ -132,7 +143,10 @@ export default [
         name: 'count_to_page',
         meta: {
           icon: 'md-trending-up',
-          title: 'menu.components.submenu.count_to_page.title'
+          title: 'menu.components.submenu.count_to_page.title',
+          access: [
+            'users/login'
+          ]
         },
         component: () => import('@/view/' + config.theme + '/components/count-to/count-to.vue')
       },
@@ -141,7 +155,10 @@ export default [
         name: 'drag_list_page',
         meta: {
           icon: 'ios-infinite',
-          title: 'menu.components.submenu.drag_list_page.title'
+          title: 'menu.components.submenu.drag_list_page.title',
+          access: [
+            'users/login'
+          ]
         },
         component: () => import('@/view/' + config.theme + '/components/drag-list/drag-list.vue')
       },
@@ -150,7 +167,10 @@ export default [
         name: 'drag_drawer_page',
         meta: {
           icon: 'md-list',
-          title: 'menu.components.submenu.drag_drawer_page.title'
+          title: 'menu.components.submenu.drag_drawer_page.title',
+          access: [
+            'users/login'
+          ]
         },
         component: () => import('@/view/' + config.theme + '/components/drag-drawer')
       },
@@ -159,7 +179,10 @@ export default [
         name: 'org_tree_page',
         meta: {
           icon: 'ios-people',
-          title: 'menu.components.submenu.org_tree_page.title'
+          title: 'menu.components.submenu.org_tree_page.title',
+          access: [
+            'users/login'
+          ]
         },
         component: () => import('@/view/' + config.theme + '/components/org-tree')
       },
@@ -168,7 +191,10 @@ export default [
         name: 'tree_table_page',
         meta: {
           icon: 'md-git-branch',
-          title: 'menu.components.submenu.tree_table_page.title'
+          title: 'menu.components.submenu.tree_table_page.title',
+          access: [
+            'users/login'
+          ]
         },
         component: () => import('@/view/' + config.theme + '/components/tree-table/index.vue')
       },
@@ -177,7 +203,10 @@ export default [
         name: 'cropper_page',
         meta: {
           icon: 'md-crop',
-          title: 'menu.components.submenu.cropper_page.title'
+          title: 'menu.components.submenu.cropper_page.title',
+          access: [
+            'users/login'
+          ]
         },
         component: () => import('@/view/' + config.theme + '/components/cropper/cropper.vue')
       },
@@ -186,7 +215,10 @@ export default [
         name: 'tables_page',
         meta: {
           icon: 'md-grid',
-          title: 'menu.components.submenu.tables_page.title'
+          title: 'menu.components.submenu.tables_page.title',
+          access: [
+            'users/login'
+          ]
         },
         component: () => import('@/view/' + config.theme + '/components/tables/tables.vue')
       },
@@ -195,7 +227,10 @@ export default [
         name: 'split_pane_page',
         meta: {
           icon: 'md-pause',
-          title: 'menu.components.submenu.split_pane_page.title'
+          title: 'menu.components.submenu.split_pane_page.title',
+          access: [
+            'users/login'
+          ]
         },
         component: () => import('@/view/' + config.theme + '/components/split-pane/split-pane.vue')
       },
@@ -204,7 +239,10 @@ export default [
         name: 'markdown_page',
         meta: {
           icon: 'logo-markdown',
-          title: 'menu.components.submenu.markdown_page.title'
+          title: 'menu.components.submenu.markdown_page.title',
+          access: [
+            'users/login'
+          ]
         },
         component: () => import('@/view/' + config.theme + '/components/markdown/markdown.vue')
       },
@@ -213,7 +251,10 @@ export default [
         name: 'editor_page',
         meta: {
           icon: 'ios-create',
-          title: 'menu.components.submenu.editor_page.title'
+          title: 'menu.components.submenu.editor_page.title',
+          access: [
+            'users/login'
+          ]
         },
         component: () => import('@/view/' + config.theme + '/components/editor/editor.vue')
       },
@@ -222,7 +263,10 @@ export default [
         name: 'icons_page',
         meta: {
           icon: '_bear',
-          title: 'menu.components.submenu.icons_page.title'
+          title: 'menu.components.submenu.icons_page.title',
+          access: [
+            'users/login'
+          ]
         },
         component: () => import('@/view/' + config.theme + '/components/icons/icons.vue')
       }
@@ -242,7 +286,10 @@ export default [
         name: 'update_table_page',
         meta: {
           icon: 'ios-document',
-          title: 'menu.update.submenu.update_table_page.title'
+          title: 'menu.update.submenu.update_table_page.title',
+          access: [
+            'users/login'
+          ]
         },
         component: () => import('@/view/' + config.theme + '/update/update-table.vue')
       },
@@ -251,7 +298,10 @@ export default [
         name: 'update_paste_page',
         meta: {
           icon: 'md-clipboard',
-          title: 'menu.update.submenu.update_paste_page.title'
+          title: 'menu.update.submenu.update_paste_page.title',
+          access: [
+            'users/login'
+          ]
         },
         component: () => import('@/view/' + config.theme + '/update/update-paste.vue')
       }
@@ -271,7 +321,10 @@ export default [
         name: 'upload-excel',
         meta: {
           icon: 'md-add',
-          title: 'menu.excel.submenu.upload-excel.title'
+          title: 'menu.excel.submenu.upload-excel.title',
+          access: [
+            'users/login'
+          ]
         },
         component: () => import('@/view/' + config.theme + '/excel/upload-excel.vue')
       },
@@ -280,7 +333,10 @@ export default [
         name: 'export-excel',
         meta: {
           icon: 'md-download',
-          title: 'menu.excel.submenu.export-excel.title'
+          title: 'menu.excel.submenu.export-excel.title',
+          access: [
+            'users/login'
+          ]
         },
         component: () => import('@/view/' + config.theme + '/excel/export-excel.vue')
       }
@@ -300,7 +356,10 @@ export default [
         name: 'upload-pdf',
         meta: {
           icon: 'md-add',
-          title: 'menu.pdf.submenu.upload-pdf.title'
+          title: 'menu.pdf.submenu.upload-pdf.title',
+          access: [
+            'users/login'
+          ]
         },
         component: () => import('@/view/' + config.theme + '/pdf/upload-pdf.vue')
       },
@@ -309,7 +368,10 @@ export default [
         name: 'export-pdf',
         meta: {
           icon: 'md-download',
-          title: 'menu.pdf.submenu.export-pdf.title'
+          title: 'menu.pdf.submenu.export-pdf.title',
+          access: [
+            'users/login'
+          ]
         },
         component: () => import('@/view/' + config.theme + '/pdf/export-pdf.vue')
       }
@@ -319,7 +381,10 @@ export default [
     path: '/tools_methods',
     name: 'tools_methods',
     meta: {
-      hideInBread: true
+      hideInBread: true,
+      access: [
+        'users/login'
+      ]
     },
     component: Main,
     children: [
@@ -329,7 +394,10 @@ export default [
         meta: {
           icon: 'ios-hammer',
           title: 'menu.tools_methods_page.title',
-          beforeCloseName: 'before_close_normal'
+          beforeCloseName: 'before_close_normal',
+          access: [
+            'users/login'
+          ]
         },
         component: () => import('@/view/' + config.theme + '/tools-methods/tools-methods.vue')
       }
@@ -339,7 +407,10 @@ export default [
     path: '/i18n',
     name: 'i18n',
     meta: {
-      hideInBread: true
+      hideInBread: true,
+      access: [
+        'users/login'
+      ]
     },
     component: Main,
     children: [
@@ -348,7 +419,10 @@ export default [
         name: 'i18n_page',
         meta: {
           icon: 'md-planet',
-          title: 'i18n - {{ i18n.title }}'
+          title: 'i18n - {{ i18n.title }}',
+          access: [
+            'users/login'
+          ]
         },
         component: () => import('@/view/' + config.theme + '/i18n/i18n-page.vue')
       }
@@ -358,7 +432,10 @@ export default [
     path: '/error_store',
     name: 'error_store',
     meta: {
-      hideInBread: true
+      hideInBread: true,
+      access: [
+        'users/login'
+      ]
     },
     component: Main,
     children: [
@@ -367,7 +444,10 @@ export default [
         name: 'error_store_page',
         meta: {
           icon: 'ios-bug',
-          title: 'menu.error_store_page.title'
+          title: 'menu.error_store_page.title',
+          access: [
+            'users/login'
+          ]
         },
         component: () => import('@/view/' + config.theme + '/error-store/error-store.vue')
       }
@@ -378,7 +458,10 @@ export default [
     name: 'error_logger',
     meta: {
       hideInBread: true,
-      hideInMenu: true
+      hideInMenu: true,
+      access: [
+        'users/login'
+      ]
     },
     component: Main,
     children: [
@@ -387,7 +470,10 @@ export default [
         name: 'error_logger_page',
         meta: {
           icon: 'ios-bug',
-          title: 'menu.error_logger_page.title'
+          title: 'menu.error_logger_page.title',
+          access: [
+            'users/login'
+          ]
         },
         component: () => import('@/view/' + config.theme + '/single-page/error-logger.vue')
       }
@@ -397,7 +483,10 @@ export default [
     path: '/directive',
     name: 'directive',
     meta: {
-      hideInBread: true
+      hideInBread: true,
+      access: [
+        'users/login'
+      ]
     },
     component: Main,
     children: [
@@ -406,7 +495,10 @@ export default [
         name: 'directive_page',
         meta: {
           icon: 'ios-navigate',
-          title: 'menu.directive_page.title'
+          title: 'menu.directive_page.title',
+          access: [
+            'users/login'
+          ]
         },
         component: () => import('@/view/' + config.theme + '/directive/directive.vue')
       }
@@ -417,7 +509,10 @@ export default [
     name: 'multilevel',
     meta: {
       icon: 'md-menu',
-      title: 'menu.multilevel.title'
+      title: 'menu.multilevel.title',
+      access: [
+        'users/login'
+      ]
     },
     component: Main,
     children: [
@@ -426,7 +521,10 @@ export default [
         name: 'level_2_1',
         meta: {
           icon: 'md-funnel',
-          title: 'menu.multilevel.submenu.level_2_1.title'
+          title: 'menu.multilevel.submenu.level_2_1.title',
+          access: [
+            'users/login'
+          ]
         },
         component: () => import('@/view/' + config.theme + '/multilevel/level-2-1.vue')
       },
@@ -434,10 +532,12 @@ export default [
         path: 'level_2_2',
         name: 'level_2_2',
         meta: {
-          access: ['client'],
           icon: 'md-funnel',
           showAlways: true,
-          title: 'menu.multilevel.submenu.level_2_2.title'
+          title: 'menu.multilevel.submenu.level_2_2.title',
+          access: [
+            'users/login'
+          ]
         },
         component: parentView,
         children: [
@@ -446,7 +546,10 @@ export default [
             name: 'level_2_2_1',
             meta: {
               icon: 'md-funnel',
-              title: 'menu.multilevel.submenu.level_2_2.submenu.level_2_2_1.title'
+              title: 'menu.multilevel.submenu.level_2_2.submenu.level_2_2_1.title',
+              access: [
+                'users/login'
+              ]
             },
             component: () => import('@/view/' + config.theme + '/multilevel/level-2-2/level-2-2-1.vue')
           },
@@ -455,7 +558,10 @@ export default [
             name: 'level_2_2_2',
             meta: {
               icon: 'md-funnel',
-              title: 'menu.multilevel.submenu.level_2_2.submenu.level_2_2_2.title'
+              title: 'menu.multilevel.submenu.level_2_2.submenu.level_2_2_2.title',
+              access: [
+                'users/login'
+              ]
             },
             component: () => import('@/view/' + config.theme + '/multilevel/level-2-2/level-2-2-2.vue')
           }
@@ -466,7 +572,10 @@ export default [
         name: 'level_2_3',
         meta: {
           icon: 'md-funnel',
-          title: 'menu.multilevel.submenu.level_2_3.title'
+          title: 'menu.multilevel.submenu.level_2_3.title',
+          access: [
+            'users/login'
+          ]
         },
         component: () => import('@/view/' + config.theme + '/multilevel/level-2-3.vue')
       }
@@ -476,7 +585,10 @@ export default [
     path: '/argu',
     name: 'argu',
     meta: {
-      hideInMenu: true
+      hideInMenu: true,
+      access: [
+        'users/login'
+      ]
     },
     component: Main,
     children: [
@@ -487,7 +599,10 @@ export default [
           icon: 'md-flower',
           title: route => `${route.params.title}-${route.params.id}`,
           notCache: true,
-          beforeCloseName: 'before_close_normal'
+          beforeCloseName: 'before_close_normal',
+          access: [
+            'users/login'
+          ]
         },
         component: () => import('@/view/' + config.theme + '/argu-page/params.vue')
       },
@@ -497,7 +612,10 @@ export default [
         meta: {
           icon: 'md-flower',
           title: route => `{{ toolsMethods.dynamic_routing }}-${route.query.id}`,
-          notCache: true
+          notCache: true,
+          access: [
+            'users/login'
+          ]
         },
         component: () => import('@/view/' + config.theme + '/argu-page/query.vue')
       }
