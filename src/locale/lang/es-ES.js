@@ -477,5 +477,12 @@ export default {
     close: {
       title: 'Esta seguro que quiere cerrar esta pagina?'
     }
+  },
+  error: {
+    401: {
+      desc: 'Oh! No tienes permiso para navegar a esta pagina...',
+      go_home: 'Regresar a Inicio',
+      go_back: 'Regresar a la página anterior'
+    }
   }
 }

@@ -477,5 +477,12 @@ export default {
     close: {
       title: 'Are you sure you want to close this page?'
     }
+  },
+  error: {
+    401: {
+      desc: 'Oh! You don\'t have access to navegate to this page...',
+      go_home: 'Go back home',
+      go_back: 'Go back last page'
+    }
   }
 }

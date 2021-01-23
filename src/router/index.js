@@ -18,8 +18,8 @@ const turnTo = (to, access, next, token) => {
   if (to.meta && to.meta.access) {
     let foundAccess = access.map(r => { return { url: `${r.controller}/${r.action}`, access: r.value } }).find(f => to.meta.access.indexOf(f.url) > -1 && f.access !== 'disabled')
     if (foundAccess) {
-      if (token && to.name === LOGIN_PAGE_NAME) next({ name: homeName, params: { hasAccess: true } })
-      else next({ ...to, ...{ params: { hasAccess: true } } })
+      if (token && to.name === LOGIN_PAGE_NAME) next({ name: homeName, params: { hasAccess: true }, replace: true })
+      else next({ ...to, ...{ params: { hasAccess: true }, replace: true } })
     } else {
       next({
         name: 'error_401',

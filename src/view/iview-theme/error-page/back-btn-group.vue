@@ -1,7 +1,7 @@
 <template>
   <div>
-    <Button size="large" type="text" @click="backHome">返回首页</Button>
-    <Button size="large" type="text" @click="backPrev">返回上一页({{ second }}s)</Button>
+    <Button size="large" type="text" @click="backHome">{{ $t(`error.${code}.go_home`) }}</Button>
+    <Button size="large" type="text" @click="backPrev">{{ $t(`error.${code}.go_back`) }}({{ second }}s)</Button>
   </div>
 </template>
 
@@ -15,6 +15,9 @@ export default {
       timer: null
     }
   },
+  props: {
+    code: String
+  },
   methods: {
     backHome () {
       this.$router.replace({
@@ -26,10 +29,10 @@ export default {
     }
   },
   mounted () {
-    // this.timer = setInterval(() => {
-    //   if (this.second === 0) this.backPrev()
-    //   else this.second--
-    // }, 1000)
+    this.timer = setInterval(() => {
+      this.second--
+      if (this.second < 0) this.second = 5
+    }, 1000)
   },
   beforeDestroy () {
     clearInterval(this.timer)

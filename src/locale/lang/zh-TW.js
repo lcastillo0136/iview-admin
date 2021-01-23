@@ -477,5 +477,12 @@ export default {
     close: {
       title: '确定要关闭这一页吗?'
     }
+  },
+  error: {
+    401: {
+      desc: 'Oh~~您没有浏览这个页面的权限~',
+      go_home: '返回首页',
+      go_back: '返回上一页'
+    }
   }
 }
