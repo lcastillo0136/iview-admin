@@ -37,10 +37,11 @@ export const logout = (token) => {
 }
 
 export const getUnreadCount = () => {
-  return axios.request({
-    url: 'message/count',
-    method: 'get'
-  })
+  // return axios.request({
+  //   url: 'message/count',
+  //   method: 'get'
+  // })
+  return new Promise()
 }
 
 export const getMessage = () => {

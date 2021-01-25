@@ -484,5 +484,11 @@ export default {
       go_home: 'Regresar a Inicio',
       go_back: 'Regresar a la página anterior'
     }
+  },
+  profile: {
+    title: 'Perfil de Usuario'
+  },
+  managePermissions: {
+    title: 'Administrador de Permisos'
   }
 }

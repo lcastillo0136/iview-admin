@@ -644,5 +644,29 @@ export default [
       hideInMenu: true
     },
     component: () => import('@/view/' + config.theme + '/error-page/404.vue')
+  },
+  {
+    path: '/manage-permissions',
+    meta: {
+      title: 'managePermissions.title',
+      hideInMenu: false,
+      hideInBread: true
+    },
+    component: Main,
+    children: [
+      {
+        path: '',
+        name: 'manage-permissions_page',
+        meta: {
+          icon: 'md-contact',
+          title: 'managePermissions.title',
+          access: [
+            'ManagePermission/*',
+            'ManagePermission/Update'
+          ]
+        },
+        component: () => import('@/view/' + config.theme + '/manage-permission/manage-permission.vue')
+      }
+    ]
   }
 ]

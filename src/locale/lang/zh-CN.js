@@ -487,5 +487,11 @@ export default {
       go_home: '返回首页',
       go_back: '返回上一页'
     }
+  },
+  profile: {
+    title: 'Profile'
+  },
+  managePermissions: {
+    title: 'Manage Permissions'
   }
 }

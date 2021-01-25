@@ -102,6 +102,10 @@ export default {
         setTimeout(() => { this.error = false }, 5000)
       })
     }
+  },
+  created () {
+  },
+  mounted () {
   }
 }
 </script>

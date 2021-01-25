@@ -484,5 +484,11 @@ export default {
       go_home: 'Go back home',
       go_back: 'Go back last page'
     }
+  },
+  profile: {
+    title: 'User Profile'
+  },
+  managePermissions: {
+    title: 'Manage Permissions'
   }
 }

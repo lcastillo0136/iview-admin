@@ -130,7 +130,7 @@ export default {
           name,
           params,
           query
-        })
+        }).catch(e => {})
       }
     },
     handleCollapsedChange (state) {
@@ -147,7 +147,7 @@ export default {
           }
         }
       }
-      this.setTagNavList(res)
+      this.setTagNavList({ list: res, access: this.$store.state.user.access })
     },
     handleClick (item) {
       this.turnToPage(item)
@@ -161,7 +161,7 @@ export default {
         type: 'push'
       })
       this.setBreadCrumb(newRoute)
-      this.setTagNavList(getNewTagList(this.tagNavList, newRoute))
+      this.setTagNavList({ list: getNewTagList(this.tagNavList, newRoute), access: this.$store.state.user.access })
       this.$refs.sideMenu.updateOpenName(newRoute.name)
     }
   },
@@ -169,7 +169,7 @@ export default {
     /**
      * @description 初始化设置面包屑导航和标签导航
      */
-    this.setTagNavList()
+    this.setTagNavList({ access: this.$store.state.user.access })
     this.setHomeRoute(routers)
     const { name, params, query, meta } = this.$route
     this.addTag({

@@ -23,7 +23,7 @@ export const hasChild = (item) => {
 
 const showThisMenuEle = (item, access) => {
   if (item.meta && item.meta.access && item.meta.access.length) {
-    let foundAccess = access.map(r => { return { url: `${r.controller}/${r.action}`, access: r.value } }).find(f => item.meta.access.indexOf(f.url) > -1 && f.access !== 'disabled')
+    let foundAccess = access.filter(r => r.value !== 'disabled').map(r => Object({ url: `${r.controller}/${r.action}`, access: r.value })).find(f => item.meta.access.indexOf(f.url) > -1)
     if (foundAccess) return true
     else return false
   } else return false
@@ -111,14 +111,14 @@ export const showTitle = (item, vm) => {
 /**
  * @description 本地存储和获取标签导航列表
  */
-export const setTagNavListInLocalstorage = list => {
-  localStorage.tagNaveList = JSON.stringify(list)
+export const setTagNavListInLocalstorage = (list, access) => {
+  if (access) localStorage[`${access}.tagNaveList`] = JSON.stringify(list)
 }
 /**
  * @returns {Array} 其中的每个元素只包含路由原信息中的name, path, meta三项
  */
-export const getTagNavListFromLocalstorage = () => {
-  const list = localStorage.tagNaveList
+export const getTagNavListFromLocalstorage = (access) => {
+  const list = access && localStorage[`${access}.tagNaveList`]
   return list ? JSON.parse(list) : []
 }
 

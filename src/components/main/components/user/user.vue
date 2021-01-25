@@ -6,6 +6,7 @@
       </Badge>
       <Icon :size="18" type="md-arrow-dropdown"></Icon>
       <DropdownMenu slot="list">
+        <DropdownItem name="profile">{{ $t('profile.title') }}</DropdownItem>
         <DropdownItem name="message">
           {{ $t('top.message_page.title') }}<Badge style="margin-left: 10px" :count="messageUnreadCount"></Badge>
         </DropdownItem>
@@ -46,11 +47,18 @@ export default {
         name: 'message_page'
       })
     },
+    profile () {
+      this.$router.push({
+        name: 'profile'
+      })
+    },
     handleClick (name) {
       switch (name) {
         case 'logout': this.logout()
           break
         case 'message': this.message()
+          break
+        case 'profile': this.profile()
           break
       }
     }

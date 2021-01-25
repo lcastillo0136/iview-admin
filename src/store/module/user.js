@@ -143,6 +143,8 @@ export default {
                 } else {
                   reject(responsePermission.message)
                 }
+              }).catch((err) => {
+                reject(err)
               })
             } else {
               reject(response.message)

@@ -41,16 +41,29 @@ router.beforeEach((to, from, next) => {
     if (token) {
       store.dispatch('getUserInfo').then(({ user, permission }) => {
         turnTo(to, permission.permissions, next, token)
-      }).catch(() => {
+      }).catch((err) => {
+        let params = { redirect: to.fullPath }
+        if (LOGIN_PAGE_NAME === from.name) {
+          iView.LoadingBar.finish()
+          params.error = err
+          next({
+            name: 'error_401',
+            params: {
+              hasAccess: true,
+              error: err
+            }
+          })
+        }
+
         setToken('', new Date())
         next({
-          name: 'login',
-          params: { redirect: to.fullPath }
+          name: LOGIN_PAGE_NAME,
+          params: params
         })
       })
     } else {
       store.dispatch('getGuestAccess').then(result => {
-        let login = router.resolve({ name: 'login' })
+        let login = router.resolve({ name: LOGIN_PAGE_NAME })
         turnTo({ ...login.resolved, ...{ params: { redirect: to.fullPath } } }, result, next)
       }).catch(() => {
         next({

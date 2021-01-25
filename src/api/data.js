@@ -22,10 +22,13 @@ export const errorReq = () => {
 }
 
 export const saveErrorLogger = info => {
-  return axios.request({
-    url: 'save_error_logger',
-    data: info,
-    method: 'post'
+  // return axios.request({
+  //   url: 'save_error_logger',
+  //   data: info,
+  //   method: 'post'
+  // })
+  return new Promise((resolve, reject) => {
+    resolve({})
   })
 }
 
