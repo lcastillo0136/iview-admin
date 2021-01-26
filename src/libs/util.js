@@ -23,7 +23,7 @@ export const hasChild = (item) => {
 
 const showThisMenuEle = (item, access) => {
   if (item.meta && item.meta.access && item.meta.access.length) {
-    let foundAccess = access.filter(r => r.value !== 'disabled').map(r => Object({ url: `${r.controller}/${r.action}`, access: r.value })).find(f => item.meta.access.indexOf(f.url) > -1)
+    let foundAccess = access.filter(r => r.value !== 'disabled').map(r => Object({ url: `${r.controller}/${r.action}`.toLowerCase(), access: r.value })).find(f => item.meta.access.map(s => (s || '').toLowerCase()).indexOf(f.url) > -1)
     if (foundAccess) return true
     else return false
   } else return false

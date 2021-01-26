@@ -39,18 +39,18 @@ export default {
       this.handleLogOut().then(() => {
         this.$router.push({
           name: 'login'
-        })
+        }).catch(() => {})
       })
     },
     message () {
       this.$route.name !== 'message_page' && this.$router.push({
         name: 'message_page'
-      })
+      }).catch(() => {})
     },
     profile () {
       this.$router.push({
         name: 'profile'
-      })
+      }).catch(() => {})
     },
     handleClick (name) {
       switch (name) {

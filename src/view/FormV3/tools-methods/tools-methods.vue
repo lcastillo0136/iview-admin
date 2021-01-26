@@ -54,7 +54,7 @@ export default {
           beforeCloseName: 'before_close_normal'
         }
       }
-      this.$router.push(route)
+      this.$router.push(route).catch(() => {})
     },
     createTagQuery () {
       const id = parseInt(Math.random() * 100000)
@@ -67,7 +67,7 @@ export default {
           title: this.$t('toolsMethods.parameter') + `-${id}`
         }
       }
-      this.$router.push(route)
+      this.$router.push(route).catch(() => {})
     },
     handleCloseTag () {
       this.closeTag({

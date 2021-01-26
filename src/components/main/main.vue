@@ -182,7 +182,7 @@ export default {
     if (!this.tagNavList.find(item => item.name === this.$route.name)) {
       this.$router.push({
         name: this.$config.homeName
-      })
+      }).catch(() => {})
     }
     // 获取未读消息条数
     this.getUnreadMessageCount()

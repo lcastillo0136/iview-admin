@@ -30,7 +30,7 @@ export default {
     openErrorLoggerPage () {
       this.$router.push({
         name: 'error_logger_page'
-      })
+      }).catch(() => {})
     }
   }
 }

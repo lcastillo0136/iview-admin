@@ -129,7 +129,7 @@ export default {
             this.$Spin.hide()
             this.$router.push({
               name: this.$config.homeName
-            })
+            }).catch(() => {})
           }).catch((err) => {
             this.$Spin.hide()
             this.message((err.response && err.response.data && err.response.data.message) || err.toString())
