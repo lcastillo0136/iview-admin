@@ -1,14 +1,14 @@
 <template>
   <div style="">
-    <Tabs value="permissions_manage" type="card" >
-        <TabPane label="Groups" name="groups_manage" icon="md-people">
-          <GroupsList ref="group_list" @savedGroup="reloadPermissions($event)"></GroupsList>
-        </TabPane>
-        <TabPane label="Permission List" name="permissions_manage" icon="md-list-box">
-          <PermissionList ref="permissions_list" :groups="groups"></PermissionList>
-        </TabPane>
-        <TabPane label="Users" name="users_permission_manage" icon="md-person">
-        </TabPane>
+    <Tabs value="groups_manage" type="card" s :animated="false">
+      <TabPane label="Groups" name="groups_manage" icon="md-people">
+        <GroupsList ref="group_list" @savedGroup="reloadPermissions($event)"></GroupsList>
+      </TabPane>
+      <TabPane label="Permission List" name="permissions_manage" icon="md-list-box">
+        <PermissionList ref="permissions_list" :groups="groups"></PermissionList>
+      </TabPane>
+      <TabPane label="Users" name="users_permission_manage" icon="md-person">
+      </TabPane>
     </Tabs>
   </div>
 </template>

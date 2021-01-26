@@ -2,11 +2,6 @@
   <div>
     <Row :gutter="10">
       <i-col span="24">
-        <Button type="primary" icon="md-add" @click.prevent="addUserGroup()">Add User Group</Button>
-      </i-col>
-    </Row>
-    <Row :gutter="10">
-      <i-col span="24">
         <i-table :columns="columns" :data="groups" border>
           <template slot-scope="{ row, index }" slot="available_online">
             <i-switch v-model="row.available_online" @on-change="updateGroup(row)"></i-switch>
@@ -21,6 +16,9 @@
         </i-table>
       </i-col>
     </Row>
+    <md-button @click.prevent="addUserGroup()" class="md-fab md-primary" style="position: fixed;bottom: 1%;right: 1%;">
+      <md-icon>add</md-icon>
+    </md-button>
     <Modal v-model="openModal" :title="titleModal" @on-visible-change="modalChange($event)" @on-ok="okUserGroup()">
         <div class="mb10">
           <ModalUserGroup :UserGroupModel="userGroupModel"></ModalUserGroup>
