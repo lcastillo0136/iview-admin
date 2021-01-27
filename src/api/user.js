@@ -41,7 +41,7 @@ export const getUnreadCount = () => {
   //   url: 'message/count',
   //   method: 'get'
   // })
-  return new Promise()
+  return new Promise(() => {})
 }
 
 export const getMessage = () => {
@@ -89,4 +89,17 @@ export const restoreTrash = msg_id => {
       msg_id
     }
   })
+}
+
+export const getUsersList = ({ token, search }) => {
+  return axios.request({
+    url: `users/list`,
+    headers: { Authorization: `Bearer ${token}` },
+    data: { search },
+    method: 'post'
+  })
+}
+
+export const abortRequest = () => {
+  axios.abort()
 }

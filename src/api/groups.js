@@ -1,9 +1,10 @@
 import axios from '@/libs/api.request'
 
-export const getUsersGroups = (token) => {
+export const getUsersGroups = (token, pagination) => {
   return axios.request({
     url: 'UserGroups',
     headers: { Authorization: `Bearer ${token}` },
+    params: pagination,
     method: 'get'
   })
 }

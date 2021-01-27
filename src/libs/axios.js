@@ -17,9 +17,10 @@ class HttpRequest {
     this.baseUrl = baseUrl
     this.queue = {}
   }
-  getInsideConfig () {
+  getInsideConfig (token) {
     const config = {
       baseURL: this.baseUrl,
+      cancelToken: token,
       headers: {
         //
       }
@@ -66,9 +67,14 @@ class HttpRequest {
   }
   request (options) {
     const instance = axios.create()
-    options = Object.assign(this.getInsideConfig(), options)
+    this.cancelTokenSource = axios.CancelToken.source()
+
+    options = Object.assign(this.getInsideConfig(this.cancelTokenSource.token), options)
     this.interceptors(instance, options.url)
     return instance(options)
+  }
+  abort () {
+    this.cancelTokenSource && this.cancelTokenSource.cancel()
   }
 }
 export default HttpRequest

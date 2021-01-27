@@ -8,7 +8,9 @@ import {
   hasRead,
   removeReaded,
   restoreTrash,
-  getUnreadCount
+  getUnreadCount,
+  getUsersList,
+  abortRequest
 } from '@/api/user'
 import { setToken, getToken } from '@/libs/util'
 
@@ -25,7 +27,8 @@ export default {
     messageReadedList: [],
     messageTrashList: [],
     messageContentStore: {},
-    permissions: []
+    permissions: [],
+    lastListSearch: null
   },
   mutations: {
     setAvatar (state, avatarPath) {
@@ -70,6 +73,9 @@ export default {
       const msgItem = state[from].splice(index, 1)[0]
       msgItem.loading = false
       state[to].unshift(msgItem)
+    },
+    setLastListSearch (state, request) {
+      state.lastListSearch = request
     }
   },
   getters: {
@@ -243,6 +249,32 @@ export default {
         }).catch(error => {
           reject(error)
         })
+      })
+    },
+    getUsersList ({ state, commit }, search) {
+      return new Promise((resolve, reject) => {
+        try {
+          if (!state.token) reject(new Error('no_autorized'))
+          if (state.lastListSearch) {
+            abortRequest()
+          }
+          let request = getUsersList({ token: state.token, search })
+
+          request.then(result => {
+            const response = result.response
+            if (response.success) {
+              resolve(response.data)
+            } else {
+              reject(response.message)
+            }
+          }).catch(err => {
+            reject(err)
+          })
+
+          commit('setLastListSearch', request)
+        } catch (error) {
+          reject(error)
+        }
       })
     }
   }

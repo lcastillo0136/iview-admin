@@ -2,7 +2,7 @@
   <div>
     <Row :gutter="10">
       <i-col span="24">
-        <i-table :columns="columns" :data="groups" border>
+        <i-table :columns="columns" :data="groups" border :loading="loading">
           <template slot-scope="{ row, index }" slot="available_online">
             <i-switch v-model="row.available_online" @on-change="updateGroup(row)"></i-switch>
           </template>
@@ -14,6 +14,11 @@
             </div>
           </template>
         </i-table>
+        <div style="margin: 10px;overflow: hidden">
+          <div style="float: right;">
+            <Page :total.sync="pagination.total" :current.sync="pagination.page" @on-change="changePage({})" @on-page-size-change="changePage({ limit: $event })" show-sizer show-total></Page>
+          </div>
+        </div>
       </i-col>
     </Row>
     <md-button @click.prevent="addUserGroup()" class="md-fab md-primary" style="position: fixed;bottom: 1%;right: 1%;">
@@ -71,7 +76,13 @@ export default {
         description: '',
         available_online: false,
         id: -1
-      }
+      },
+      pagination: {
+        total: 0,
+        page: 1,
+        limit: 10
+      },
+      loading: false
     }
   },
   computed: {
@@ -97,15 +108,23 @@ export default {
       'deleteUserGroup'
     ]),
     loadData () {
+      this.loading = true
       return new Promise((resolve, reject) => {
-        this.getUsersGroups().then((data) => {
+        this.getUsersGroups(this.pagination).then(({ data, pagination }) => {
           this.groups = data
+          this.pagination = {
+            total: parseInt(pagination.rows) || 0,
+            page: parseInt(pagination.current) || 1,
+            limit: pagination.limit
+          }
+          this.loading = false
           resolve(data)
         }).catch((err) => {
           this.$Notice.error({
             title: 'GroupList Error',
             desc: err.toString()
           })
+          this.loading = false
           reject(err)
         })
       })
@@ -182,6 +201,10 @@ export default {
           desc: err.toString()
         })
       })
+    },
+    changePage (pagination) {
+      if (pagination.limit) this.pagination.limit = pagination.limit
+      this.loadData()
     }
   },
   created () {
@@ -194,5 +217,8 @@ export default {
 <style lang="less">
 .ivu-card {
   margin: 10px;
+}
+.ivu-tabs {
+  overflow: visible;
 }
 </style>

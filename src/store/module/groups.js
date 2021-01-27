@@ -9,14 +9,14 @@ export default {
   getters: {
   },
   actions: {
-    getUsersGroups ({ state, commit }) {
+    getUsersGroups ({ state, commit }, pagination) {
       return new Promise((resolve, reject) => {
         try {
           if (!getToken()) reject(new Error('no_autorized'))
-          getUsersGroups(getToken()).then(result => {
+          getUsersGroups(getToken(), pagination).then(result => {
             const response = result.response
             if (response.success) {
-              resolve(response.data)
+              resolve(response)
             } else {
               reject(response.message)
             }
