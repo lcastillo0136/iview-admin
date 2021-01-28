@@ -488,7 +488,14 @@ export default {
   profile: {
     title: 'Perfil de Usuario'
   },
-  managePermissions: {
-    title: 'Administrador de Permisos'
+  userGroups: {
+    title: 'Grupos de usuarios',
+    errors: {
+      title: 'Error al guardar el grupo',
+      name: {
+        used_group_name: 'Este nombre de grupo ya es usado por otro registro.'
+      },
+      create_error: 'Hay un problema al crear el grupo.'
+    }
   }
 }

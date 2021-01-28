@@ -118,19 +118,25 @@ export default {
       if (typeof route === 'string') name = route
       else {
         name = route.name
-        params = route.params
+        params = { ...route.params, ...{ hasAccess: false } }
         query = route.query
       }
       if (name.indexOf('isTurnByHref_') > -1) {
         window.open(name.split('_')[1])
         return
       }
-      if (this.$route.name !== route) {
-        this.$router.push({
-          name,
-          params,
-          query
-        }).catch(e => {})
+      let res = this.$router.options.routes.find(f => f.name === route.name || (f.children && f.children.find(d=>d.name === route.name)))
+      if (!res) {
+        res = this.tagNavList.filter(item => !routeEqual(route, item))
+        this.handleCloseTag(res, undefined, route)
+      } else {
+        if (this.$route.name !== route) {
+          this.$router.push({
+            name,
+            params,
+            query
+          }).catch(e => {})
+        }
       }
     },
     handleCollapsedChange (state) {

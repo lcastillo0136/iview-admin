@@ -491,7 +491,14 @@ export default {
   profile: {
     title: 'Profile'
   },
-  managePermissions: {
-    title: 'Manage Permissions'
+  userGroups: {
+    title: 'User Groups',
+    errors: {
+      title: 'User Group saving error',
+      name: {
+        used_group_name: 'This User Group name is used by other record.'
+      },
+      create_error: 'There is a problem creating the group.'
+    }
   }
 }

@@ -1,14 +1,11 @@
 <template>
   <div style="">
-    <Tabs value="groups_manage" type="card" :animated="false">
+    <Tabs value="permissions_manage" type="card" :animated="false">
       <TabPane label="Groups" name="groups_manage" icon="md-people">
         <GroupsList ref="group_list" @savedGroup="reloadPermissions($event)"></GroupsList>
       </TabPane>
       <TabPane label="Permission List" name="permissions_manage" icon="md-list-box">
         <PermissionList ref="permissions_list" :groups="groups"></PermissionList>
-      </TabPane>
-      <TabPane label="Users" name="users_permission_manage" icon="md-person">
-        <UsersList></UsersList>
       </TabPane>
     </Tabs>
   </div>
@@ -21,7 +18,7 @@ import GroupsList from './components/groups-list/groups-list'
 import UsersList from './components/users-list/users-list'
 
 export default {
-  name: 'manange-permission',
+  name: 'users-groups',
   data () {
     return {
       resources: [],

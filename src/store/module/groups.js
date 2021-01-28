@@ -59,6 +59,8 @@ export default {
               } else {
                 reject(response.message)
               }
+            }).catch((err) => {
+              reject(err)
             })
           } else {
             saveUserGroup(getToken(), user_group).then((result) => {
@@ -68,6 +70,8 @@ export default {
               } else {
                 reject(response.message)
               }
+            }).catch((err) => {
+              reject(err)
             })
           }
         } catch (error) {
@@ -87,6 +91,8 @@ export default {
               } else {
                 reject(response.message)
               }
+            }).catch((err) => {
+              reject(err)
             })
           } else {
             reject(new Error('unable_to_delete'))

@@ -646,9 +646,9 @@ export default [
     component: () => import('@/view/' + config.theme + '/error-page/404.vue')
   },
   {
-    path: '/manage-permissions',
+    path: '/users-groups',
     meta: {
-      title: 'managePermissions.title',
+      title: 'userGroups.title',
       hideInMenu: false,
       hideInBread: true
     },
@@ -656,16 +656,16 @@ export default [
     children: [
       {
         path: '',
-        name: 'manage-permissions_page',
+        name: 'users-groups_page',
         meta: {
-          icon: 'md-contact',
-          title: 'managePermissions.title',
+          icon: 'md-people',
+          title: 'userGroups.title',
           access: [
             'ManagePermission/*',
             'ManagePermission/Update'
           ]
         },
-        component: () => import('@/view/' + config.theme + '/manage-permission/manage-permission.vue')
+        component: () => import('@/view/' + config.theme + '/users-groups/users-groups.vue')
       }
     ]
   }

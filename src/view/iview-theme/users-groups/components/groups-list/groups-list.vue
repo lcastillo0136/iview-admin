@@ -174,9 +174,16 @@ export default {
             this.$emit('savedGroup', loadedData)
           })
         }).catch((err) => {
+          let err_desc = err.message || err.toString()
+          if (err.data) {
+            err_desc = ''
+            err_desc += Object.keys(err.data).map(e => err.data[e].map(d => this.$t(`userGroups.errors.${e}.${d}`))).reduce((e, e1) => e=e.concat(e1) , []).join('<br>')
+            err_desc += ''
+          }
+
           this.$Notice.error({
-            title: 'Save User Group Error',
-            desc: err.toString()
+            title: this.$t('userGroups.errors.title'),
+            desc: err_desc
           })
         })
       }
