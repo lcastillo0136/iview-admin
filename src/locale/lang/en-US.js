@@ -490,12 +490,58 @@ export default {
   },
   userGroups: {
     title: 'User Groups',
+    tabs: {
+      groups: 'Groups',
+      permissions: 'Permissions'
+    },
+    table: {
+      name: 'Name',
+      description: 'Description',
+      available_online: 'Available Online'
+    },
     errors: {
       title: 'User Group saving error',
       name: {
-        used_group_name: 'This User Group name is used by other record.'
+        used_group_name: 'This User Group name is used by other record.',
+        empty_group_name: 'Plase input an name for the user group'
       },
-      create_error: 'There is a problem creating the group.'
+      create_error: 'There is a problem creating the group.',
+      load_data: 'Load Data error',
+      update_switch: 'Available online error',
+      delete_error: 'Delete group error',
+      add_error: 'Create user group error',
+      edit_error: 'Edit user group error',
+      no_autorized: 'The seasson has expired'
+    },
+    delete: {
+      title: 'Delete confirmation',
+      content: 'Are you sure you want to delete this?',
+      button: 'Delete'
+    },
+    add: {
+      title: 'Create new user group',
+      name: 'Name',
+      description: 'Description',
+      available_online: 'Available Online',
+      button: 'Create'
+    },
+    edit: {
+      title: 'Edit user group',
+      button: 'Edit'
     }
+  },
+  permissions: {
+    title: 'Permissions',
+    button: {
+      open_modal: 'Permissions'
+    },
+    controllers: {
+      ManagePermission: 'Permissions Managment',
+      UserGroups: 'Users Groups',
+      Users: 'Users'
+    }
+  },
+  users: {
+    title: 'Users'
   }
 }

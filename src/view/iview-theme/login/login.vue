@@ -86,20 +86,19 @@ export default {
           }).then(res => {
             this.$Spin.hide()
             this.$router.push({
-              name: this.$config.homeName
+              name: (this.$route.params && this.$route.params.redirect) || this.$config.homeName
             }).catch(() => {})
           }).catch((err) => {
             this.$Spin.hide()
-            this.message((err.response && err.response.data && err.response.data.message) || err.toString())
+            this.message((err && err.data && err.data.message) || (err.message) || err.toString())
           })
         }
       })
     },
     message (message) {
-      this.error = true
-      this.$nextTick().then(() => {
-        this.$refs.fallback.$scopedSlots.default()[0].elm.data = this.$t('login.messages.error.' + message)
-        setTimeout(() => { this.error = false }, 5000)
+      this.$Notice.error({
+        title: 'Login Error',
+        desc: this.$t('login.messages.error.' + message)
       })
     }
   },

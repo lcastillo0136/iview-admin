@@ -655,17 +655,46 @@ export default [
     component: Main,
     children: [
       {
-        path: '',
+        path: '/list',
         name: 'users-groups_page',
         meta: {
           icon: 'md-people',
           title: 'userGroups.title',
           access: [
             'ManagePermission/*',
-            'ManagePermission/Update'
+            'ManagePermission/index',
+            'ManagePermission/get',
+            'UserGroups/*',
+            'UserGroups/index',
+            'UserGroups/get',
           ]
         },
         component: () => import('@/view/' + config.theme + '/users-groups/users-groups.vue')
+      }
+    ]
+  },
+  {
+    path: '/users',
+    meta: {
+      title: 'users.title',
+      hideInMenu: false,
+      hideInBread: true
+    },
+    component: Main,
+    children: [
+      {
+        path: 'list',
+        name: 'users_page',
+        meta: {
+          icon: 'md-person',
+          title: 'users.title',
+          access: [
+            'Users/*',
+            'Users/index',
+            'Users/get'
+          ]
+        },
+        component: () => import('@/view/' + config.theme + '/users/users.vue')
       }
     ]
   }

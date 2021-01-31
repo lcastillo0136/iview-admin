@@ -5,7 +5,7 @@ import store from '@/store'
 import iView from 'iview'
 import { setToken, getToken, setTitle } from '@/libs/util'
 import config from '@/config'
-const { homeName } = config
+const { homeName, logout_interval } = config
 
 Vue.use(Router)
 const router = new Router({
@@ -18,8 +18,8 @@ const turnTo = (to, access, next, token) => {
   if (to.meta && to.meta.access) {
     let foundAccess = access.map(r => Object({ url: `${r.controller}/${r.action}`.toLowerCase(), access: r.value })).find(f => to.meta.access.map(s => (s || '').toLowerCase()).indexOf(f.url) > -1 && f.access !== 'disabled')
     if (foundAccess) {
-      if (token && to.name === LOGIN_PAGE_NAME) next({ name: homeName, params: { hasAccess: true }, replace: true })
-      else next({ ...to, ...{ params: { hasAccess: true }, replace: true } })
+      if (token && to.name === LOGIN_PAGE_NAME) next({ name: homeName, params: { ...to.params, ...{ hasAccess: true } }, replace: true })
+      else next({ ...to, ...{ params: { ...to.params, ...{ hasAccess: true } }, replace: true } })
     } else {
       next({
         name: 'error_401',
@@ -42,7 +42,7 @@ router.beforeEach((to, from, next) => {
       store.dispatch('getUserInfo').then(({ user, permission }) => {
         turnTo(to, permission.permissions, next, token)
       }).catch((err) => {
-        let params = { redirect: to.fullPath }
+        let params = { redirect: to.name !== LOGIN_PAGE_NAME ? to.name : false }
         if (LOGIN_PAGE_NAME === from.name) {
           iView.LoadingBar.finish()
           params.error = err
@@ -64,7 +64,7 @@ router.beforeEach((to, from, next) => {
     } else {
       store.dispatch('getGuestAccess').then(result => {
         let login = router.resolve({ name: LOGIN_PAGE_NAME })
-        turnTo({ ...login.resolved, ...{ params: { redirect: to.fullPath } } }, result, next)
+        turnTo({ ...login.resolved, ...{ params: { redirect: to.name !== LOGIN_PAGE_NAME ? to.name : false } } }, result, next)
       }).catch(() => {
         if (from.name === 'error_401') {
           setToken('', new Date())
@@ -77,7 +77,10 @@ router.beforeEach((to, from, next) => {
         } else {
           next({
             name: 'error_401',
-            params: { hasAccess: true }
+            params: {
+              hasAccess: true,
+              redirect: to.name !== LOGIN_PAGE_NAME ? to.name : false
+            }
           })
         }
       })
@@ -92,5 +95,17 @@ router.afterEach(to => {
   iView.LoadingBar.finish()
   window.scrollTo(0, 0)
 })
+
+setInterval(() => {
+  const token = getToken()
+  if (!token) {
+    router.push({
+      name: LOGIN_PAGE_NAME,
+      params: {
+        hasAccess: true
+      }
+    }).catch(() => {})
+  }
+}, logout_interval || (1000 * 60 * 5))
 
 export default router

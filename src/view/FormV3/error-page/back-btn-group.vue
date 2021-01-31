@@ -19,7 +19,7 @@ export default {
     backHome () {
       this.$router.replace({
         name: this.$config.homeName
-      })
+      }).catch(() => {})
     },
     backPrev () {
       this.$router.go(-1)

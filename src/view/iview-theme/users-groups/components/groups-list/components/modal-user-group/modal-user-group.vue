@@ -1,13 +1,13 @@
 <template>
   <div>
     <Form label-position="top">
-      <FormItem label="Name">
+      <FormItem :label="$t('userGroups.add.name')">
         <Input v-model="UserGroupModel.name" />
       </FormItem>
-      <FormItem label="Description">
+      <FormItem :label="$t('userGroups.add.description')">
         <Input v-model="UserGroupModel.description"/>
       </FormItem>
-      <FormItem label="Available Online">
+      <FormItem :label="$t('userGroups.add.available_online')">
         <i-switch v-model="UserGroupModel.available_online"></i-switch>
       </FormItem>
     </Form>

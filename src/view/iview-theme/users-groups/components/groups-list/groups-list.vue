@@ -25,21 +25,21 @@
       <md-icon>add</md-icon>
     </md-button>
     <Modal v-model="openModal" :title="titleModal" @on-visible-change="modalChange($event)" @on-ok="okUserGroup()">
-        <div class="mb10">
-          <ModalUserGroup :UserGroupModel="userGroupModel"></ModalUserGroup>
-        </div>
+      <div class="mb10">
+        <ModalUserGroup :UserGroupModel="userGroupModel"></ModalUserGroup>
+      </div>
     </Modal>
     <Modal v-model="deleteModal" width="360">
-        <p slot="header" style="color:#f60;text-align:center">
-          <Icon type="ios-information-circle"></Icon>
-          <span>Delete confirmation</span>
-        </p>
-        <div style="text-align:center">
-          <p>Are you sure you want to delete this?</p>
-        </div>
-        <div slot="footer">
-          <Button type="error" size="large" long @click="deleteOkUserGroup()">Delete</Button>
-        </div>
+      <p slot="header" style="color:#f60;text-align:center">
+        <Icon type="ios-information-circle"></Icon>
+        <span>{{ $t('userGroups.delete.title') }}</span>
+      </p>
+      <div style="text-align:center">
+        <p>{{ $t('userGroups.delete.content') }}</p>
+      </div>
+      <div slot="footer">
+        <Button type="error" size="large" long @click="deleteOkUserGroup()">{{ $t('userGroups.delete.button') }}</Button>
+      </div>
     </Modal>
   </div>
 </template>
@@ -54,13 +54,13 @@ export default {
     return {
       groups: [],
       columns: [{
-        title: 'Name',
+        title: this.$t('userGroups.table.name'),
         key: 'name'
       }, {
-        title: 'Description',
+        title: this.$t('userGroups.table.description'),
         key: 'description'
       }, {
-        title: 'Available Online',
+        title: this.$t('userGroups.table.available_online'),
         slot: 'available_online',
         width: 150
       }, {
@@ -87,7 +87,7 @@ export default {
   },
   computed: {
     titleModal () {
-      return this.addModal ? 'Add User Group' : 'Edit User Group'
+      return this.addModal ? this.$t('userGroups.add.title') : this.$t('userGroups.edit.title')
     },
     openModal: {
       get: function () {
@@ -108,6 +108,7 @@ export default {
       'deleteUserGroup'
     ]),
     loadData () {
+      const _this = this
       this.loading = true
       return new Promise((resolve, reject) => {
         this.getUsersGroups(this.pagination).then(({ data, pagination }) => {
@@ -121,7 +122,7 @@ export default {
           resolve(data)
         }).catch((err) => {
           this.$Notice.error({
-            title: 'GroupList Error',
+            title: _this.$t('userGroups.errors.load_data'),
             desc: err.toString()
           })
           this.loading = false
@@ -130,6 +131,7 @@ export default {
       })
     },
     updateGroup (row) {
+      const _this = this
       this.userGroupModel.name = row.name
       this.userGroupModel.description = row.description
       this.userGroupModel.available_online = row.available_online
@@ -137,7 +139,7 @@ export default {
 
       this.saveUserGroup(this.userGroupModel).catch((err) => {
         this.$Notice.error({
-          title: 'Update Switch',
+          title: _this.$t('userGroups.errors.update_switch'),
           desc: err.toString()
         })
       })
@@ -163,10 +165,11 @@ export default {
       }
     },
     okUserGroup () {
+      const _this = this
       if (this.userGroupModel.name.trim() === '') {
         this.$Notice.error({
-          title: (this.addModal ? 'Create' : 'Edit') + ' Error',
-          desc: 'Plase input an name for the user group'
+          title: this.addModal ? this.$t('userGroups.errors.add_error') : this.$t('userGroups.errors.edit_error'),
+          desc: this.$t('userGroups.errors.name.empty_group_name')
         })
       } else {
         this.saveUserGroup(this.userGroupModel).then((data) => {
@@ -177,12 +180,14 @@ export default {
           let err_desc = err.message || err.toString()
           if (err.data) {
             err_desc = ''
-            err_desc += Object.keys(err.data).map(e => err.data[e].map(d => this.$t(`userGroups.errors.${e}.${d}`))).reduce((e, e1) => e=e.concat(e1) , []).join('<br>')
+            err_desc += Object.keys(err.data).map(e => err.data[e].map(d => this.$t(`userGroups.errors.${e}.${d}`))).reduce((e, e1) => e.concat(e1), []).join('<br>')
             err_desc += ''
+          } else {
+            err_desc = _this.$t(`userGroups.errors.${err_desc}`)
           }
 
           this.$Notice.error({
-            title: this.$t('userGroups.errors.title'),
+            title: _this.$t('userGroups.errors.title'),
             desc: err_desc
           })
         })
@@ -197,14 +202,16 @@ export default {
       this.deleteModal = true
     },
     deleteOkUserGroup () {
+      const _this = this
       this.deleteModal = false
       this.deleteUserGroup(this.userGroupModel).then((data) => {
         this.loadData().then((loadedData) => {
           this.$emit('savedGroup', loadedData)
         })
       }).catch((err) => {
+        debugger
         this.$Notice.error({
-          title: 'Delete Group Error',
+          title: _this.$t('userGroups.errors.delete_error'),
           desc: err.toString()
         })
       })

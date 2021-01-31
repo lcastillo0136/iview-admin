@@ -1,5 +1,6 @@
 import { getUsersGroups, getPermissionsGroups, saveUserGroup, updateUserGroup, deleteUserGroup } from '@/api/groups'
 import { getToken } from '@/libs/util'
+import router from '@/router'
 
 export default {
   state: {
@@ -12,7 +13,15 @@ export default {
     getUsersGroups ({ state, commit }, pagination) {
       return new Promise((resolve, reject) => {
         try {
-          if (!getToken()) reject(new Error('no_autorized'))
+          if (!getToken()) {
+            router.push({
+              name: 'login',
+              params: {
+                hasAccess: true
+              }
+            }).catch(() => {})
+            reject(new Error('no_autorized'))
+          }
           getUsersGroups(getToken(), pagination).then(result => {
             const response = result.response
             if (response.success) {
@@ -31,7 +40,15 @@ export default {
     getPermissionsGroups ({ state, commit }, { group_id }) {
       return new Promise((resolve, reject) => {
         try {
-          if (!getToken()) reject(new Error('no_autorized'))
+          if (!getToken()) {
+            router.push({
+              name: 'login',
+              params: {
+                hasAccess: true
+              }
+            }).catch(() => {})
+            reject(new Error('no_autorized'))
+          }
           getPermissionsGroups(getToken(), group_id).then(result => {
             const response = result.response
             if (response.success) {
@@ -50,7 +67,15 @@ export default {
     saveUserGroup ({ state, commit }, user_group) {
       return new Promise((resolve, reject) => {
         try {
-          if (!getToken()) reject(new Error('no_autorized'))
+          if (!getToken()) {
+            router.push({
+              name: 'login',
+              params: {
+                hasAccess: true
+              }
+            }).catch(() => {})
+            reject(new Error('no_autorized'))
+          }
           if (user_group.id > 0) {
             updateUserGroup(getToken(), user_group).then((result) => {
               const response = result.response
@@ -82,7 +107,15 @@ export default {
     deleteUserGroup ({ state, commit }, user_group) {
       return new Promise((resolve, reject) => {
         try {
-          if (!getToken()) reject(new Error('no_autorized'))
+          if (!getToken()) {
+            router.push({
+              name: 'login',
+              params: {
+                hasAccess: true
+              }
+            }).catch(() => {})
+            reject(new Error('no_autorized'))
+          }
           if (user_group.id > 0) {
             deleteUserGroup(getToken(), user_group).then((result) => {
               const response = result.response

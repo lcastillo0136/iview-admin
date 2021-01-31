@@ -1,10 +1,10 @@
 <template>
   <div style="">
-    <Tabs value="permissions_manage" type="card" :animated="false">
-      <TabPane label="Groups" name="groups_manage" icon="md-people">
+    <Tabs value="groups_manage" type="card" :animated="false">
+      <TabPane :label="$t('userGroups.tabs.groups')" name="groups_manage" icon="md-people">
         <GroupsList ref="group_list" @savedGroup="reloadPermissions($event)"></GroupsList>
       </TabPane>
-      <TabPane label="Permission List" name="permissions_manage" icon="md-list-box">
+      <TabPane :label="$t('userGroups.tabs.permissions')" name="permissions_manage" icon="md-list-box">
         <PermissionList ref="permissions_list" :groups="groups"></PermissionList>
       </TabPane>
     </Tabs>
@@ -58,5 +58,7 @@ export default {
 .ivu-tabs-card > .ivu-tabs-content > .ivu-tabs-tabpane {
   background: #fff;
   padding: 16px;
+  border: 1px solid #dcdee2;
+  border-top: none;
 }
 </style>

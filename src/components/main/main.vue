@@ -125,7 +125,7 @@ export default {
         window.open(name.split('_')[1])
         return
       }
-      let res = this.$router.options.routes.find(f => f.name === route.name || (f.children && f.children.find(d=>d.name === route.name)))
+      let res = this.$router.options.routes.find(f => f.name === route.name || (f.children && f.children.find(d => d.name === route.name)))
       if (!res) {
         res = this.tagNavList.filter(item => !routeEqual(route, item))
         this.handleCloseTag(res, undefined, route)

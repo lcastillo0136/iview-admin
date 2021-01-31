@@ -9,12 +9,6 @@
                 {{ etiqueta }}
               </div>
               <template slot="action">
-                <!-- <span v-for="(grupo, igroup) in resource['*']" :key="igroup">
-                  <Tooltip :content="groupName(igroup)">
-                    <i-switch v-model="resource['*'][igroup]" true-color="#13ce66" @on-change="updatePermission($event, igroup, '', etiqueta )" :disabled="saving"></i-switch>
-                  </Tooltip>
-                  <Divider type="vertical" />
-                </span> -->
                 <span>
                   <Button shape="circle" icon="md-open" @click.prevent="choosePermissions({ actions: resource, label: etiqueta})">
                     Permissions
@@ -24,25 +18,6 @@
             </template>
           </ListItem>
         </List>
-
-        <!-- <List>
-            <ListItem v-for="(ruta, index) in resource" :key="index">
-              <template v-if="index != '*'">
-                <div style="flex: 1 0 auto">
-                  {{ etiqueta }}/<b>{{ index }}</b>
-                </div>
-                <template slot="action">
-                  <span v-for="(grupo, igroup) in ruta" :key="igroup">
-                    <Tooltip :content="groupName(igroup)">
-                      <i-switch v-model="ruta[igroup]" true-color="#13ce66" @on-change="updatePermission($event, igroup, index, etiqueta )" :disabled="saving"></i-switch>
-                    </Tooltip>
-                    <Divider type="vertical" />
-                  </span>
-                </template>
-              </template>
-            </ListItem>
-          </List> -->
-
       </i-col>
     </Row>
 
@@ -54,12 +29,6 @@
         <template slot-scope="{ row , index, column }" slot="group">
           <i-switch v-model="resources[row.parent][row.name][column.group]" true-color="#13ce66" @on-change="updatePermission($event, column.group, row.name, row.parent )" :disabled="saving"></i-switch>
         </template>
-        <!-- <template slot-scope="{ row, index }" slot="actions">
-          <Tooltip :content="groupName(igroup)">
-            <i-switch v-model="ruta[igroup]"  ></i-switch>
-          </Tooltip>
-          <Divider type="vertical" />
-        </template> -->
       </i-table>
     </Modal>
   </div>

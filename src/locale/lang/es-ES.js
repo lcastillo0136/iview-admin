@@ -490,12 +490,47 @@ export default {
   },
   userGroups: {
     title: 'Grupos de usuarios',
+    tabs: {
+      groups: 'Grupos',
+      permissions: 'Permisos'
+    },
+    table: {
+      name: 'Nombre',
+      description: 'Descripción',
+      available_online: 'Disponible en linea'
+    },
     errors: {
       title: 'Error al guardar el grupo',
       name: {
-        used_group_name: 'Este nombre de grupo ya es usado por otro registro.'
+        used_group_name: 'Este nombre de grupo ya esta en uso.',
+        empty_group_name: 'Favor de capturar un nombre para el grupo'
       },
-      create_error: 'Hay un problema al crear el grupo.'
+      create_error: 'Hubo un problema al crear el grupo.',
+      load_data: 'Error al cargar los datos',
+      update_switch: 'Error al actualizar: disponible en linea',
+      delete_error: 'Error al borrar el grupo',
+      add_error: 'Error al crear el grupo',
+      edit_error: 'Error al editar el grupo',
+      no_autorized: 'La session a expirado'
+    },
+    delete: {
+      title: 'Confirmación de eliminación',
+      content: '¿Esta seguro de eliminar el elemento?',
+      button: 'Borrar'
+    },
+    add: {
+      title: 'Crear nuevo grupo de usuario',
+      name: 'Nombre',
+      description: 'Descripción',
+      available_online: 'Disponible en linea',
+      button: 'Crear'
+    },
+    edit: {
+      title: 'Editar grupo de usuario',
+      button: 'Editar'
     }
+  },
+  users: {
+    title: 'Usuarios'
   }
 }

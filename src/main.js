@@ -28,6 +28,7 @@ Vue.use(iView, {
 Vue.use(TreeTable)
 Vue.use(VOrgTree)
 Vue.use(VueMaterial)
+iView.Notice.config({ duration: 5 })
 /**
  * @description 注册admin内置插件
  */
