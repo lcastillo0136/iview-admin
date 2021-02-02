@@ -164,6 +164,11 @@ const hasAccess = (access, route) => {
   else return true
 }
 
+export const validateAccess = (access, route) => {
+  if (route.meta && route.meta.access) return hasOneOf(access, route.meta.access)
+  return false
+}
+
 /**
  * 权鉴
  * @param {*} name 即将跳转的路由name

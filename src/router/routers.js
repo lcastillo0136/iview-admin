@@ -646,56 +646,84 @@ export default [
     component: () => import('@/view/' + config.theme + '/error-page/404.vue')
   },
   {
-    path: '/users-groups',
+    path: '/settings',
     meta: {
-      title: 'userGroups.title',
+      title: 'settings.title',
       hideInMenu: false,
       hideInBread: true
     },
     component: Main,
     children: [
       {
-        path: '/list',
-        name: 'users-groups_page',
+        path: '',
+        name: 'settings_page',
         meta: {
-          icon: 'md-people',
-          title: 'userGroups.title',
+          icon: 'md-settings',
+          title: 'settings.title',
           access: [
             'ManagePermission/*',
             'ManagePermission/index',
             'ManagePermission/get',
             'UserGroups/*',
             'UserGroups/index',
-            'UserGroups/get',
+            'UserGroups/get'
           ]
         },
-        component: () => import('@/view/' + config.theme + '/users-groups/users-groups.vue')
+        component: () => import('@/view/' + config.theme + '/settings/settings.vue')
       }
     ]
   },
-  {
-    path: '/users',
-    meta: {
-      title: 'users.title',
-      hideInMenu: false,
-      hideInBread: true
-    },
-    component: Main,
-    children: [
-      {
-        path: 'list',
-        name: 'users_page',
-        meta: {
-          icon: 'md-person',
-          title: 'users.title',
-          access: [
-            'Users/*',
-            'Users/index',
-            'Users/get'
-          ]
-        },
-        component: () => import('@/view/' + config.theme + '/users/users.vue')
-      }
-    ]
-  }
+  // {
+  //   path: '/users-roles',
+  //   meta: {
+  //     title: 'usersRoles.title',
+  //     hideInMenu: false,
+  //     hideInBread: true
+  //   },
+  //   component: Main,
+  //   children: [
+  //     {
+  //       path: '',
+  //       name: 'users-roles_page',
+  //       meta: {
+  //         icon: 'md-people',
+  //         title: 'usersRoles.title',
+  //         access: [
+  //           'ManagePermission/*',
+  //           'ManagePermission/index',
+  //           'ManagePermission/get',
+  //           'UserGroups/*',
+  //           'UserGroups/index',
+  //           'UserGroups/get'
+  //         ]
+  //       },
+  //       component: () => import('@/view/' + config.theme + '/roles/roles.vue')
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/users',
+  //   meta: {
+  //     title: 'users.title',
+  //     hideInMenu: false,
+  //     hideInBread: true
+  //   },
+  //   component: Main,
+  //   children: [
+  //     {
+  //       path: '',
+  //       name: 'users_page',
+  //       meta: {
+  //         icon: 'md-person',
+  //         title: 'users.title',
+  //         access: [
+  //           'Users/*',
+  //           'Users/index',
+  //           'Users/get'
+  //         ]
+  //       },
+  //       component: () => import('@/view/' + config.theme + '/users/users.vue')
+  //     }
+  //   ]
+  // }
 ]

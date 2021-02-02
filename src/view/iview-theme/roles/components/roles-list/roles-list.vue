@@ -26,7 +26,7 @@
     </md-button>
     <Modal v-model="openModal" :title="titleModal" @on-visible-change="modalChange($event)" @on-ok="okUserGroup()">
       <div class="mb10">
-        <ModalUserGroup :UserGroupModel="userGroupModel"></ModalUserGroup>
+        <ModalUserRole :UserGroupModel="userGroupModel"></ModalUserRole>
       </div>
     </Modal>
     <Modal v-model="deleteModal" width="360">
@@ -46,21 +46,21 @@
 
 <script>
 import { mapActions } from 'vuex'
-import ModalUserGroup from './components/modal-user-group/modal-user-group'
+import ModalUserRole from './components/modal-role/modal-role'
 
 export default {
-  name: 'GroupsList',
+  name: 'RoleList',
   data () {
     return {
       groups: [],
       columns: [{
-        title: this.$t('userGroups.table.name'),
+        title: this.$t('usersRoles.table.name'),
         key: 'name'
       }, {
-        title: this.$t('userGroups.table.description'),
+        title: this.$t('usersRoles.table.description'),
         key: 'description'
       }, {
-        title: this.$t('userGroups.table.available_online'),
+        title: this.$t('usersRoles.table.available_online'),
         slot: 'available_online',
         width: 150
       }, {
@@ -87,7 +87,7 @@ export default {
   },
   computed: {
     titleModal () {
-      return this.addModal ? this.$t('userGroups.add.title') : this.$t('userGroups.edit.title')
+      return this.addModal ? this.$t('usersRoles.add.title') : this.$t('usersRoles.edit.title')
     },
     openModal: {
       get: function () {
@@ -99,7 +99,7 @@ export default {
     }
   },
   components: {
-    ModalUserGroup
+    ModalUserRole
   },
   methods: {
     ...mapActions([
@@ -122,7 +122,7 @@ export default {
           resolve(data)
         }).catch((err) => {
           this.$Notice.error({
-            title: _this.$t('userGroups.errors.load_data'),
+            title: _this.$t('usersRoles.errors.load_data'),
             desc: err.toString()
           })
           this.loading = false
@@ -139,7 +139,7 @@ export default {
 
       this.saveUserGroup(this.userGroupModel).catch((err) => {
         this.$Notice.error({
-          title: _this.$t('userGroups.errors.update_switch'),
+          title: _this.$t('usersRoles.errors.update_switch'),
           desc: err.toString()
         })
       })
@@ -168,8 +168,8 @@ export default {
       const _this = this
       if (this.userGroupModel.name.trim() === '') {
         this.$Notice.error({
-          title: this.addModal ? this.$t('userGroups.errors.add_error') : this.$t('userGroups.errors.edit_error'),
-          desc: this.$t('userGroups.errors.name.empty_group_name')
+          title: this.addModal ? this.$t('usersRoles.errors.add_error') : this.$t('usersRoles.errors.edit_error'),
+          desc: this.$t('usersRoles.errors.name.empty_group_name')
         })
       } else {
         this.saveUserGroup(this.userGroupModel).then((data) => {
@@ -180,14 +180,14 @@ export default {
           let err_desc = err.message || err.toString()
           if (err.data) {
             err_desc = ''
-            err_desc += Object.keys(err.data).map(e => err.data[e].map(d => this.$t(`userGroups.errors.${e}.${d}`))).reduce((e, e1) => e.concat(e1), []).join('<br>')
+            err_desc += Object.keys(err.data).map(e => err.data[e].map(d => this.$t(`usersRoles.errors.${e}.${d}`))).reduce((e, e1) => e.concat(e1), []).join('<br>')
             err_desc += ''
           } else {
-            err_desc = _this.$t(`userGroups.errors.${err_desc}`)
+            err_desc = _this.$t(`usersRoles.errors.${err_desc}`)
           }
 
           this.$Notice.error({
-            title: _this.$t('userGroups.errors.title'),
+            title: _this.$t('usersRoles.errors.title'),
             desc: err_desc
           })
         })
@@ -211,7 +211,7 @@ export default {
       }).catch((err) => {
         debugger
         this.$Notice.error({
-          title: _this.$t('userGroups.errors.delete_error'),
+          title: _this.$t('usersRoles.errors.delete_error'),
           desc: err.toString()
         })
       })

@@ -543,5 +543,8 @@ export default {
   },
   users: {
     title: 'Users'
+  },
+  settings: {
+    title: 'Settings'
   }
 }
