@@ -20,6 +20,7 @@ export default {
     userId: '',
     avatarImgPath: '',
     token: getToken(),
+    expiration: new Date(),
     access: '',
     hasGetInfo: false,
     unreadCount: 0,
@@ -45,6 +46,7 @@ export default {
     },
     setToken (state, { token, date }) {
       state.token = token
+      state.expiration = date
       setToken(token, date)
     },
     setHasGetInfo (state, status) {
@@ -111,17 +113,18 @@ export default {
     // 退出登录
     handleLogOut ({ state, commit }) {
       return new Promise((resolve, reject) => {
-        logout(state.token).then(() => {
-          commit('setToken', { token: '' })
-          commit('setAccess', [])
-          resolve()
+        logout(state.token).then((result) => {
+          let { response } = result
+          if (response.success) {
+            commit('setToken', { token: '' })
+            commit('setAccess', [])
+            resolve()
+          } else {
+            reject(new Error('unable_logout'))
+          }
         }).catch(err => {
           reject(err)
         })
-        // 如果你的退出登录无需请求接口，则可以直接使用下面三行代码而无需使用logout调用接口
-        // commit('setToken', '')
-        // commit('setAccess', [])
-        // resolve()
       })
     },
     // 获取用户相关信息

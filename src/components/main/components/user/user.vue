@@ -40,6 +40,8 @@ export default {
         this.$router.push({
           name: 'login'
         }).catch(() => {})
+      }).catch((err) => {
+        this.notify((err && err.data && err.data.message) || (err.message) || err.toString())
       })
     },
     message () {
@@ -61,6 +63,12 @@ export default {
         case 'profile': this.profile()
           break
       }
+    },
+    notify (message) {
+      this.$Notice.error({
+        title: 'Logout Error',
+        desc: this.$t('logout.messages.error.' + message)
+      })
     }
   }
 }

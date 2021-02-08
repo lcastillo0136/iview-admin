@@ -48,6 +48,14 @@ export default {
       bottom: '输入任意用户名和密码即可'
     }
   },
+  logout: {
+    messages: {
+      error: {
+        unauthorized: 'Unauthorized. You can\'t logout',
+        unable_logout: 'Error in system. You can\'t logout'
+      }
+    }
+  },
   i18n: {
     title: '多语言',
     content: '这是模态框内容',
@@ -534,9 +542,22 @@ export default {
     }
   },
   users: {
-    title: 'Users'
+    title: 'Users',
+    profile: {
+      title: 'Profile'
+    },
+    table: {
+      name: 'Name',
+      description: 'Description',
+      available_online: 'Available Online'
+    }
   },
   settings: {
-    title: 'Settings'
+    title: 'Settings',
+    options: {
+      general: 'General',
+      users: 'Users',
+      groups: 'Roles'
+    }
   }
 }

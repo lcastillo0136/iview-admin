@@ -670,60 +670,73 @@ export default [
           ]
         },
         component: () => import('@/view/' + config.theme + '/settings/settings.vue')
+      },
+      {
+        path: 'users',
+        name: 'settings_user_page',
+        meta: {
+          icon: 'md-account',
+          title: 'settings.options.users',
+          hideInMenu: true,
+          hideInBread: false,
+          access: [
+            'ManagePermission/*',
+            'ManagePermission/index',
+            'ManagePermission/get',
+            'UserGroups/*',
+            'UserGroups/index',
+            'UserGroups/get'
+          ]
+        },
+        component: () => import('@/view/' + config.theme + '/settings/components/users/users.vue')
       }
     ]
   },
-  // {
-  //   path: '/users-roles',
-  //   meta: {
-  //     title: 'usersRoles.title',
-  //     hideInMenu: false,
-  //     hideInBread: true
-  //   },
-  //   component: Main,
-  //   children: [
-  //     {
-  //       path: '',
-  //       name: 'users-roles_page',
-  //       meta: {
-  //         icon: 'md-people',
-  //         title: 'usersRoles.title',
-  //         access: [
-  //           'ManagePermission/*',
-  //           'ManagePermission/index',
-  //           'ManagePermission/get',
-  //           'UserGroups/*',
-  //           'UserGroups/index',
-  //           'UserGroups/get'
-  //         ]
-  //       },
-  //       component: () => import('@/view/' + config.theme + '/roles/roles.vue')
-  //     }
-  //   ]
-  // },
-  // {
-  //   path: '/users',
-  //   meta: {
-  //     title: 'users.title',
-  //     hideInMenu: false,
-  //     hideInBread: true
-  //   },
-  //   component: Main,
-  //   children: [
-  //     {
-  //       path: '',
-  //       name: 'users_page',
-  //       meta: {
-  //         icon: 'md-person',
-  //         title: 'users.title',
-  //         access: [
-  //           'Users/*',
-  //           'Users/index',
-  //           'Users/get'
-  //         ]
-  //       },
-  //       component: () => import('@/view/' + config.theme + '/users/users.vue')
-  //     }
-  //   ]
-  // }
+  {
+    path: '/users',
+    meta: {
+      title: 'users.title',
+      hideInMenu: true,
+      hideInBread: false
+    },
+    component: Main,
+    children: [
+      {
+        path: '',
+        name: 'user_page',
+        meta: {
+          icon: 'md-account',
+          title: 'users.title',
+          hideInBread: false,
+          access: [
+            'ManagePermission/*',
+            'ManagePermission/index',
+            'ManagePermission/get',
+            'UserGroups/*',
+            'UserGroups/index',
+            'UserGroups/get'
+          ]
+        },
+        component: () => import('@/view/' + config.theme + '/settings/components/users/users.vue')
+      },
+      {
+        path: '(add|edit)',
+        name: 'users_add_page',
+        meta: {
+          icon: 'md-person-add',
+          title: 'users.profile.title',
+          hideInBread: false,
+          access: [
+            'ManagePermission/*',
+            'ManagePermission/index',
+            'ManagePermission/get',
+            'UserGroups/*',
+            'UserGroups/index',
+            'UserGroups/get'
+          ]
+        },
+        component: () => import('@/view/' + config.theme + '/settings/components/users/profile.vue')
+      }
+    ]
+  }
 ]

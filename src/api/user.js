@@ -31,7 +31,8 @@ export const getPermissions = ({ token, userId }) => {
 
 export const logout = (token) => {
   return axios.request({
-    url: 'logout',
+    url: 'users/logout',
+    headers: { Authorization: `Bearer ${token}` },
     method: 'post'
   })
 }

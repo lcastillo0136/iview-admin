@@ -48,6 +48,14 @@ export default {
       bottom: 'Captura cualquier usuario y contraseña'
     }
   },
+  logout: {
+    messages: {
+      error: {
+        unauthorized: 'Imposible salir del sistema',
+        unable_logout: 'Error al cerrar sesion. No se puede salir del sistema'
+      }
+    }
+  },
   i18n: {
     title: 'Internaciónalización',
     content: 'este es el contenido del modal.',
@@ -531,9 +539,94 @@ export default {
     }
   },
   users: {
-    title: 'Usuarios'
+    title: 'Usuarios',
+    profile: {
+      title: 'Profile'
+    },
+    table: {
+      name: 'Nombre',
+      description: 'Descripción',
+      available_online: 'Disponible en linea'
+    }
   },
   settings: {
-    title: 'Configuraciones'
+    title: 'Configuraciones',
+    options: {
+      general: 'General',
+      users: 'Usuarios',
+      groups: 'Roles'
+    }
+  },
+  i: {
+    locale: 'es-ES',
+    time: {
+      before: ' antes',
+      after: ' despues',
+      just: 'justo ahora',
+      seconds: ' segundos',
+      minutes: ' minutos',
+      hours: ' horas',
+      days: ' dias'
+    },
+    select: {
+      placeholder: 'Selecciona',
+      noMatch: 'Sin datos coincidentes',
+      loading: 'Cargando'
+    },
+    datepicker: {
+      selectDate: 'Selecciona fecha',
+      selectTime: 'Selecciona tiempo',
+      startTime: 'Hora de Inicio',
+      endTime: 'Hora Final',
+      clear: 'Limpiar',
+      ok: 'OK',
+      datePanelLabel: '[mmmm] [yyyy]',
+      month: 'Mes',
+      month1: 'Enero',
+      month2: 'Febrero',
+      month3: 'Marzo',
+      month4: 'Abril',
+      month5: 'Mayo',
+      month6: 'Junio',
+      month7: 'Julio',
+      month8: 'Agosto',
+      month9: 'Septiembre',
+      month10: 'Ovtubre',
+      month11: 'Noviembre',
+      month12: 'Diciembre',
+      year: 'Año',
+      weekStartDay: '0',
+      weeks: {
+        sun: 'Dom',
+        mon: 'Lun',
+        tue: 'Mar',
+        wed: 'Mie',
+        thu: 'Jue',
+        fri: 'Vie',
+        sat: 'Sab'
+      },
+      months: {
+        m1: 'Ene',
+        m2: 'Feb',
+        m3: 'Mar',
+        m4: 'Abr',
+        m5: 'May',
+        m6: 'Jun',
+        m7: 'Jul',
+        m8: 'Ago',
+        m9: 'Sep',
+        m10: 'Oct',
+        m11: 'Nov',
+        m12: 'Dic'
+      },
+      format: 'dd/MM/yyyy'
+    }
+  },
+  menus: {
+    dropListMenu: {
+      head: {
+        '正文': 'some text'
+      }
+    }
   }
 }

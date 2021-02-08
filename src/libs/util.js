@@ -17,6 +17,13 @@ export const getToken = () => {
   else return false
 }
 
+export const getExpirationTime = () => {
+  debugger
+  const token = Cookies.get(TOKEN_KEY)
+  if (token) return token
+  else return false
+}
+
 export const hasChild = (item) => {
   return item.children && item.children.length !== 0
 }

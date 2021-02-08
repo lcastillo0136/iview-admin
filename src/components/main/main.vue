@@ -16,6 +16,7 @@
           <language v-if="$config.useI18n" @on-lang-change="setLocal" style="margin-right: 10px;" :lang="local"/>
           <error-store v-if="$config.plugin['error-store'] && $config.plugin['error-store'].showInHeader" :has-read="hasReadErrorPage" :count="errorCount"></error-store>
           <fullscreen v-model="isFullscreen" style="margin-right: 10px;"/>
+          <span style="margin-right: 10px;"> Logout {{ printToken | moment('from') }}</span>
         </header-bar>
       </Header>
       <Content class="main-content-con">
@@ -98,6 +99,9 @@ export default {
     },
     unreadCount () {
       return this.$store.state.user.unreadCount
+    },
+    printToken () {
+      return this.$store.state.user.expiration
     }
   },
   methods: {
