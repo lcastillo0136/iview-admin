@@ -17,7 +17,7 @@ export default {
    * @description api请求基础路径
    */
   baseUrl: {
-    development: 'http://apidev.onix-software.com/',
+    development: 'https://api-core.onix-software.com/',
     production: 'https://api.onix-software.com/',
     localhost: 'http://localhost/'
   },
@@ -35,5 +35,6 @@ export default {
     }
   },
   theme: 'iview-theme', // iview-theme | FormV2 | FormV3
-  defaultLang: 'en-US'
+  defaultLang: 'en-US',
+  salt: 'MFE3ZjkWdiideGR;HbdX{7=d$^WC4@'
 }

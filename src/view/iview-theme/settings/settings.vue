@@ -42,10 +42,10 @@
           <GeneralSettings></GeneralSettings>
         </v-tab-item>
         <v-tab-item>
-          <UsersSettings></UsersSettings>
+          <UsersSettings :groups="groups"></UsersSettings>
         </v-tab-item>
         <v-tab-item>
-          <RolesSettings></RolesSettings>
+          <RolesSettings ref="group_list" @on-load="rolesReady($event)"></RolesSettings>
         </v-tab-item>
       </v-tabs>
     </Card>
@@ -62,6 +62,8 @@ export default {
   name: 'settings',
   data () {
     return {
+      resources: [],
+      groups: [],
       loading: false
     }
   },
@@ -73,7 +75,10 @@ export default {
   computed: {},
   methods: {
     ...mapActions([
-    ])
+    ]),
+    rolesReady (groups) {
+      this.groups = groups
+    }
   },
   created () {
   },

@@ -738,5 +738,34 @@ export default [
         component: () => import('@/view/' + config.theme + '/settings/components/users/profile.vue')
       }
     ]
+  },
+  {
+    path: '/profile',
+    meta: {
+      title: 'users.title',
+      hideInMenu: true,
+      hideInBread: false
+    },
+    component: Main,
+    children: [
+      {
+        path: ':profile',
+        name: 'profile_page',
+        meta: {
+          icon: 'md-account',
+          title: 'users.title',
+          hideInBread: false,
+          access: [
+            'ManagePermission/*',
+            'ManagePermission/index',
+            'ManagePermission/get',
+            'UserGroups/*',
+            'UserGroups/index',
+            'UserGroups/get'
+          ]
+        },
+        component: () => import('@/view/' + config.theme + '/settings/components/users/profile.vue')
+      }
+    ]
   }
 ]

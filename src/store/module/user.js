@@ -2,6 +2,7 @@ import {
   login,
   logout,
   getUserInfo,
+  getUserById,
   getPermissions,
   getMessage,
   getContentByMsgId,
@@ -10,7 +11,8 @@ import {
   restoreTrash,
   getUnreadCount,
   getUsersList,
-  abortRequest
+  abortRequest,
+  saveUserData
 } from '@/api/user'
 import { setToken, getToken } from '@/libs/util'
 
@@ -275,6 +277,50 @@ export default {
           })
 
           commit('setLastListSearch', request)
+        } catch (error) {
+          reject(error)
+        }
+      })
+    },
+    getUserById ({ state, commit }, id) {
+      return new Promise((resolve, reject) => {
+        try {
+          if (!state.token) reject(new Error('no_autorized'))
+          if (state.lastListSearch) {
+            abortRequest()
+          }
+          getUserById({ token: state.token, id }).then(result => {
+            const response = result.response
+            if (response.success) {
+              resolve(response.data)
+            } else {
+              reject(response.message)
+            }
+          }).catch(err => {
+            reject(err)
+          })
+        } catch (error) {
+          reject(error)
+        }
+      })
+    },
+    saveUserData ({ state, commit }, data) {
+      return new Promise((resolve, reject) => {
+        try {
+          if (!state.token) reject(new Error('no_autorized'))
+          if (state.lastListSearch) {
+            abortRequest()
+          }
+          saveUserData({ token: state.token, data }).then(result => {
+            const response = result.response
+            if (response.success) {
+              resolve(response.data)
+            } else {
+              reject(response.message)
+            }
+          }).catch(err => {
+            reject(err)
+          })
         } catch (error) {
           reject(error)
         }

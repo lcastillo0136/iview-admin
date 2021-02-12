@@ -19,6 +19,8 @@
 <script>
 import './user.less'
 import { mapActions } from 'vuex'
+import { encrypt } from '@/libs/util'
+
 export default {
   name: 'User',
   props: {
@@ -51,7 +53,10 @@ export default {
     },
     profile () {
       this.$router.push({
-        name: 'profile'
+        name: 'profile_page',
+        params: {
+          profile: encrypt(this.$store.state.user.userId)
+        }
       }).catch(() => {})
     },
     handleClick (name) {

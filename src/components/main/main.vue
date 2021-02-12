@@ -16,7 +16,7 @@
           <language v-if="$config.useI18n" @on-lang-change="setLocal" style="margin-right: 10px;" :lang="local"/>
           <error-store v-if="$config.plugin['error-store'] && $config.plugin['error-store'].showInHeader" :has-read="hasReadErrorPage" :count="errorCount"></error-store>
           <fullscreen v-model="isFullscreen" style="margin-right: 10px;"/>
-          <span style="margin-right: 10px;"> Logout {{ printToken | moment('from') }}</span>
+          <span style="margin-right: 10px;"> Logout {{ token_duration }}</span>
         </header-bar>
       </Header>
       <Content class="main-content-con">
@@ -68,7 +68,8 @@ export default {
       collapsed: (localRead('collapsed') && localRead('collapsed') === 'true') || false,
       minLogo,
       maxLogo,
-      isFullscreen: false
+      isFullscreen: false,
+      token_duration: ''
     }
   },
   computed: {
@@ -179,6 +180,11 @@ export default {
     /**
      * @description 初始化设置面包屑导航和标签导航
      */
+
+    this.token_duration = this.$moment(this.printToken).from()
+    setInterval(() => {
+      this.token_duration = this.$moment(this.printToken).from()
+    }, 1000 * 60)
     this.setTagNavList({ access: this.$store.state.user.access })
     this.setHomeRoute(routers)
     const { name, params, query, meta } = this.$route

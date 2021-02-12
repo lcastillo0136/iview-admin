@@ -101,6 +101,23 @@ export const getUsersList = ({ token, search }) => {
   })
 }
 
+export const getUserById = ({ token, id }) => {
+  return axios.request({
+    url: `users/${id}`,
+    headers: { Authorization: `Bearer ${token}` },
+    method: 'get'
+  })
+}
+
+export const saveUserData = ({ token, data }) => {
+  return axios.request({
+    url: `users/${data.id}`,
+    headers: { Authorization: `Bearer ${token}` },
+    data,
+    method: 'patch'
+  })
+}
+
 export const abortRequest = () => {
   axios.abort()
 }

@@ -628,5 +628,8 @@ export default {
         '正文': 'some text'
       }
     }
+  },
+  wangEditor: {
+    请输入正文: 'Please enter the text'
   }
 }

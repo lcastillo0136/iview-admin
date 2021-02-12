@@ -33,7 +33,8 @@ export default {
     local: localRead('local'),
     errorList: [],
     hasReadErrorPage: false,
-    guestAccess: []
+    guestAccess: [],
+    backtop: false
   },
   getters: {
     menuList: (state, getters, rootState) => getMenuByRouter(routers.map(r => {
@@ -96,6 +97,9 @@ export default {
     },
     setGuestAccess (state, guestAccess) {
       state.guestAccess = guestAccess
+    },
+    setBacktop (state, value) {
+      state.backtop = !!value
     }
   },
   actions: {
@@ -131,6 +135,9 @@ export default {
           reject(error)
         }
       })
+    },
+    toggleBackTop ({ state, commit }, value) {
+      commit('setBacktop', !state.backtop)
     }
   }
 }

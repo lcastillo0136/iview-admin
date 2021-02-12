@@ -3,7 +3,7 @@ import Papa from 'papaparse'
 // cookie保存的天数
 import config from '@/config'
 import { forEach, hasOneOf, objEqual } from '@/libs/tools'
-const { title, cookieExpires, useI18n } = config
+const { title, cookieExpires, useI18n, salt } = config
 
 export const TOKEN_KEY = 'token'
 
@@ -427,4 +427,12 @@ export const setTitle = (routeItem, vm) => {
   const pageTitle = showTitle(handledRoute, vm)
   const resTitle = pageTitle ? `${title} - ${pageTitle}` : title
   window.document.title = resTitle
+}
+
+export const encrypt = (value) => {
+  return btoa(`${salt}_${value}`)
+}
+
+export const decrypt = (value) => {
+  return atob(value).replace(`${salt}_`, '')
 }

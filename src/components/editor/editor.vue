@@ -86,6 +86,11 @@ export default {
       this.editor.txt.html(val)
     }
   },
+  watch: {
+    value () {
+      this.editor.txt.html(this.value)
+    }
+  },
   mounted () {
     this.editor = new Editor(`#${this.editorId}`)
     this.editor.config.onchange = (html) => {
@@ -94,7 +99,11 @@ export default {
       this.$emit('update:value', this.valueType === 'html' ? html : text)
       this.$emit('on-change', html, text)
     }
-    this.editor.config.lang = 'en'
+    this.editor.config.lang = this.$i18n.locale || 'en'
+    Object.keys(this.$i18n.messages).forEach((i) => {
+      this.editor.config.languages[i] = this.$i18n.messages[i]
+    })
+
     this.editor.i18next = i18next
     this.editor.config.menus = Object.keys({ ...this.defaultMenu, ...this.menu }).filter(f => ({ ...this.defaultMenu, ...this.menu })[f])
     this.editor.config.zIndex = 1

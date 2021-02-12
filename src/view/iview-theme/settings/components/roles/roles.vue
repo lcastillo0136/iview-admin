@@ -1,13 +1,27 @@
 <template>
   <v-card flat>
     <v-card-text>
-      <p>
-        Fusce a quam. Phasellus nec sem in justo pellentesque facilisis. Nam eget dui. Proin viverra, ligula sit amet ultrices semper, ligula arcu tristique sapien, a accumsan nisi mauris ac eros. In dui magna, posuere eget, vestibulum et, tempor auctor, justo.
-      </p>
-
-      <p class="mb-0">
-        Cras sagittis. Phasellus nec sem in justo pellentesque facilisis. Proin sapien ipsum, porta a, auctor quis, euismod ut, mi. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nam at tortor in tellus interdum sagittis.
-      </p>
+      <Row :gutter="10">
+        <i-col span="24">
+          <i-table :columns="columns" :data="groups" border :loading="loading">
+            <template slot-scope="{ row, index }" slot="available_online">
+              <i-switch v-model="row.available_online" @on-change="updateGroup(row)"></i-switch>
+            </template>
+            <template slot-scope="{ row, index }" slot="actions">
+              <div>
+                <Button type="primary" size="small" icon="md-create" @click.prevent="updateUserGroup(row)"></Button>
+                <Divider type="vertical"></Divider>
+                <Button type="error" size="small" icon="md-trash" @click.prevent="borrarUserGroup(row)"></Button>
+              </div>
+            </template>
+          </i-table>
+          <div style="margin: 10px;overflow: hidden">
+            <div style="float: right;">
+              <Page :total.sync="pagination.total" :current.sync="pagination.page" @on-change="changePage({})" @on-page-size-change="changePage({ limit: $event })" show-sizer show-total></Page>
+            </div>
+          </div>
+        </i-col>
+      </Row>
     </v-card-text>
   </v-card>
 </template>
@@ -18,19 +32,137 @@ export default {
   name: 'RolesSettings',
   data () {
     return {
-
+      resources: [],
+      groups: [],
+      columns: [{
+        title: this.$t('usersRoles.table.name'),
+        key: 'name'
+      }, {
+        title: this.$t('usersRoles.table.description'),
+        key: 'description'
+      }, {
+        title: this.$t('usersRoles.table.available_online'),
+        slot: 'available_online',
+        width: 150
+      }, {
+        title: '  ',
+        slot: 'actions',
+        width: 120
+      }],
+      addModal: false,
+      editModal: false,
+      deleteModal: false,
+      userGroupModel: {
+        name: '',
+        description: '',
+        available_online: false,
+        id: -1
+      },
+      pagination: {
+        total: 0,
+        page: 1,
+        limit: 10
+      },
+      loading: false
     }
   },
   components: {
   },
-  computed: {},
+  computed: {
+    titleModal () {
+      return this.addModal ? this.$t('usersRoles.add.title') : this.$t('usersRoles.edit.title')
+    },
+    openModal: {
+      get: function () {
+        return this.addModal || this.editModal
+      },
+      set: function (visible) {
+        // this.addModal = this.editModal = visible
+      }
+    }
+  },
   methods: {
     ...mapActions([
-    ])
+      'getUsersGroups',
+      'saveUserGroup',
+      'deleteUserGroup'
+    ]),
+    loadData () {
+      const _this = this
+      this.loading = true
+      return new Promise((resolve, reject) => {
+        this.getUsersGroups(this.pagination).then(({ data, pagination }) => {
+          this.groups = data
+          this.pagination = {
+            total: parseInt(pagination.rows) || 0,
+            page: parseInt(pagination.current) || 1,
+            limit: pagination.limit
+          }
+          this.loading = false
+          this.$emit('on-load', this.groups)
+          resolve(data)
+        }).catch((err) => {
+          this.$Notice.error({
+            title: _this.$t('usersRoles.errors.load_data'),
+            desc: err.toString()
+          })
+          this.loading = false
+          reject(err)
+        })
+      })
+    },
+    updateGroup (row) {
+      const _this = this
+      this.userGroupModel.name = row.name
+      this.userGroupModel.description = row.description
+      this.userGroupModel.available_online = row.available_online
+      this.userGroupModel.id = row.id
+
+      this.saveUserGroup(this.userGroupModel).catch((err) => {
+        this.$Notice.error({
+          title: _this.$t('usersRoles.errors.update_switch'),
+          desc: err.toString()
+        })
+      })
+    },
+    okUserGroup () {
+      const _this = this
+      if (this.userGroupModel.name.trim() === '') {
+        this.$Notice.error({
+          title: this.addModal ? this.$t('usersRoles.errors.add_error') : this.$t('usersRoles.errors.edit_error'),
+          desc: this.$t('usersRoles.errors.name.empty_group_name')
+        })
+      } else {
+        this.saveUserGroup(this.userGroupModel).then((data) => {
+          this.loadData().then((loadedData) => {
+            this.$emit('savedGroup', loadedData)
+          })
+        }).catch((err) => {
+          let err_desc = err.message || err.toString()
+          if (err.data) {
+            err_desc = ''
+            err_desc += Object.keys(err.data).map(e => err.data[e].map(d => this.$t(`usersRoles.errors.${e}.${d}`))).reduce((e, e1) => e.concat(e1), []).join('<br>')
+            err_desc += ''
+          } else {
+            err_desc = _this.$t(`usersRoles.errors.${err_desc}`)
+          }
+
+          this.$Notice.error({
+            title: _this.$t('usersRoles.errors.title'),
+            desc: err_desc
+          })
+        })
+      }
+    },
+    changePage (pagination) {
+      if (pagination.limit) this.pagination.limit = pagination.limit
+      this.loadData()
+    }
   },
   created () {
   },
   mounted () {
+    this.loadData()
   }
 }
 </script>

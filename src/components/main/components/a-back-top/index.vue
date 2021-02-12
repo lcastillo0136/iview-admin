@@ -77,7 +77,7 @@ export default {
   },
   methods: {
     handleScroll () {
-      this.backTop = this.containerEle.scrollTop >= this.height
+      this.backTop = this.containerEle.scrollTop >= this.height && this.$store.state.app.backtop === true
     },
     back () {
       let target = typeof this.container === 'string' ? this.containerEle : (document.documentElement || document.body)
