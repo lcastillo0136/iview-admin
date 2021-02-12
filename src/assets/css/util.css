@@ -21040,3 +21040,6 @@ html.overflow-y-hidden {
 .v-ripple__animation--out {
   transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+.v-application .v-speed-dial {
+  position: absolute;
+}

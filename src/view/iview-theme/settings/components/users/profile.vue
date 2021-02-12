@@ -1,12 +1,20 @@
 <template>
   <v-card flat class="user-profile-page">
-    <v-card-text class="p-b-70">
+    <v-card-text class="p-b-90">
       <div class="text-h4 font-weight-black">Profile</div>
       <Row :gutter="30">
         <i-col span="8">
           <Card shadow class="elevation-4 rounded-lg mt-4 card-profile" :class="{'card-profile-2': card_active}">
             <div style="text-align:center" slot="title" class=" pt-4">
-              <Button type="primary" shape="circle" icon="md-camera" class="upload-picture" @click="uploadProfileModal=true"></Button>
+              <Upload ref="upload"
+                :show-upload-list="false"
+                :before-upload="onChange"
+                :format="['jpg','jpeg','png']"
+                :max-size="2048"
+                action=""
+                >
+                <Button type="primary" shape="circle" icon="md-camera" class="upload-picture"></Button>
+              </Upload>
               <v-avatar class="mb-3 transition-swing" color="grey" size="110" @click="card_active=!card_active">
                 <v-img :src="profile.avatar"></v-img>
               </v-avatar>
@@ -243,7 +251,7 @@
         </i-col>
       </Row>
     </v-card-text>
-    <v-speed-dial :bottom="true" :right="true" direction="top" transition="slide-y-reverse-transition" class="m-r-30" v-if="!loading">
+    <v-speed-dial :bottom="true" :right="true" direction="top" transition="slide-y-reverse-transition" v-if="!loading">
       <template v-slot:activator>
         <v-btn color="green darken-2" fab @click.prevent="saveUser">
           <v-icon>
@@ -253,7 +261,7 @@
       </template>
     </v-speed-dial>
     <Modal v-model="uploadProfileModal" width="360" footer-hide>
-      <Row :gutter="20" type="flex">
+      <Row type="flex">
         <i-col span="8">
           <v-avatar class="mb-3 transition-swing" color="grey" size="110" @click="card_active=!card_active">
             <v-img :src="profile.avatar"></v-img>
@@ -262,7 +270,15 @@
         <i-col span="1">
           <Divider type="vertical" class="h-full" ></Divider>
         </i-col>
-        <i-col span="16">
+        <i-col span="15">
+          <picture-input
+            ref="pictureInput"
+            width="300"
+            height="300"
+            accept="image/jpeg,image/png"
+            button-class="btn"
+            @change="onChange">
+          </picture-input>
         </i-col>
       </Row>
     </Modal>
@@ -276,6 +292,7 @@
 import { mapActions } from 'vuex'
 import Editor from '_c/editor'
 import { decrypt } from '@/libs/util'
+import PictureInput from 'vue-picture-input'
 
 export default {
   name: 'UsersAddSettings',
@@ -313,7 +330,7 @@ export default {
         password: '',
         confirm_password: ''
       },
-      loading: false,
+      loading: true,
       card_active: false,
       other_gender: '',
       bday_options: {
@@ -336,7 +353,8 @@ export default {
     }
   },
   components: {
-    Editor
+    Editor,
+    PictureInput
   },
   watch: {},
   computed: {
@@ -426,6 +444,47 @@ export default {
           desc: this.$t('user.messages.success.' + err.message)
         })
       })
+    },
+    onChange (image) {
+      if (image) {
+        var reader = new FileReader();
+        reader.addEventListener('load', (evt) => {
+          var img = document.createElement("img");
+          img.onload = () => {
+            var canvas = document.createElement("canvas");
+            var ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0);
+
+            var MAX_WIDTH = 100;
+            var MAX_HEIGHT = 100;
+            var width = img.width;
+            var height = img.height;
+
+            if (width > height) {
+                if (width > MAX_WIDTH) {
+                    height *= MAX_WIDTH / width;
+                    width = MAX_WIDTH;
+                }
+            } else {
+                if (height > MAX_HEIGHT) {
+                    width *= MAX_HEIGHT / height;
+                    height = MAX_HEIGHT;
+                }
+            }
+            canvas.width = width;
+            canvas.height = height;
+            var ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0, width, height);
+
+            let dataurl = canvas.toDataURL('image/jpeg');
+
+            this.profile.avatar = dataurl
+          };
+          img.src = evt.target.result;
+        });
+        reader.readAsDataURL(image);
+      } else {
+      }
     }
   },
   created () {},
@@ -479,7 +538,8 @@ export default {
     }
     .upload-picture {
       position: absolute;
-      z-index: 10
+      z-index: 8;
+      left: 0;
     }
   }
   .card-profile-2 {
@@ -537,6 +597,39 @@ export default {
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
     }
+  }
+
+  .preview-container {
+    position: relative;
+    max-width: 207px !important;
+    height: 117px !important;
+    .picture-preview {
+      z-index: 8 !important;
+      background-color: transparent !important;
+    }
+    .picture-inner {
+      position: absolute;
+      top: 50% !important;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      z-index: 8 !important;
+      border-radius: 20px !important;
+      background: #f1f0fd;
+      border: none;
+      background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='lightgrey' rx='20' ry='20' stroke-width='6' stroke-dasharray='6%2c 14' stroke-dashoffset='0' stroke-linecap='round'/%3e%3c/svg%3e");
+      .picture-inner-text {
+        font-size: 1.3em;
+        color: #b5b8d2;
+      }
+    }
+  }
+  .ivu-upload-select {
+    width: 114px;
+    margin: 0 auto;
+    position: relative;
   }
 }
 </style>
