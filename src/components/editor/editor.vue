@@ -79,6 +79,9 @@ export default {
   computed: {
     editorId () {
       return `editor${this._uid}`
+    },
+    locale () {
+      return this.$i18n.locale
     }
   },
   methods: {
@@ -89,6 +92,9 @@ export default {
   watch: {
     value () {
       this.editor.txt.html(this.value)
+    },
+    'locale' () {
+      this.editor.i18next.changeLanguage(this.$i18n.locale)
     }
   },
   mounted () {
@@ -119,7 +125,12 @@ export default {
 </script>
 
 <style lang="less">
-.w-e-text-container {
-  background: #FFF;
+.editor-wrapper {
+  .w-e-text-container {
+    background: #FFF;
+  }
+  .w-e-menu-tooltip {
+    z-index: 300 !important;
+  }
 }
 </style>

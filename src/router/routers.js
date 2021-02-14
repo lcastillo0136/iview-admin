@@ -742,7 +742,7 @@ export default [
   {
     path: '/profile',
     meta: {
-      title: 'users.title',
+      title: 'profile.title',
       hideInMenu: true,
       hideInBread: false
     },
@@ -753,7 +753,7 @@ export default [
         name: 'profile_page',
         meta: {
           icon: 'md-account',
-          title: 'users.title',
+          title: 'profile.title',
           hideInBread: false,
           access: [
             'ManagePermission/*',

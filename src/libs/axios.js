@@ -1,5 +1,6 @@
 import axios from 'axios'
 import store from '@/store'
+import RequestError from '@/libs/RequestError'
 // import { Spin } from 'iview'
 const addErrorLog = errorInfo => {
   const { statusText, status, request: { responseURL } } = errorInfo
@@ -22,7 +23,6 @@ class HttpRequest {
       baseURL: this.baseUrl,
       cancelToken: token,
       headers: {
-        //
       }
     }
     return config
@@ -40,6 +40,7 @@ class HttpRequest {
       if (!Object.keys(this.queue).length) {
         // Spin.show() // 不建议开启，因为界面不友好
       }
+      config.headers['Accept-Language'] = store.state.app.local
       this.queue[url] = true
       return config
     }, error => {
@@ -62,15 +63,16 @@ class HttpRequest {
         }
       }
       addErrorLog(errorInfo)
-      if (error && error.response && error.response.data && error.response.data.message) {
-        return Promise.reject(new Error({ ...error.response.data }))
-      } else if (error && error.response && error.response && error.statusText) {
-        return Promise.reject(error.response.statusText)
-      } else if (error && error.message) {
-        return Promise.reject(error.message)
-      } else {
-        return Promise.reject(error)
-      }
+      // if (error && error.response && error.response.data && error.response.data.message) {
+      //   return Promise.reject(new Error({ ...error.response.data }))
+      // } else if (error && error.response && error.response && error.statusText) {
+      //   return Promise.reject(error.response.statusText)
+      // } else if (error && error.message) {
+      //   return Promise.reject(error.message)
+      // } else {
+      //   return Promise.reject(error)
+      // }
+      return Promise.reject(new RequestError(error))
     })
   }
   request (options) {

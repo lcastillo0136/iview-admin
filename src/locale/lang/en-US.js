@@ -494,7 +494,78 @@ export default {
     }
   },
   profile: {
-    title: 'User Profile'
+    title: 'User Profile',
+    header: 'Profile',
+    card: {
+      description: 'Description'
+    },
+    personal_info: {
+      title: 'Personal Information',
+      first_name: 'First Name',
+      name_title: {
+        dr: 'Dr. (Doctor)',
+        esq: 'Esq. (Esquire)',
+        hon: 'Hon. (Honorable)',
+        jr: 'Jr. (Junior)',
+        mr: 'Mr.',
+        mrs: 'Mrs.',
+        ms: 'Ms.',
+        msgr: 'Msgr. (Monsignor)',
+        prof: 'Prof. (Professor)',
+        rev: 'Rev. (Reverend)',
+        rt_hon: 'Rt. Hon. (Right Honorable)',
+        sr: 'Sr. (Senior)',
+        st: 'St. (Saint)'
+      },
+      last_name: 'Last Name',
+      email: 'Email',
+      phone: 'Phone',
+      gender: 'Gender',
+      female: 'Female',
+      male: 'Male',
+      not_sure: 'Not Sure',
+      rather_not_say: 'Rather not say',
+      other_pleasestate: 'Others (please state)',
+      gender_other: 'Other',
+      bday: 'Birthday',
+      bday_placeholder: 'Select birthday',
+      rfc: 'RFC',
+      tel_oficina: 'Office Phone',
+      no_licencia: 'Professional License',
+      profesion: 'Profession',
+      especialidad: 'Specialty',
+      biography: 'Biography'
+    },
+    account_info: {
+      title: 'Account Information',
+      role: 'Role',
+      active: 'Active',
+      username: 'Account ID',
+      status: 'Status',
+      email_verified: 'Verified',
+      email_no_verified: 'No Verified',
+      email_verified_tooltip: 'Resend verification email',
+      password: 'Account Password',
+      confirm_password: 'Confirm account password'
+    },
+    messages: {
+      error: {
+        first_name: {
+          empty_name: 'The name cannot be empty'
+        },
+        email: {
+          empty_email: 'The email cannot be empty'
+        },
+        user_group_id: {
+          wrong_user_group: 'Unknow role',
+          empty_group_id: 'The role cannot be empty'
+        },
+        username: {
+          empty_username: 'The account ID cannot be empty'
+        },
+        not_found: 'Account Info not found'
+      }
+    }
   },
   userGroups: {
     title: 'User Groups',
@@ -566,6 +637,240 @@ export default {
       general: 'General',
       users: 'Users',
       groups: 'Roles'
+    }
+  },
+  i: {
+    locale: 'en-US',
+    select: {
+      placeholder: 'Select',
+      noMatch: 'No matching data',
+      loading: 'Loading'
+    },
+    table: {
+      noDataText: 'No Data',
+      noFilteredDataText: 'No filter data',
+      confirmFilter: 'Confirm',
+      resetFilter: 'Reset',
+      clearFilter: 'All'
+    },
+    datepicker: {
+      selectDate: 'Select date',
+      selectTime: 'Select time',
+      startTime: 'Start Time',
+      endTime: 'End Time',
+      clear: 'Clear',
+      ok: 'OK',
+      datePanelLabel: '[mmmm] [yyyy]',
+      month: 'Month',
+      month1: 'January',
+      month2: 'February',
+      month3: 'March',
+      month4: 'April',
+      month5: 'May',
+      month6: 'June',
+      month7: 'July',
+      month8: 'August',
+      month9: 'September',
+      month10: 'October',
+      month11: 'November',
+      month12: 'December',
+      year: 'Year',
+      weekStartDay: '0',
+      weeks: {
+        sun: 'Sun',
+        mon: 'Mon',
+        tue: 'Tue',
+        wed: 'Wed',
+        thu: 'Thu',
+        fri: 'Fri',
+        sat: 'Sat'
+      },
+      months: {
+        m1: 'Jan',
+        m2: 'Feb',
+        m3: 'Mar',
+        m4: 'Apr',
+        m5: 'May',
+        m6: 'Jun',
+        m7: 'Jul',
+        m8: 'Aug',
+        m9: 'Sep',
+        m10: 'Oct',
+        m11: 'Nov',
+        m12: 'Dec'
+      },
+      format: 'MM/dd/yyyy'
+    },
+    transfer: {
+      titles: {
+        source: 'Source',
+        target: 'Target'
+      },
+      filterPlaceholder: 'Search here',
+      notFoundText: 'Not Found'
+    },
+    modal: {
+      okText: 'OK',
+      cancelText: 'Cancel'
+    },
+    poptip: {
+      okText: 'OK',
+      cancelText: 'Cancel'
+    },
+    page: {
+      prev: 'Previous Page',
+      next: 'Next Page',
+      total: 'Total',
+      item: 'item',
+      items: 'items',
+      prev5: 'Previous 5 Pages',
+      next5: 'Next 5 Pages',
+      page: '/page',
+      goto: 'Goto',
+      p: ''
+    },
+    rate: {
+      star: 'Star',
+      stars: 'Stars'
+    },
+    time: {
+      before: ' ago',
+      after: ' after',
+      just: 'just now',
+      seconds: ' seconds',
+      minutes: ' minutes',
+      hours: ' hours',
+      days: ' days'
+    },
+    tree: {
+      emptyText: 'No Data'
+    }
+  },
+  wangEditor: {
+    插入: 'Insert',
+    默认: 'Default',
+    创建: 'Create',
+    修改: 'Edit',
+    如: 'like',
+    请输入正文: 'Please enter the text',
+    menus: {
+      title: {
+        标题: 'Headers',
+        加粗: 'Bold',
+        字号: 'Font Size',
+        字体: 'Font Type',
+        斜体: 'Italic',
+        下划线: 'Underscore',
+        删除线: 'Strikethrough',
+        缩进: 'Indentation',
+        行高: 'Line Height',
+        文字颜色: 'Text Color',
+        背景色: 'Background Color',
+        链接: 'Link',
+        序列: 'Sequence',
+        对齐: 'Align',
+        引用: 'Quote',
+        表情: 'Emoji',
+        图片: 'Image',
+        视频: 'Video',
+        表格: 'Table',
+        代码: 'Code',
+        分割线: 'Divider',
+        恢复: 'Restore',
+        撤销: 'Cancel',
+        全屏: 'Fullscreen',
+        待办事项: 'To-do'
+      },
+      dropListMenu: {
+        设置标题: 'Titles',
+        背景颜色: 'Background',
+        文字颜色: 'Font Color',
+        设置字号: 'Font Size',
+        设置字体: 'Font Family',
+        设置缩进: 'Indent',
+        对齐方式: 'Align',
+        设置行高: 'Line height',
+        序列: 'List',
+        head: {
+          正文: 'Normal'
+        },
+        indent: {
+          增加缩进: 'Indent',
+          减少缩进: 'Outdent'
+        },
+        justify: {
+          靠左: 'Left',
+          居中: 'Center',
+          靠右: 'Right',
+          两端: 'Justify'
+        },
+        list: {
+          无序列表: 'Unordered',
+          有序列表: 'Ordered'
+        }
+      },
+      panelMenus: {
+        删除: 'Delete',
+        emoticon: {
+          默认: 'Default',
+          新浪: 'Sina',
+          emoji: 'Emoji',
+          手势: 'Gesture'
+        },
+        image: {
+          图片链接: 'Image link',
+          上传图片: 'Upload image',
+          网络图片: 'Network image'
+        },
+        link: {
+          链接: 'Link',
+          链接文字: 'Link text',
+          删除链接: 'Delete',
+          查看链接: 'Open',
+          取消链接: 'Disconnect'
+        },
+        video: {
+          插入视频: 'Insert Video'
+        },
+        table: {
+          行: 'Row',
+          列: 'Column',
+          的: ' ',
+          表格: 'Table',
+          添加行: 'add row',
+          删除行: 'delete row',
+          添加列: 'add column',
+          删除列: 'delete column',
+          设置表头: 'set header',
+          取消表头: 'cancel header',
+          插入表格: 'insert table',
+          删除表格: 'delete table'
+        },
+        code: {
+          删除代码: 'delete code',
+          修改代码: 'edit code',
+          插入代码: 'insert code'
+        }
+      }
+    },
+    validate: {
+      张图片: 'images',
+      大于: 'greater than',
+      图片链接: 'image link',
+      不是图片: 'is not image',
+      返回结果: 'return results',
+      上传图片超时: 'upload image timeout',
+      上传图片错误: 'upload image error',
+      上传图片失败: 'upload image failed',
+      插入图片错误: 'insert image error',
+      一次最多上传: 'once most at upload',
+      下载链接失败: 'download link failed',
+      图片验证未通过: 'image validate failed',
+      服务器返回状态: 'server return status',
+      上传图片返回结果错误: 'upload image return results error',
+      请替换为支持的图片类型: 'please replace with a supported image type',
+      您插入的网络图片无法识别: 'the network picture you inserted is not recognized',
+      您刚才插入的图片链接未通过编辑器校验: 'the image link you just inserted did not pass the editor verification'
     }
   }
 }

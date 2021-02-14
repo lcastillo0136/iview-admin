@@ -494,7 +494,78 @@ export default {
     }
   },
   profile: {
-    title: 'Perfil de Usuario'
+    title: 'Mi Perfil',
+    header: 'Perfil de usuario',
+    card: {
+      description: 'Descripción'
+    },
+    personal_info: {
+      title: 'Información Personal',
+      first_name: 'Nombre(s)',
+      name_title: {
+        dr: 'Dr. (Doctor)',
+        esq: 'Esq. (Esquire)',
+        hon: 'Hon. (Honorable)',
+        jr: 'Jr. (Junior)',
+        mr: 'Mr.',
+        mrs: 'Mrs.',
+        ms: 'Ms.',
+        msgr: 'Msgr. (Monseñor)',
+        prof: 'Prof. (Profesor)',
+        rev: 'Rev. (Reverendo)',
+        rt_hon: 'Rt. Hon. (Derecho Honorable)',
+        sr: 'Sr. (Señor)',
+        st: 'St. (Santo)'
+      },
+      last_name: 'Apellido',
+      email: 'Correo electrónico',
+      phone: 'teléfono',
+      gender: 'Genero',
+      female: 'Femenino',
+      male: 'Masculino',
+      not_sure: 'No estoy seguro',
+      rather_not_say: 'Prefiero no decir',
+      other_pleasestate: 'Otro (por favor indicar)',
+      gender_other: 'Otro',
+      bday: 'Cumpleaños',
+      bday_placeholder: 'Elige fecha',
+      rfc: 'RFC',
+      tel_oficina: 'Teléfono oficina',
+      no_licencia: 'Licencia Profesional',
+      profesion: 'Profesión',
+      especialidad: 'Especialidad',
+      biography: 'Biografía'
+    },
+    account_info: {
+      title: 'Información de cuenta',
+      role: 'Nivel de usuario',
+      active: 'Activo',
+      username: 'Identifiación de usuario',
+      status: 'Estatus',
+      email_verified: 'Verificado',
+      email_no_verified: 'Sin Verificar',
+      email_verified_tooltip: 'Re-enviar correo de verificación',
+      password: 'Contraseña',
+      confirm_password: 'Confirmar contraseña'
+    },
+    messages: {
+      error: {
+        first_name: {
+          empty_name: 'El nombre no puede estar vacío'
+        },
+        email: {
+          empty_email: 'El correo electrónico no puede estar vacío'
+        },
+        user_group_id: {
+          wrong_user_group: 'Nivel de usuario desconocido',
+          empty_group_id: 'Nivel de usuario no puede estar vacío'
+        },
+        username: {
+          empty_username: 'Identifiación de usuario no puede estar vacío'
+        },
+        not_found: 'Usuario no encontrado'
+      }
+    }
   },
   userGroups: {
     title: 'Grupos de usuarios',
@@ -622,14 +693,131 @@ export default {
       format: 'dd/MM/yyyy'
     }
   },
-  menus: {
-    dropListMenu: {
-      head: {
-        '正文': 'some text'
-      }
-    }
-  },
   wangEditor: {
-    请输入正文: 'Please enter the text'
+    插入: 'Insertar',
+    默认: 'Predeterminado',
+    创建: 'Crear',
+    修改: 'Editar',
+    如: 'Como',
+    请输入正文: 'Por favor ingrese el texto',
+    menus: {
+      title: {
+        标题: 'Encabezados',
+        加粗: 'Negrita',
+        字号: 'Tamaño de fuente',
+        字体: 'Tipo de fuente',
+        斜体: 'Cursiva',
+        下划线: 'Subrayado',
+        删除线: 'Tachado',
+        缩进: 'Sangría',
+        行高: 'Altura de la fila',
+        文字颜色: 'Color de Texto',
+        背景色: 'Color de Fondo',
+        链接: 'Enlace',
+        序列: 'Secuencia',
+        对齐: 'Alineación',
+        引用: 'Citando',
+        表情: 'Emoji',
+        图片: 'Imagen',
+        视频: 'Video',
+        表格: 'Tabla',
+        代码: 'Código',
+        分割线: 'División',
+        恢复: 'Restaurar',
+        撤销: 'Cancelar',
+        全屏: 'Pantalla Completa',
+        待办事项: 'Tarea'
+      },
+      dropListMenu: {
+        设置标题: 'Titulos',
+        背景颜色: 'Fondos',
+        文字颜色: 'Color Texto',
+        设置字号: 'Tamaño Texto',
+        设置字体: 'Tipo fuente',
+        设置缩进: 'Sangría',
+        对齐方式: 'Alinear',
+        设置行高: 'Altura de linea',
+        序列: 'Lista',
+        head: {
+          正文: 'Normal'
+        },
+        indent: {
+          增加缩进: 'Aumentar Sangría',
+          减少缩进: 'Disminuir Sangría'
+        },
+        justify: {
+          靠左: 'Izquierda',
+          居中: 'Centro',
+          靠右: 'Derecha',
+          两端: 'Ajustado'
+        },
+        list: {
+          无序列表: 'Sin ordenar',
+          有序列表: 'Ordenada'
+        }
+      },
+      panelMenus: {
+        删除: 'Eliminar',
+        emoticon: {
+          默认: 'Predeterminado',
+          新浪: 'Sina',
+          emoji: 'Emoji',
+          手势: 'Gesture'
+        },
+        image: {
+          图片链接: 'Enlace de imagen',
+          上传图片: 'Texto de enlace',
+          网络图片: 'Enlace ed red'
+        },
+        link: {
+          链接: 'Enlace',
+          链接文字: 'Texto de Enlace',
+          删除链接: 'Eliminar',
+          查看链接: 'Ver',
+          取消链接: 'Desconectar'
+        },
+        video: {
+          插入视频: 'Insertar Video'
+        },
+        table: {
+          行: 'Filas',
+          列: 'Columnas',
+          的: '',
+          表格: '',
+          添加行: 'Agregar fila',
+          删除行: 'Eliminar fila',
+          添加列: 'Agregar columna',
+          删除列: 'Eliminar columna',
+          设置表头: 'Establecer encabezado',
+          取消表头: 'Cancelar encabezado',
+          插入表格: 'Insertar Tabla',
+          删除表格: 'Eliminar Tabla'
+        },
+        code: {
+          删除代码: 'Borrar codigo',
+          修改代码: 'Editar codigo',
+          插入代码: 'Insertar codigo'
+        }
+      }
+    },
+    validate: {
+      张图片: 'Imagenes',
+      大于: 'Mayor que',
+      图片链接: 'Enlace de imagen',
+      不是图片: 'no es imagen',
+      返回结果: 'devolver resultados',
+      上传图片超时: 'tiempo de carga excedido',
+      上传图片错误: 'error de carga de imagen',
+      上传图片失败: 'fallo la carga de imagen',
+      插入图片错误: 'Error al insertar imagen',
+      一次最多上传: 'una vez mas en la carga',
+      下载链接失败: 'fallo el enlace de descarga',
+      图片验证未通过: 'fallo validacion de imagen',
+      服务器返回状态: 'estado del servidor',
+      上传图片返回结果错误: 'upload image return results error',
+      请替换为支持的图片类型: 'please replace with a supported image type',
+      您插入的网络图片无法识别: 'the network picture you inserted is not recognized',
+      您刚才插入的图片链接未通过编辑器校验: 'the image link you just inserted did not pass the editor verification'
+    }
   }
 }

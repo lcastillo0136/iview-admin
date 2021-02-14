@@ -1,188 +1,189 @@
 <template>
   <v-card flat class="user-profile-page">
     <v-card-text class="p-b-90">
-      <div class="text-h4 font-weight-black">Profile</div>
+      <div class="text-h4 font-weight-black">{{ $t('profile.header') }}</div>
       <Row :gutter="30">
         <i-col span="8">
-          <Card shadow class="elevation-4 rounded-lg mt-4 card-profile" :class="{'card-profile-2': card_active}">
-            <div style="text-align:center" slot="title" class=" pt-4">
-              <Upload ref="upload"
-                :show-upload-list="false"
-                :before-upload="onChange"
-                :format="['jpg','jpeg','png']"
-                :max-size="2048"
-                action=""
-                >
-                <Button type="primary" shape="circle" icon="md-camera" class="upload-picture"></Button>
-              </Upload>
-              <v-avatar class="mb-3 transition-swing" color="grey" size="110" @click="card_active=!card_active">
-                <v-img :src="profile.avatar"></v-img>
-              </v-avatar>
-              <div class="text-h5">{{ profile.title }} {{ profile.first_name }} {{ profile.last_name }}</div>
-              <span class="blue-grey--text text--lighten-1 font-weight-bold d-block mb-3 mt-1">{{ profile.profesion }}</span>
-              <!-- <Button type="primary" shape="circle" icon="md-person-add" ghost class="mb-3">Follow</Button> -->
-            </div>
-            <List>
-              <ListItem v-for="skill in profile.skills" :key="skill.name">
-                <div class="flex-fill">
-                  <span class="fs-16 blue-grey--text text--lighten-1 font-weight-bold d-block">
-                    {{ skill.name }}
-                    <span class="fs-10 font-weight-light float-right">{{ skill.percentage }} %</span>
-                  </span>
-                  <Progress :percent="skill.percentage" status="active" hide-info />
-                </div>
-              </ListItem>
-              <ListItem>
-                <div class="flex-fill">
-                  <span class="fs-16 mb-2 blue-grey--text text--lighten-1 font-weight-bold d-block">
-                    Description
-                  </span>
-                  <span v-html="profile.biography"></span>
-                </div>
-              </ListItem>
-            </List>
-          </Card>
+          <Affix :offset-top="1">
+            <Card shadow class="elevation-4 rounded-lg mt-4 card-profile" :class="{ 'card-profile-2': card_active }">
+              <div style="text-align:center" slot="title" class=" pt-4">
+                <Upload ref="upload"
+                  :show-upload-list="false"
+                  :before-upload="onChange"
+                  :format="['jpg','jpeg','png']"
+                  :max-size="2048"
+                  action=""
+                  >
+                  <Button type="primary" shape="circle" icon="md-camera" class="upload-picture"></Button>
+                </Upload>
+                <v-avatar class="mb-3 transition-swing" color="grey" size="110" @click="card_active=!card_active">
+                  <v-img :src="profile.avatar"></v-img>
+                </v-avatar>
+                <div class="text-h5">{{ profile.title }} {{ profile.first_name }} {{ profile.last_name }}</div>
+                <span class="blue-grey--text text--lighten-1 font-weight-bold d-block mb-3 mt-1">{{ profile.profesion }}</span>
+                <!-- <Button type="primary" shape="circle" icon="md-person-add" ghost class="mb-3">Follow</Button> -->
+              </div>
+              <List>
+                <ListItem v-for="skill in profile.skills" :key="skill.name">
+                  <div class="flex-fill">
+                    <span class="fs-16 blue-grey--text text--lighten-1 font-weight-bold d-block">
+                      {{ skill.name }}
+                      <span class="fs-10 font-weight-light float-right">{{ skill.percentage }} %</span>
+                    </span>
+                    <Progress :percent="skill.percentage" status="active" hide-info />
+                  </div>
+                </ListItem>
+                <ListItem>
+                  <div class="flex-fill of-hidden">
+                    <span class="fs-16 mb-2 blue-grey--text text--lighten-1 font-weight-bold d-block">
+                      {{ $t('profile.card.description') }}
+                    </span>
+                    <span v-html="profile.biography"></span>
+                  </div>
+                </ListItem>
+              </List>
+            </Card>
+          </Affix>
         </i-col>
-
         <i-col span="16">
           <Card shadow class="elevation-4 rounded-lg mt-4 user-data">
             <v-tabs class="rounded-lg">
               <v-tab>
-                Personal Information
+                {{ $t('profile.personal_info.title') }}
               </v-tab>
               <v-tab>
-                Account Information
+                {{ $t('profile.account_info.title') }}
               </v-tab>
               <v-tab-item>
-                <Form :model="profile" label-position="top">
+                <Form ref="profile_form" :model="profile" label-position="top" :rules="profile_rules">
                   <Row :gutter="20">
                     <i-col span="12">
-                      <FormItem label="First Name">
+                      <FormItem :label="$t('profile.personal_info.first_name')" prop="first_name">
                         <Input v-model="profile.first_name">
                           <Select v-model="profile.title" slot="prepend" style="width: 80px">
                             <Option value="Dr.">
-                              Dr. (Doctor)
+                              {{ $t('profile.personal_info.name_title.dr') }}
                             </Option>
                             <Option value="Esq.">
-                              Esq. (Esquire)
+                              {{ $t('profile.personal_info.name_title.esq') }}
                             </Option>
                             <Option value="Hon.">
-                              Hon. (Honorable)
+                              {{ $t('profile.personal_info.name_title.hon') }}
                             </Option>
                             <Option value="Jr.">
-                              Jr. (Junior)
+                              {{ $t('profile.personal_info.name_title.jr') }}
                             </Option>
                             <Option value="Mr.">
-                              Mr.
+                              {{ $t('profile.personal_info.name_title.mr') }}
                             </Option>
                             <Option value="Mrs.">
-                              Mrs.
+                              {{ $t('profile.personal_info.name_title.mrs') }}
                             </Option>
                             <Option value="Ms.">
-                              Ms.
+                              {{ $t('profile.personal_info.name_title.ms') }}
                             </Option>
                             <Option value="Msgr.">
-                              Msgr. (Monsignor)
+                              {{ $t('profile.personal_info.name_title.msgr') }}
                             </Option>
                             <Option value="Prof.">
-                              Prof. (Professor)
+                              {{ $t('profile.personal_info.name_title.prof') }}
                             </Option>
                             <Option value="Rev.">
-                              Rev. (Reverend)
+                              {{ $t('profile.personal_info.name_title.rev') }}
                             </Option>
                             <Option value="Rt. Hon.">
-                              Rt. Hon. (Right Honorable)
+                              {{ $t('profile.personal_info.name_title.rt_hon') }}
                             </Option>
                             <Option value="Sr.">
-                              Sr. (Senior)
+                              {{ $t('profile.personal_info.name_title.sr') }}
                             </Option>
                             <Option value="St.">
-                              St. (Saint)
+                              {{ $t('profile.personal_info.name_title.st') }}
                             </Option>
                           </Select>
                         </Input>
                       </FormItem>
                     </i-col>
                     <i-col span="12">
-                      <FormItem label="Last Name">
+                      <FormItem :label="$t('profile.personal_info.last_name')">
                         <Input v-model="profile.last_name"></Input>
                       </FormItem>
                     </i-col>
                   </Row>
                   <Row :gutter="20">
                     <i-col span="12">
-                      <FormItem label="Email">
+                      <FormItem :label="$t('profile.personal_info.email')" prop="email">
                         <Input v-model="profile.email"></Input>
                       </FormItem>
                     </i-col>
                     <i-col span="12">
-                      <FormItem label="Phone">
+                      <FormItem :label="$t('profile.personal_info.phone')" prop="phone">
                         <Input v-model="profile.phone"></Input>
                       </FormItem>
                     </i-col>
                   </Row>
                   <Row :gutter="20">
                     <i-col span="12">
-                      <FormItem label="Gender" class="gender-field">
+                      <FormItem :label="$t('profile.personal_info.gender')" class="gender-field" prop="gender">
                         <Select v-model="profile.gender">
                           <Option value="female">
-                            Female
+                            {{ $t('profile.personal_info.female') }}
                           </Option>
                           <Option value="male">
-                            Male
+                            {{ $t('profile.personal_info.male') }}
                           </Option>
                           <Option value="not_sure">
-                            Not sure
+                            {{ $t('profile.personal_info.not_sure') }}
                           </Option>
                           <Option value="rather_not_say">
-                            Rather not say
+                            {{ $t('profile.personal_info.rather_not_say') }}
                           </Option>
                           <Option value="other">
-                            Others (please state)
+                            {{ $t('profile.personal_info.other_pleasestate') }}
                           </Option>
                         </Select>
-                        <FormItem label="Other" v-if="profile.gender === 'other'">
+                        <FormItem :label="$t('profile.personal_info.gender_other')" v-if="profile.gender === 'other'">
                           <Input v-model="other_gender"></Input>
                         </FormItem>
                       </FormItem>
                     </i-col>
                     <i-col span="12">
-                      <FormItem label="Birthday">
-                        <DatePicker type="date" :options="bday_options" placeholder="Select date" v-model="profile.bday" :format="$t('i.datepicker.format')" style="width: 100%"></DatePicker>
+                      <FormItem :label="$t('profile.personal_info.bday')" prop="bday">
+                        <DatePicker type="date" :options="bday_options" :placeholder="$t('profile.personal_info.bday_placeholder')" v-model="profile.bday" :format="$t('i.datepicker.format')" style="width: 100%"></DatePicker>
                       </FormItem>
                     </i-col>
                   </Row>
                   <Divider></Divider>
                   <Row :gutter="20">
                     <i-col span="12">
-                      <FormItem label="RFC">
+                      <FormItem :label="$t('profile.personal_info.rfc')" prop="rfc">
                         <Input v-model="profile.rfc"></Input>
                       </FormItem>
                     </i-col>
                     <i-col span="12">
-                      <FormItem label="Work Phone">
+                      <FormItem :label="$t('profile.personal_info.tel_oficina')" prop="tel_oficina">
                         <Input v-model="profile.tel_oficina"></Input>
                       </FormItem>
                     </i-col>
                   </Row>
                   <Row :gutter="20">
                     <!-- <i-col span="12">
-                      <FormItem label="License Number">
+                      <FormItem :label="$t('profile.personal_info.no_licencia')">
                         <Input v-model="profile.no_licencia"></Input>
                       </FormItem>
                     </i-col> -->
                     <i-col span="12">
-                      <FormItem label="Professional license">
+                      <FormItem :label="$t('profile.personal_info.no_licencia')" prop="no_licencia">
                         <Input v-model="profile.no_licencia"></Input>
                       </FormItem>
                     </i-col>
                     <i-col span="6">
-                      <FormItem label="Profession">
+                      <FormItem :label="$t('profile.personal_info.profesion')" prop="profesion">
                         <Input v-model="profile.profesion"></Input>
                       </FormItem>
                     </i-col>
                     <i-col span="6">
-                      <FormItem label="Speciality">
+                      <FormItem :label="$t('profile.personal_info.especialidad')" prop="especialidad">
                         <Input v-model="profile.especialidad"></Input>
                       </FormItem>
                     </i-col>
@@ -190,18 +191,18 @@
                   <Divider></Divider>
                   <Row :gutter="20">
                     <i-col span="24">
-                      <FormItem label="Biography">
-                        <editor ref="editor" :value.sync="profile.biography" :cache="false" :menu="editoMenu" />
+                      <FormItem :label="$t('profile.personal_info.biography')" prop="biography">
+                        <editor ref="editor" :value="profile.initial_biography" :cache="false" :menu="editoMenu" @on-change="handleChange" />
                       </FormItem>
                     </i-col>
                   </Row>
                 </Form>
               </v-tab-item>
               <v-tab-item>
-                <Form :model="profile" label-position="top">
+                <Form ref="account_form" :model="profile" label-position="top" :rules="profile_rules">
                   <Row :gutter="20">
                     <i-col span="12">
-                      <FormItem label="Role">
+                      <FormItem :label="$t('profile.account_info.role')" prop="user_group_id">
                         <Select v-model="profile.user_group_id">
                           <Option :value="group.id.toString()" v-for="group in groups" :key="group.id">
                             {{ group.name }}
@@ -210,22 +211,22 @@
                       </FormItem>
                     </i-col>
                     <i-col span="12">
-                      <FormItem label="Active">
+                      <FormItem :label="$t('profile.account_info.active')">
                         <i-switch v-model="profile.active" />
                       </FormItem>
                     </i-col>
                   </Row>
                   <Row :gutter="20">
                     <i-col span="12">
-                      <FormItem label="Account ID">
+                      <FormItem :label="$t('profile.account_info.username')" prop="username">
                         <Input v-model="profile.username"></Input>
                       </FormItem>
                     </i-col>
                     <i-col span="12">
-                      <FormItem label="Status">
-                        <Tag color="success" v-if="profile.email_verified">Verified</Tag>
-                        <Tooltip v-else content="Resend verification email" placement="bottom">
-                          <Tag color="warning">No Verified</Tag>
+                      <FormItem :label="$t('profile.account_info.status')">
+                        <Tag color="success" v-if="profile.email_verified">{{ $t('profile.account_info.email_verified') }}</Tag>
+                        <Tooltip v-else :content="$t('profile.account_info.email_verified_tooltip')" placement="bottom">
+                          <Tag color="warning">{{ $t('profile.account_info.email_no_verified') }}</Tag>
                         </Tooltip>
                       </FormItem>
                     </i-col>
@@ -233,13 +234,13 @@
                   <Divider></Divider>
                   <Row :gutter="20">
                     <i-col span="6">
-                      <FormItem label="Account password">
+                      <FormItem :label="$t('profile.account_info.password')" prop="password">
                         <Input :type="pasword_type" v-model="profile.password" :icon="password_icon" @on-click="togglePasswordVisible('password')" autocomplete="new-password"></Input>
                       </FormItem>
                     </i-col>
 
                     <i-col span="6">
-                      <FormItem label="Confirm account password">
+                      <FormItem :label="$t('profile.account_info.confirm_password')" prop="confirm_password">
                         <Input :type="pasword_confirm_type" v-model="profile.confirm_password" :icon="password_confirm_icon" @on-click="togglePasswordVisible('confirm_password')" autocomplete="new-password"></Input>
                       </FormItem>
                     </i-col>
@@ -293,6 +294,8 @@ import { mapActions } from 'vuex'
 import Editor from '_c/editor'
 import { decrypt } from '@/libs/util'
 import PictureInput from 'vue-picture-input'
+import config from '@/config'
+const { homeName } = config
 
 export default {
   name: 'UsersAddSettings',
@@ -311,6 +314,7 @@ export default {
         active: false,
         bday: new Date(),
         biography: null,
+        initial_biography: '',
         cedula_profesional: null,
         email: '',
         phone: '',
@@ -349,14 +353,29 @@ export default {
         visible: false,
         visible_confirm: false
       },
-      uploadProfileModal: false
+      uploadProfileModal: false,
+      profile_rules: {
+        first_name: [
+          { required: true, message: this.$t('profile.messages.error.first_name.empty_name'), trigger: 'blur' }
+        ],
+        email: [
+          { required: true, message: this.$t('profile.messages.error.email.empty_email'), trigger: 'blur' }
+        ],
+        user_group_id: [
+          { required: true, message: this.$t('profile.messages.error.user_group_id.empty_group_id'), trigger: 'change' }
+        ],
+        username: [
+          { required: true, message: this.$t('profile.messages.error.username.empty_username'), trigger: 'blur' }
+        ]
+      }
     }
   },
   components: {
     Editor,
     PictureInput
   },
-  watch: {},
+  watch: {
+  },
   computed: {
     password_icon () {
       return this.password.visible ? 'ios-eye-outline' : 'ios-eye-off-outline'
@@ -400,12 +419,12 @@ export default {
     },
     loadUser (id) {
       return new Promise((resolve, reject) => {
-        if (!this.$route.params.profile) resolve(false)
+        if (!id) resolve(false)
         this.getUserById(id).then(data => {
           this.profile.active = data.active
           this.profile.avatar = data.avatar
           this.profile.bday = this.$moment(data.bday).toDate()
-          this.profile.biography = data.biography
+          this.profile.biography = this.profile.initial_biography = data.biography
           this.profile.cedula_profesional = data.cedula_profesional
           this.profile.email = data.email
           this.profile.email_verified = data.email_verified
@@ -428,75 +447,113 @@ export default {
           this.profile.username = data.username
 
           resolve()
+        }).catch((err) => {
+          if (err.data) {
+            for (let e in err.data) {
+              this.$Notice.error({
+                title: 'Update Error',
+                desc: this.$t('profile.messages.error.' + `${e}.${err.data[e]}`)
+              })
+            }
+          } else {
+            this.$Notice.error({
+              title: 'Update Error',
+              desc: this.$t('profile.messages.error.' + err.message)
+            })
+          }
+          reject(new Error('go_back'))
         })
       })
     },
     saveUser () {
-      this.saveUserData({ ...this.profile, ...{ bday: this.$moment(this.profile.bday).format('YYYY-MM-DD') } }).then((response) => {
-        this.$Notice.success({
-          title: 'Update success',
-          desc: this.$t('user.messages.success.update')
-        })
-        this.loadUser(this.profile.id)
-      }).catch((err) => {
-        this.$Notice.error({
-          title: 'Update success',
-          desc: this.$t('user.messages.success.' + err.message)
-        })
+      Promise.all([
+        this.$refs.profile_form && this.$refs.profile_form.validate(),
+        this.$refs.account_form && this.$refs.account_form.validate()
+      ]).then(valid => {
+        if (valid[0] === true && (valid[1] === true || valid[1] === undefined)) {
+          this.saveUserData({ ...this.profile, ...{ bday: this.$moment(this.profile.bday).format('YYYY-MM-DD'), initial_biography: '' } }).then((response) => {
+            this.$Notice.success({
+              title: 'Update success',
+              desc: this.$t('profile.messages.success.update')
+            })
+            this.loadUser(this.profile.id)
+          }).catch((err) => {
+            if (err.data) {
+              for (let e in err.data) {
+                this.$Notice.error({
+                  title: 'Update Error',
+                  desc: this.$t('profile.messages.error.' + `${e}.${err.data[e]}`)
+                })
+              }
+            } else {
+              this.$Notice.error({
+                title: 'Update Error',
+                desc: this.$t('profile.messages.error.' + err.message)
+              })
+            }
+          })
+        } else {
+          this.$Notice.error({
+            title: 'Save Error'
+          })
+        }
       })
     },
     onChange (image) {
       if (image) {
-        var reader = new FileReader();
+        var reader = new FileReader()
         reader.addEventListener('load', (evt) => {
-          var img = document.createElement("img");
+          var img = document.createElement('img')
           img.onload = () => {
-            var canvas = document.createElement("canvas");
-            var ctx = canvas.getContext("2d");
-            ctx.drawImage(img, 0, 0);
+            var canvas = document.createElement('canvas')
+            var ctx = canvas.getContext('2d')
+            ctx.drawImage(img, 0, 0)
 
-            var MAX_WIDTH = 100;
-            var MAX_HEIGHT = 100;
-            var width = img.width;
-            var height = img.height;
+            var MAX_WIDTH = 100
+            var MAX_HEIGHT = 100
+            var width = img.width
+            var height = img.height
 
             if (width > height) {
-                if (width > MAX_WIDTH) {
-                    height *= MAX_WIDTH / width;
-                    width = MAX_WIDTH;
-                }
+              if (width > MAX_WIDTH) {
+                height *= MAX_WIDTH / width
+                width = MAX_WIDTH
+              }
             } else {
-                if (height > MAX_HEIGHT) {
-                    width *= MAX_HEIGHT / height;
-                    height = MAX_HEIGHT;
-                }
+              if (height > MAX_HEIGHT) {
+                width *= MAX_HEIGHT / height
+                height = MAX_HEIGHT
+              }
             }
-            canvas.width = width;
-            canvas.height = height;
-            var ctx = canvas.getContext("2d");
-            ctx.drawImage(img, 0, 0, width, height);
+            canvas.width = width
+            canvas.height = height
+            ctx = canvas.getContext('2d')
+            ctx.drawImage(img, 0, 0, width, height)
 
-            let dataurl = canvas.toDataURL('image/jpeg');
+            let dataurl = canvas.toDataURL('image/jpeg')
 
             this.profile.avatar = dataurl
-          };
-          img.src = evt.target.result;
-        });
-        reader.readAsDataURL(image);
+          }
+          img.src = evt.target.result
+        })
+        reader.readAsDataURL(image)
       } else {
       }
+    },
+    handleChange (html, text) {
+      this.profile.biography = html
     }
   },
   created () {},
   mounted () {
     this.loading = true
-    Promise.all([
-      this.loadGroups(),
-      this.loadUser(decrypt(this.$route.params.profile))
-    ]).then(() => {
+    let _promises = [this.loadGroups()]
+    if (this.$route.params.profile) _promises.push(this.loadUser(decrypt(this.$route.params.profile)))
+    Promise.all(_promises).then(() => {
       this.loading = false
     }).catch(() => {
       this.loading = false
+      this.$router.push({ name: homeName })
     })
   }
 }
@@ -504,8 +561,11 @@ export default {
 </script>
 <style lang="less">
 .user-profile-page {
-  .v-card>.v-speed-dial {
+  .v-card > .v-speed-dial {
     position: fixed;
+    &.v-speed-dial--right {
+      right: 32px;
+    }
   }
 
   .v-card .v-btn--floating {

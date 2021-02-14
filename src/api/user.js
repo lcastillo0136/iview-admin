@@ -111,10 +111,10 @@ export const getUserById = ({ token, id }) => {
 
 export const saveUserData = ({ token, data }) => {
   return axios.request({
-    url: `users/${data.id}`,
+    url: data.id ? `users/${data.id}` : 'users',
     headers: { Authorization: `Bearer ${token}` },
     data,
-    method: 'patch'
+    method: data.id ? 'patch' : 'post'
   })
 }
 
