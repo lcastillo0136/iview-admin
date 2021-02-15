@@ -563,7 +563,14 @@ export default {
         username: {
           empty_username: 'Identifiación de usuario no puede estar vacío'
         },
+        password: {
+          empty_confirm: 'Favor de confirmar la contraseña',
+          confirm_dont_match: 'Las contraseñas no coinciden'
+        },
         not_found: 'Usuario no encontrado'
+      },
+      success: {
+        update: 'Información de usuario actualizada'
       }
     }
   },

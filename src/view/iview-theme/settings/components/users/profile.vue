@@ -4,46 +4,44 @@
       <div class="text-h4 font-weight-black">{{ $t('profile.header') }}</div>
       <Row :gutter="30">
         <i-col span="8">
-          <Affix :offset-top="1">
-            <Card shadow class="elevation-4 rounded-lg mt-4 card-profile" :class="{ 'card-profile-2': card_active }">
-              <div style="text-align:center" slot="title" class=" pt-4">
-                <Upload ref="upload"
-                  :show-upload-list="false"
-                  :before-upload="onChange"
-                  :format="['jpg','jpeg','png']"
-                  :max-size="2048"
-                  action=""
-                  >
-                  <Button type="primary" shape="circle" icon="md-camera" class="upload-picture"></Button>
-                </Upload>
-                <v-avatar class="mb-3 transition-swing" color="grey" size="110" @click="card_active=!card_active">
-                  <v-img :src="profile.avatar"></v-img>
-                </v-avatar>
-                <div class="text-h5">{{ profile.title }} {{ profile.first_name }} {{ profile.last_name }}</div>
-                <span class="blue-grey--text text--lighten-1 font-weight-bold d-block mb-3 mt-1">{{ profile.profesion }}</span>
-                <!-- <Button type="primary" shape="circle" icon="md-person-add" ghost class="mb-3">Follow</Button> -->
-              </div>
-              <List>
-                <ListItem v-for="skill in profile.skills" :key="skill.name">
-                  <div class="flex-fill">
-                    <span class="fs-16 blue-grey--text text--lighten-1 font-weight-bold d-block">
-                      {{ skill.name }}
-                      <span class="fs-10 font-weight-light float-right">{{ skill.percentage }} %</span>
-                    </span>
-                    <Progress :percent="skill.percentage" status="active" hide-info />
-                  </div>
-                </ListItem>
-                <ListItem>
-                  <div class="flex-fill of-hidden">
-                    <span class="fs-16 mb-2 blue-grey--text text--lighten-1 font-weight-bold d-block">
-                      {{ $t('profile.card.description') }}
-                    </span>
-                    <span v-html="profile.biography"></span>
-                  </div>
-                </ListItem>
-              </List>
-            </Card>
-          </Affix>
+          <Card shadow class="elevation-4 rounded-lg mt-4 card-profile" :class="{ 'card-profile-2': card_active }">
+            <div style="text-align:center" slot="title" class=" pt-4">
+              <Upload ref="upload"
+                :show-upload-list="false"
+                :before-upload="onChange"
+                :format="['jpg','jpeg','png']"
+                :max-size="2048"
+                action=""
+                >
+                <Button type="primary" shape="circle" icon="md-camera" class="upload-picture"></Button>
+              </Upload>
+              <v-avatar class="mb-3 transition-swing" color="grey" size="110" @click="card_active=!card_active">
+                <v-img :src="profile.avatar"></v-img>
+              </v-avatar>
+              <div class="text-h5">{{ profile.title }} {{ profile.first_name }} {{ profile.last_name }}</div>
+              <span class="blue-grey--text text--lighten-1 font-weight-bold d-block mb-3 mt-1">{{ profile.profesion }}</span>
+              <!-- <Button type="primary" shape="circle" icon="md-person-add" ghost class="mb-3">Follow</Button> -->
+            </div>
+            <List>
+              <ListItem v-for="skill in profile.skills" :key="skill.name">
+                <div class="flex-fill">
+                  <span class="fs-16 blue-grey--text text--lighten-1 font-weight-bold d-block">
+                    {{ skill.name }}
+                    <span class="fs-10 font-weight-light float-right">{{ skill.percentage }} %</span>
+                  </span>
+                  <Progress :percent="skill.percentage" status="active" hide-info />
+                </div>
+              </ListItem>
+              <ListItem>
+                <div class="flex-fill of-hidden">
+                  <span class="fs-16 mb-2 blue-grey--text text--lighten-1 font-weight-bold d-block">
+                    {{ $t('profile.card.description') }}
+                  </span>
+                  <span v-html="profile.biography"></span>
+                </div>
+              </ListItem>
+            </List>
+          </Card>
         </i-col>
         <i-col span="16">
           <Card shadow class="elevation-4 rounded-lg mt-4 user-data">
@@ -196,6 +194,39 @@
                       </FormItem>
                     </i-col>
                   </Row>
+                  <Divider></Divider>
+                  <Row>
+                    <i-col span="8">
+                      <Button icon="ios-add-circle-outline" class="w-full" @click.prevent="modalUserAddress = true">
+                        Add new address
+                      </Button>
+                    </i-col>
+                  </Row>
+                  <br>
+                  <Row :gutter="20">
+                    <i-col span="12" v-for="address in profile.address" :key="address.id" >
+                      <v-card :color="address.default ? '#385F73' : ''" :dark="address.default" :shaped="address.default"class="mb-5">
+                        <v-card-title class="headline">
+                          {{ address.alias }}
+                        </v-card-title>
+
+                        <v-card-subtitle>
+                          <b>{{ address.city }}, <br>{{ address.state }}, {{ address.country }}</b>
+                        </v-card-subtitle>
+                        <v-card-actions class="justify-end">
+                          <div class="fs-12 grey--text flex-fill pl-2">
+                            {{ address.street }} {{ address.exterior_number }}, {{ address.suburb }} <br>{{ address.directions }}
+                          </div>
+                          <v-btn text x-small class="transparent ml-1" color="primary">
+                            change
+                          </v-btn>
+                          <v-btn text x-small class="transparent ml-1" color="red">
+                            delete
+                          </v-btn>
+                        </v-card-actions>
+                      </v-card>
+                    </i-col>
+                  </Row>
                 </Form>
               </v-tab-item>
               <v-tab-item>
@@ -283,6 +314,77 @@
         </i-col>
       </Row>
     </Modal>
+    <Modal v-model="modalUserAddress" footer-hide title="address_form_title">
+      <Form ref="address_form" :model="address_form"  label-position="top">
+        <Row :gutter="20">
+          <i-col span="12">
+            <FormItem :label="$t('profile.personal_info.alias')">
+              <Input></Input>
+            </FormItem>
+          </i-col>
+          <i-col span="12">
+            <FormItem :label="$t('profile.personal_info.default')">
+              <i-switch />
+            </FormItem>
+          </i-col>
+        </Row>
+        <Row :gutter="20">
+          <i-col span="12">
+            <FormItem :label="$t('profile.personal_info.street')">
+              <Input></Input>
+            </FormItem>
+          </i-col>
+          <i-col span="12">
+            <FormItem :label="$t('profile.personal_info.city')">
+              <Input></Input>
+            </FormItem>
+          </i-col>
+        </Row>
+        <Row :gutter="20">
+          <i-col span="12">
+            <FormItem :label="$t('profile.personal_info.suburb')">
+              <Input></Input>
+            </FormItem>
+          </i-col>
+          <i-col span="12">
+            <FormItem :label="$t('profile.personal_info.township')">
+              <Input></Input>
+            </FormItem>
+          </i-col>
+        </Row>
+        <Row :gutter="20">
+          <i-col span="6">
+            <FormItem :label="$t('profile.personal_info.exterior_number')">
+              <Input></Input>
+            </FormItem>
+          </i-col>
+          <i-col span="6">
+            <FormItem :label="$t('profile.personal_info.interior_number')">
+              <Input></Input>
+            </FormItem>
+          </i-col>
+        </Row>
+        <Row :gutter="20">
+          <i-col span="12">
+            <FormItem :label="$t('profile.personal_info.state')">
+              <Input></Input>
+            </FormItem>
+          </i-col>
+          <i-col span="12">
+            <FormItem :label="$t('profile.personal_info.country')">
+              <Input></Input>
+            </FormItem>
+          </i-col>
+        </Row>
+        <Row :gutter="20">
+          <i-col span="24">
+            <FormItem :label="$t('profile.personal_info.directions')">
+              <Input></Input>
+            </FormItem>
+          </i-col>
+        </Row>
+      </Form>
+    </Modal>
     <Spin fix v-if="loading">
       <Icon type="ios-loading" size=18 class="demo-spin-icon-load"></Icon>
       <div>Loading</div>
@@ -332,7 +434,8 @@ export default {
         title: null,
         username: '',
         password: '',
-        confirm_password: ''
+        confirm_password: '',
+        address: []
       },
       loading: true,
       card_active: false,
@@ -354,6 +457,8 @@ export default {
         visible_confirm: false
       },
       uploadProfileModal: false,
+      modalUserAddress: false,
+      address_form: {},
       profile_rules: {
         first_name: [
           { required: true, message: this.$t('profile.messages.error.first_name.empty_name'), trigger: 'blur' }
@@ -366,6 +471,33 @@ export default {
         ],
         username: [
           { required: true, message: this.$t('profile.messages.error.username.empty_username'), trigger: 'blur' }
+        ],
+        password: [
+          {
+            validator: (rule, value, callback) => {
+              if (value === '' && this.profile.confirm_password === '') {
+                callback()
+              } else {
+                if (this.profile.confirm_password === '') {
+                  callback(new Error(this.$t('profile.messages.error.password.empty_confirm')))
+                } else if (this.profile.password !== this.profile.confirm_password) {
+                  callback(new Error(this.$t('profile.messages.error.password.confirm_dont_match')))
+                } else {
+                  callback()
+                }
+              }
+            },
+            trigger: 'blur'
+          }
+        ],
+        confirm_password: [
+          {
+            validator: (rule, value, callback) => {
+              this.$refs.account_form.validateField('password')
+              callback()
+            },
+            trigger: 'blur'
+          }
         ]
       }
     }
@@ -388,6 +520,9 @@ export default {
     },
     pasword_confirm_type () {
       return this.password.visible_confirm ? 'text' : 'password'
+    },
+    address_form_title () {
+      return this.address_form.id ? this.$t('pofile.personal_info.address.update_address') : this.$t('profile.personal_info.address.create_address')
     }
   },
   methods: {
@@ -423,6 +558,8 @@ export default {
         this.getUserById(id).then(data => {
           this.profile.active = data.active
           this.profile.avatar = data.avatar
+          this.profile.address = data.address
+
           this.profile.bday = this.$moment(data.bday).toDate()
           this.profile.biography = this.profile.initial_biography = data.biography
           this.profile.cedula_profesional = data.cedula_profesional
@@ -445,6 +582,11 @@ export default {
           this.profile.title = data.title
           this.profile.user_group_id = data.user_group_id
           this.profile.username = data.username
+
+          if (!['female', 'male', 'not_sure', 'rather_not_say'].includes(this.profile.gender)) {
+            this.other_gender = this.profile.gender
+            this.profile.gender = 'other'
+          }
 
           resolve()
         }).catch((err) => {
@@ -471,6 +613,7 @@ export default {
         this.$refs.account_form && this.$refs.account_form.validate()
       ]).then(valid => {
         if (valid[0] === true && (valid[1] === true || valid[1] === undefined)) {
+          if (this.profile.gender === 'other') this.profile.gender = this.other_gender
           this.saveUserData({ ...this.profile, ...{ bday: this.$moment(this.profile.bday).format('YYYY-MM-DD'), initial_biography: '' } }).then((response) => {
             this.$Notice.success({
               title: 'Update success',
