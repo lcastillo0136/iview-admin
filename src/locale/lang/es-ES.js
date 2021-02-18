@@ -499,6 +499,11 @@ export default {
     card: {
       description: 'Descripción'
     },
+    button: {
+      add_address: 'Agregar un domicilio',
+      edit_address: 'Editar',
+      delete_address: 'Borrar'
+    },
     personal_info: {
       title: 'Información Personal',
       first_name: 'Nombre(s)',
@@ -534,7 +539,24 @@ export default {
       no_licencia: 'Licencia Profesional',
       profesion: 'Profesión',
       especialidad: 'Especialidad',
-      biography: 'Biografía'
+      biography: 'Biografía',
+      address: {
+        alias: 'Nombre',
+        update_address: 'Actualizar domicilio',
+        create_address: 'Agregar un domicilio',
+        delete_address: 'Eliminar domicilio seleccionado',
+        delete_message: '¿Esta seguro de querer eliminar el domicilios seleccionado?',
+        default: 'Favorito',
+        street: 'Calle',
+        city: 'Ciudad',
+        suburb: 'Colonia / Asentamiento',
+        township: 'Delegación / Municipio',
+        exterior_number: 'N° exterior',
+        interior_number: 'N° interior / Depto',
+        state: 'Estado',
+        country: 'País',
+        directions: 'Indicaciones adicionales'
+      }
     },
     account_info: {
       title: 'Información de cuenta',

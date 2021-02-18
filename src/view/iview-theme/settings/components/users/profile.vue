@@ -197,15 +197,15 @@
                   <Divider></Divider>
                   <Row>
                     <i-col span="8">
-                      <Button icon="ios-add-circle-outline" class="w-full" @click.prevent="modalUserAddress = true">
-                        Add new address
+                      <Button icon="ios-add-circle-outline" class="w-full" @click.prevent="openModalAddress()">
+                        {{ $t('profile.button.add_address') }}
                       </Button>
                     </i-col>
                   </Row>
                   <br>
                   <Row :gutter="20">
                     <i-col span="12" v-for="address in profile.address" :key="address.id" >
-                      <v-card :color="address.default ? '#385F73' : ''" :dark="address.default" :shaped="address.default"class="mb-5">
+                      <v-card :color="(!!address.favorite) ? '#3c495e' : ''" :dark="!!address.favorite" :shaped="!!address.favorite" class="mb-5">
                         <v-card-title class="headline">
                           {{ address.alias }}
                         </v-card-title>
@@ -217,11 +217,11 @@
                           <div class="fs-12 grey--text flex-fill pl-2">
                             {{ address.street }} {{ address.exterior_number }}, {{ address.suburb }} <br>{{ address.directions }}
                           </div>
-                          <v-btn text x-small class="transparent ml-1" color="primary">
-                            change
+                          <v-btn text x-small class="transparent ml-1" :color="(!!address.favorite) ? '#FFF' : 'primary'" @click.prevent="editModalAddress(address)">
+                            {{ $t('profile.button.edit_address') }}
                           </v-btn>
-                          <v-btn text x-small class="transparent ml-1" color="red">
-                            delete
+                          <v-btn text x-small class="transparent ml-1" color="red" @click.prevent="deleteModalAddress(address)">
+                            {{ $t('profile.button.delete_address') }}
                           </v-btn>
                         </v-card-actions>
                       </v-card>
@@ -314,76 +314,85 @@
         </i-col>
       </Row>
     </Modal>
-    <Modal v-model="modalUserAddress" footer-hide title="address_form_title">
+    <Modal v-model="modalUserAddress" footer-hide :title="address_form_title">
       <Form ref="address_form" :model="address_form"  label-position="top">
         <Row :gutter="20">
           <i-col span="12">
-            <FormItem :label="$t('profile.personal_info.alias')">
-              <Input></Input>
+            <FormItem :label="$t('profile.personal_info.address.alias')">
+              <Input v-model="address_form.alias"></Input>
             </FormItem>
           </i-col>
           <i-col span="12">
-            <FormItem :label="$t('profile.personal_info.default')">
-              <i-switch />
-            </FormItem>
-          </i-col>
-        </Row>
-        <Row :gutter="20">
-          <i-col span="12">
-            <FormItem :label="$t('profile.personal_info.street')">
-              <Input></Input>
-            </FormItem>
-          </i-col>
-          <i-col span="12">
-            <FormItem :label="$t('profile.personal_info.city')">
-              <Input></Input>
+            <FormItem :label="$t('profile.personal_info.address.default')">
+              <i-switch v-model="address_form.favorite"/>
             </FormItem>
           </i-col>
         </Row>
         <Row :gutter="20">
           <i-col span="12">
-            <FormItem :label="$t('profile.personal_info.suburb')">
-              <Input></Input>
+            <FormItem :label="$t('profile.personal_info.address.street')">
+              <Input v-model="address_form.street"></Input>
             </FormItem>
           </i-col>
           <i-col span="12">
-            <FormItem :label="$t('profile.personal_info.township')">
-              <Input></Input>
+            <FormItem :label="$t('profile.personal_info.address.city')">
+              <Input v-model="address_form.city"></Input>
+            </FormItem>
+          </i-col>
+        </Row>
+        <Row :gutter="20">
+          <i-col span="12">
+            <FormItem :label="$t('profile.personal_info.address.suburb')">
+              <Input v-model="address_form.suburb"></Input>
+            </FormItem>
+          </i-col>
+          <i-col span="12">
+            <FormItem :label="$t('profile.personal_info.address.township')">
+              <Input v-model="address_form.township"></Input>
             </FormItem>
           </i-col>
         </Row>
         <Row :gutter="20">
           <i-col span="6">
-            <FormItem :label="$t('profile.personal_info.exterior_number')">
-              <Input></Input>
+            <FormItem :label="$t('profile.personal_info.address.exterior_number')">
+              <Input v-model="address_form.exterior_number"></Input>
             </FormItem>
           </i-col>
           <i-col span="6">
-            <FormItem :label="$t('profile.personal_info.interior_number')">
-              <Input></Input>
+            <FormItem :label="$t('profile.personal_info.address.interior_number')">
+              <Input v-model="address_form.interior_number"></Input>
             </FormItem>
           </i-col>
         </Row>
         <Row :gutter="20">
           <i-col span="12">
-            <FormItem :label="$t('profile.personal_info.state')">
-              <Input></Input>
+            <FormItem :label="$t('profile.personal_info.address.state')">
+              <Input v-model="address_form.state"></Input>
             </FormItem>
           </i-col>
           <i-col span="12">
-            <FormItem :label="$t('profile.personal_info.country')">
-              <Input></Input>
+            <FormItem :label="$t('profile.personal_info.address.country')">
+              <Input v-model="address_form.country"></Input>
             </FormItem>
           </i-col>
         </Row>
         <Row :gutter="20">
           <i-col span="24">
-            <FormItem :label="$t('profile.personal_info.directions')">
-              <Input></Input>
+            <FormItem :label="$t('profile.personal_info.address.directions')">
+              <Input type="textarea" v-model="address_form.directions"></Input>
             </FormItem>
           </i-col>
         </Row>
       </Form>
+    </Modal>
+    <Modal v-model="modalDeleteUserAddress" ok-text="OK" cancel-text="No" @on-ok="deleteSelectedAddress()" ref="delete_modal">
+      <p slot="header" style="color:#f60;text-align:center">
+        <Icon type="ios-information-circle"></Icon>
+        <span>{{ $t('profile.personal_info.address.delete_address') }}</span>
+      </p>
+      <div style="text-align:center">
+        <p>{{ $t('profile.personal_info.address.delete_message') }}</p>
+      </div>
     </Modal>
     <Spin fix v-if="loading">
       <Icon type="ios-loading" size=18 class="demo-spin-icon-load"></Icon>
@@ -458,6 +467,7 @@ export default {
       },
       uploadProfileModal: false,
       modalUserAddress: false,
+      modalDeleteUserAddress: false,
       address_form: {},
       profile_rules: {
         first_name: [
@@ -522,7 +532,7 @@ export default {
       return this.password.visible_confirm ? 'text' : 'password'
     },
     address_form_title () {
-      return this.address_form.id ? this.$t('pofile.personal_info.address.update_address') : this.$t('profile.personal_info.address.create_address')
+      return this.address_form.id ? this.$t('profile.personal_info.address.update_address') : this.$t('profile.personal_info.address.create_address')
     }
   },
   methods: {
@@ -614,6 +624,14 @@ export default {
       ]).then(valid => {
         if (valid[0] === true && (valid[1] === true || valid[1] === undefined)) {
           if (this.profile.gender === 'other') this.profile.gender = this.other_gender
+          if (this.profile.address) {
+            this.profile.address = this.profile.address.map(a => {
+              return {
+                ...a,
+                ...{ favorite: a.favorite ? 1 : 0 }
+              }
+            })
+          }
           this.saveUserData({ ...this.profile, ...{ bday: this.$moment(this.profile.bday).format('YYYY-MM-DD'), initial_biography: '' } }).then((response) => {
             this.$Notice.success({
               title: 'Update success',
@@ -685,6 +703,26 @@ export default {
     },
     handleChange (html, text) {
       this.profile.biography = html
+    },
+    openModalAddress () {
+      this.address_form = {}
+      this.modalUserAddress = true
+    },
+    editModalAddress (address) {
+      address.favorite = !!address.favorite
+      this.address_form = address
+      this.modalUserAddress = true
+    },
+    deleteModalAddress (address) {
+      this.address_form = address
+      this.$refs.delete_modal.showHead = true
+      this.modalDeleteUserAddress = true
+    },
+    deleteSelectedAddress () {
+      let deleted_index = this.profile.address.findIndex(f => f.id === this.address_form.id)
+      if (deleted_index > -1) {
+        this.profile.address.splice(deleted_index, 1)
+      }
     }
   },
   created () {},

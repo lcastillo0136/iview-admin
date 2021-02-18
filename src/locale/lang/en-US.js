@@ -499,6 +499,11 @@ export default {
     card: {
       description: 'Description'
     },
+    button: {
+      add_address: 'Add new address',
+      edit_address: 'change',
+      delete_address: 'delete'
+    },
     personal_info: {
       title: 'Personal Information',
       first_name: 'First Name',
@@ -534,7 +539,24 @@ export default {
       no_licencia: 'Professional License',
       profesion: 'Profession',
       especialidad: 'Specialty',
-      biography: 'Biography'
+      biography: 'Biography',
+      address: {
+        alias: 'Description name',
+        update_address: 'Update Address',
+        create_address: 'Add new address',
+        delete_address: 'Delete selected address',
+        delete_message: 'Are you sure you want to delete the selected address?',
+        default: 'Favorite',
+        street: 'Street',
+        city: 'City',
+        suburb: 'Neighborhood',
+        township: 'Township',
+        exterior_number: 'No. exterior',
+        interior_number: 'No. interior',
+        state: 'State',
+        country: 'Country',
+        directions: 'Directions'
+      }
     },
     account_info: {
       title: 'Account Information',
