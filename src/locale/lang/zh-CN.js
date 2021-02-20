@@ -599,7 +599,7 @@ export default {
       }
     }
   },
-  userGroups: {
+  usersRoles: {
     title: 'User Groups',
     tabs: {
       groups: 'Groups',

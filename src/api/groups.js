@@ -19,7 +19,7 @@ export const getPermissionsGroups = (token, group_id) => {
 
 export const saveUserGroup = (token, body) => {
   return axios.request({
-    url: 'usergroups',
+    url: 'UserGroups',
     headers: { Authorization: `Bearer ${token}` },
     data: body,
     method: 'POST'
@@ -28,7 +28,7 @@ export const saveUserGroup = (token, body) => {
 
 export const updateUserGroup = (token, body) => {
   return axios.request({
-    url: `usergroups/${body.id}`,
+    url: `UserGroups/${body.id}`,
     headers: { Authorization: `Bearer ${token}` },
     data: body,
     method: 'PATCH'
@@ -37,7 +37,7 @@ export const updateUserGroup = (token, body) => {
 
 export const deleteUserGroup = (token, body) => {
   return axios.request({
-    url: `usergroups/${body.id}`,
+    url: `UserGroups/${body.id}`,
     headers: { Authorization: `Bearer ${token}` },
     method: 'DELETE'
   })

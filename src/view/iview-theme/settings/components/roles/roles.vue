@@ -22,11 +22,32 @@
           </div>
         </i-col>
       </Row>
+      <md-button @click.prevent="addUserGroup()" class="md-fab md-primary" style="position: fixed;bottom: 1%;right: 1%;">
+        <md-icon>add</md-icon>
+      </md-button>
+      <Modal v-model="openModal" :title="titleModal" @on-visible-change="modalChange($event)" @on-ok="okUserGroup()">
+        <div class="mb10">
+          <ModalUserRole :UserGroupModel="userGroupModel"></ModalUserRole>
+        </div>
+      </Modal>
+      <Modal v-model="deleteModal" width="360">
+        <p slot="header" style="color:#f60;text-align:center">
+          <Icon type="ios-information-circle"></Icon>
+          <span>{{ $t('usersRoles.delete.title') }}</span>
+        </p>
+        <div style="text-align:center">
+          <p>{{ $t('usersRoles.delete.content') }}</p>
+        </div>
+        <div slot="footer">
+          <Button type="error" size="large" long @click="deleteOkUserGroup()">{{ $t('usersRoles.delete.button') }}</Button>
+        </div>
+      </Modal>
     </v-card-text>
   </v-card>
 </template>
 <script>
 import { mapActions } from 'vuex'
+import ModalUserRole from './components/modal-role/modal-role'
 
 export default {
   name: 'RolesSettings',
@@ -67,6 +88,7 @@ export default {
     }
   },
   components: {
+    ModalUserRole
   },
   computed: {
     titleModal () {
@@ -125,6 +147,26 @@ export default {
         })
       })
     },
+    updateUserGroup (row) {
+      this.editModal = true
+      this.userGroupModel.name = row.name
+      this.userGroupModel.description = row.description
+      this.userGroupModel.available_online = row.available_online
+      this.userGroupModel.id = row.id
+    },
+    addUserGroup () {
+      this.addModal = true
+      this.userGroupModel.name = ''
+      this.userGroupModel.description = ''
+      this.userGroupModel.available_online = false
+      this.userGroupModel.id = -1
+    },
+    modalChange (visible) {
+      if (!visible) {
+        this.addModal = false
+        this.editModal = false
+      }
+    },
     okUserGroup () {
       const _this = this
       if (this.userGroupModel.name.trim() === '') {
@@ -153,6 +195,29 @@ export default {
           })
         })
       }
+    },
+    borrarUserGroup (row) {
+      this.userGroupModel.name = row.name
+      this.userGroupModel.description = row.description
+      this.userGroupModel.available_online = row.available_online
+      this.userGroupModel.id = row.id
+
+      this.deleteModal = true
+    },
+    deleteOkUserGroup () {
+      const _this = this
+      this.deleteModal = false
+      this.deleteUserGroup(this.userGroupModel).then((data) => {
+        this.loadData().then((loadedData) => {
+          this.$emit('savedGroup', loadedData)
+        })
+      }).catch((err) => {
+        debugger
+        this.$Notice.error({
+          title: _this.$t('usersRoles.errors.delete_error'),
+          desc: err.toString()
+        })
+      })
     },
     changePage (pagination) {
       if (pagination.limit) this.pagination.limit = pagination.limit

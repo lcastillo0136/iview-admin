@@ -596,7 +596,7 @@ export default {
       }
     }
   },
-  userGroups: {
+  usersRoles: {
     title: 'Grupos de usuarios',
     tabs: {
       groups: 'Grupos',
@@ -720,6 +720,25 @@ export default {
         m12: 'Dic'
       },
       format: 'dd/MM/yyyy'
+    },
+    table: {
+      noDataText: 'Sin datos',
+      noFilteredDataText: 'Sin filtros',
+      confirmFilter: 'Confirmar',
+      resetFilter: 'Borrar',
+      clearFilter: 'Todos'
+    },
+    page: {
+      prev: 'Página anterior',
+      next: 'Página siguiente',
+      total: 'Total',
+      item: 'elemento',
+      items: 'elementos',
+      prev5: '- 5 páginas',
+      next5: '+ 5 páginas',
+      page: ' x página',
+      goto: 'Ir',
+      p: ''
     },
     modal: {
       cancelText: 'Cancelar',
