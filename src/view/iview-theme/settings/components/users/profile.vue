@@ -314,7 +314,7 @@
         </i-col>
       </Row>
     </Modal>
-    <Modal v-model="modalUserAddress" footer-hide :title="address_form_title">
+    <Modal v-model="modalUserAddress" :title="address_form_title" @on-ok="updateSelectedAddress()">
       <Form ref="address_form" :model="address_form"  label-position="top">
         <Row :gutter="20">
           <i-col span="12">
@@ -709,19 +709,71 @@ export default {
       this.modalUserAddress = true
     },
     editModalAddress (address) {
-      address.favorite = !!address.favorite
-      this.address_form = address
+      this.address_form.id = address.id
+      this.address_form.alias = address.alias
+      this.address_form.favorite = !!address.favorite
+      this.address_form.street = address.street
+      this.address_form.city = address.city
+      this.address_form.suburb = address.suburb
+      this.address_form.township = address.township
+      this.address_form.exterior_number = address.exterior_number
+      this.address_form.interior_number = address.interior_number
+      this.address_form.state = address.state
+      this.address_form.country = address.country
+      this.address_form.directions = address.directions
+
       this.modalUserAddress = true
     },
     deleteModalAddress (address) {
       this.address_form = address
-      this.$refs.delete_modal.showHead = true
-      this.modalDeleteUserAddress = true
+      this.$swal({
+        title: this.$t('profile.personal_info.address.delete_address'),
+        text: this.$t('profile.personal_info.address.delete_message'),
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ok',
+        cancelButtonText: 'No'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.deleteSelectedAddress()
+        }
+      })
     },
     deleteSelectedAddress () {
       let deleted_index = this.profile.address.findIndex(f => f.id === this.address_form.id)
       if (deleted_index > -1) {
         this.profile.address.splice(deleted_index, 1)
+      }
+    },
+    updateSelectedAddress () {
+      let _selectedAddress = this.profile.address.find(f => f.id === this.address_form.id);
+      if (_selectedAddress) {
+        if (this.address_form.favorite) {
+          this.profile.address.forEach(f => {
+            f.favorite = false
+          });
+        }
+        _selectedAddress.alias = this.address_form.alias
+        _selectedAddress.favorite = !!this.address_form.favorite
+        _selectedAddress.street = this.address_form.street
+        _selectedAddress.city = this.address_form.city
+        _selectedAddress.suburb = this.address_form.suburb
+        _selectedAddress.township = this.address_form.township
+        _selectedAddress.exterior_number = this.address_form.exterior_number
+        _selectedAddress.interior_number = this.address_form.interior_number
+        _selectedAddress.state = this.address_form.state
+        _selectedAddress.country = this.address_form.country
+        _selectedAddress.directions = this.address_form.directions
+      } else {
+        if (this.address_form.favorite) {
+          this.profile.address.forEach(f => {
+            f.favorite = false
+          });
+        }
+
+        this.profile.address.push({ ...this.address_form })
       }
     }
   },

@@ -544,8 +544,8 @@ export default {
         alias: 'Nombre',
         update_address: 'Actualizar domicilio',
         create_address: 'Agregar un domicilio',
-        delete_address: 'Eliminar domicilio seleccionado',
-        delete_message: '¿Esta seguro de querer eliminar el domicilios seleccionado?',
+        delete_address: 'Eliminar domicilio',
+        delete_message: '¿Esta seguro de querer eliminar el domicilio seleccionado?',
         default: 'Favorito',
         street: 'Calle',
         city: 'Ciudad',
@@ -720,6 +720,10 @@ export default {
         m12: 'Dic'
       },
       format: 'dd/MM/yyyy'
+    },
+    modal: {
+      cancelText: 'Cancelar',
+      okText: 'Aceptar'
     }
   },
   wangEditor: {

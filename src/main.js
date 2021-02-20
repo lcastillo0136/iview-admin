@@ -22,6 +22,7 @@ import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
 import VueMoment from 'vue-moment'
 import moment from 'moment-timezone'
+import VueSweetalert2 from 'vue-sweetalert2'
 
 // 实际打包时应该不引入mock
 /* eslint-disable */
@@ -37,6 +38,7 @@ Vue.use(Vuetify)
 Vue.use(VueMoment, {
     moment,
 })
+Vue.use(VueSweetalert2)
 
 iView.Notice.config({ duration: 5 })
 /**
