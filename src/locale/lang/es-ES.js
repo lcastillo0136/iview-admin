@@ -576,7 +576,8 @@ export default {
           empty_name: 'El nombre no puede estar vacío'
         },
         email: {
-          empty_email: 'El correo electrónico no puede estar vacío'
+          empty_email: 'El correo electrónico no puede estar vacío',
+          used_email: 'Correo electrónico usado en otra cuenta. Por favor intente con otro'
         },
         user_group_id: {
           wrong_user_group: 'Nivel de usuario desconocido',
@@ -587,9 +588,11 @@ export default {
         },
         password: {
           empty_confirm: 'Favor de confirmar la contraseña',
-          confirm_dont_match: 'Las contraseñas no coinciden'
+          confirm_dont_match: 'Las contraseñas no coinciden',
+          empty_password: 'Favor de capturar una contraseña'
         },
-        not_found: 'Usuario no encontrado'
+        not_found: 'Usuario no encontrado',
+        too_much_calls: 'Demasiados intentos, espere antes de probarlo de nuevo'
       },
       success: {
         update: 'Información de usuario actualizada'

@@ -63,15 +63,6 @@ class HttpRequest {
         }
       }
       addErrorLog(errorInfo)
-      // if (error && error.response && error.response.data && error.response.data.message) {
-      //   return Promise.reject(new Error({ ...error.response.data }))
-      // } else if (error && error.response && error.response && error.statusText) {
-      //   return Promise.reject(error.response.statusText)
-      // } else if (error && error.message) {
-      //   return Promise.reject(error.message)
-      // } else {
-      //   return Promise.reject(error)
-      // }
       return Promise.reject(new RequestError(error))
     })
   }

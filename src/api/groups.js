@@ -5,7 +5,7 @@ export const getUsersGroups = (token, pagination) => {
     url: 'UserGroups',
     headers: { Authorization: `Bearer ${token}` },
     params: pagination,
-    method: 'get'
+    method: 'GET'
   })
 }
 
@@ -13,7 +13,7 @@ export const getPermissionsGroups = (token, group_id) => {
   return axios.request({
     url: `ManagePermission/ByGroupId/${group_id}`,
     headers: { Authorization: `Bearer ${token}` },
-    method: 'get'
+    method: 'GET'
   })
 }
 

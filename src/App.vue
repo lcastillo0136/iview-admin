@@ -6,7 +6,12 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  mounted () {
+    this.$Notice.config({
+      duration: 10
+    })
+  }
 }
 </script>
 

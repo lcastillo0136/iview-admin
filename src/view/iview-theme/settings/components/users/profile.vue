@@ -401,9 +401,9 @@
   </v-card>
 </template>
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapMutations } from 'vuex'
 import Editor from '_c/editor'
-import { decrypt } from '@/libs/util'
+import { decrypt, encrypt } from '@/libs/util'
 import PictureInput from 'vue-picture-input'
 import config from '@/config'
 const { homeName } = config
@@ -517,6 +517,9 @@ export default {
     PictureInput
   },
   watch: {
+    '$route' () {
+      this.init()
+    }
   },
   computed: {
     password_icon () {
@@ -536,6 +539,9 @@ export default {
     }
   },
   methods: {
+    ...mapMutations([
+      'closeTag'
+    ]),
     ...mapActions([
       'getUsersGroups',
       'getUserById',
@@ -551,6 +557,8 @@ export default {
       return new Promise(resolve => {
         this.getUsersGroups({ 'pages': false }).then(({ data, pagination }) => {
           this.groups = data
+          resolve()
+        }).catch(() => {
           resolve()
         })
       })
@@ -618,6 +626,18 @@ export default {
       })
     },
     saveUser () {
+      this.closeTag({
+        name: 'users_add_page',
+        params: {
+        }
+      })
+      this.$router.push({
+        name: 'profile_page',
+        params: {
+          profile: encrypt(2)
+        }
+      }).catch(() => {})
+      return
       Promise.all([
         this.$refs.profile_form && this.$refs.profile_form.validate(),
         this.$refs.account_form && this.$refs.account_form.validate()
@@ -637,7 +657,10 @@ export default {
               title: 'Update success',
               desc: this.$t('profile.messages.success.update')
             })
-            this.loadUser(this.profile.id)
+            if (this.$route.params && this.$route.params.profile) {
+              this.loadUser(response.id)
+            } else {
+            }
           }).catch((err) => {
             if (err.data) {
               for (let e in err.data) {
@@ -748,12 +771,12 @@ export default {
       }
     },
     updateSelectedAddress () {
-      let _selectedAddress = this.profile.address.find(f => f.id === this.address_form.id);
+      let _selectedAddress = this.profile.address.find(f => f.id === this.address_form.id)
       if (_selectedAddress) {
         if (this.address_form.favorite) {
           this.profile.address.forEach(f => {
             f.favorite = false
-          });
+          })
         }
         _selectedAddress.alias = this.address_form.alias
         _selectedAddress.favorite = !!this.address_form.favorite
@@ -770,24 +793,61 @@ export default {
         if (this.address_form.favorite) {
           this.profile.address.forEach(f => {
             f.favorite = false
-          });
+          })
         }
 
         this.profile.address.push({ ...this.address_form })
       }
+    },
+    init () {
+      console.log(this.$route.params.profile)
+      this.loading = true
+      this.loadGroups().then(() => {
+        if (this.$route.params.profile) {
+          this.loadUser(decrypt(this.$route.params.profile))
+        } else {
+          this.profile.id = null
+          this.profile.first_name = ''
+          this.profile.last_name = ''
+          this.profile.profesion = ''
+          this.profile.skills = []
+          this.profile.avatar = ''
+          this.profile.user_group_id = -1
+          this.profile.active = false
+          this.profile.bday = new Date()
+          this.profile.biography = null
+          this.profile.initial_biography = ''
+          this.profile.cedula_profesional = null
+          this.profile.email = ''
+          this.profile.phone = ''
+          this.profile.email_verified = false
+          this.profile.end_working = null
+          this.profile.especialidad = null
+          this.profile.gender = ''
+          this.profile.last_login = null
+          this.profile.matricula_profesional = null
+          this.profile.no_licencia = null
+          this.profile.rfc = null
+          this.profile.start_working = null
+          this.profile.tel_oficina = null
+          this.profile.terms_and_conditions = false
+          this.profile.title = null
+          this.profile.username = ''
+          this.profile.password = ''
+          this.profile.confirm_password = ''
+          this.profile.address = []
+          this.card_active = false
+          this.other_gender = ''
+        }
+        this.loading = false
+      })
     }
   },
-  created () {},
+  created () {
+
+  },
   mounted () {
-    this.loading = true
-    let _promises = [this.loadGroups()]
-    if (this.$route.params.profile) _promises.push(this.loadUser(decrypt(this.$route.params.profile)))
-    Promise.all(_promises).then(() => {
-      this.loading = false
-    }).catch(() => {
-      this.loading = false
-      this.$router.push({ name: homeName })
-    })
+    this.init()
   }
 }
 

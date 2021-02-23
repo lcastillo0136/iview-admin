@@ -579,7 +579,8 @@ export default {
           empty_name: 'The name cannot be empty'
         },
         email: {
-          empty_email: 'The email cannot be empty'
+          empty_email: 'The email cannot be empty',
+          used_email: 'Email used in another account. Please try another'
         },
         user_group_id: {
           wrong_user_group: 'Unknow role',
@@ -589,10 +590,12 @@ export default {
           empty_username: 'The account ID cannot be empty'
         },
         password: {
-          empty_confirm: 'Favor de confirmar la contraseña',
-          confirm_dont_match: 'Las contraseñas no coinciden'
+          empty_confirm: 'Please confirm with the same password',
+          confirm_dont_match: 'Please confirm with the same password',
+          empty_password: 'The field password cannot be empty'
         },
-        not_found: 'Account Info not found'
+        not_found: 'Account Info not found',
+        too_much_calls: 'Too much try\'s, please wait before try agains'
       },
       success: {
         update: 'Informacion de usuario actualizada'

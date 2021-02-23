@@ -69,7 +69,9 @@ export default {
       setTagNavListInLocalstorage([...tagList], access)
     },
     closeTag (state, route) {
-      let tag = state.tagNavList.filter(item => routeEqual(item, route))
+      let tag = state.tagNavList.filter(item => {
+        return item.name === route.name && ((item.params && item.params.id) === (route.params && route.params.id))
+      })
       route = tag[0] ? tag[0] : null
       if (!route) return
       closePage(state, route)
