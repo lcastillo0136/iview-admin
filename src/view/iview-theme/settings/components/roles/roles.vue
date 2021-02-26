@@ -212,7 +212,6 @@ export default {
           this.$emit('savedGroup', loadedData)
         })
       }).catch((err) => {
-        debugger
         this.$Notice.error({
           title: _this.$t('usersRoles.errors.delete_error'),
           desc: err.toString()

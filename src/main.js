@@ -21,6 +21,7 @@ import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
 import VueMoment from 'vue-moment'
+import 'moment/locale/es'
 import moment from 'moment-timezone'
 import VueSweetalert2 from 'vue-sweetalert2'
 

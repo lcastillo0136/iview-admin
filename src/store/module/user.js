@@ -12,7 +12,8 @@ import {
   getUnreadCount,
   getUsersList,
   abortRequest,
-  saveUserData
+  saveUserData,
+  deleteUser
 } from '@/api/user'
 import { setToken, getToken } from '@/libs/util'
 
@@ -312,6 +313,28 @@ export default {
             abortRequest()
           }
           saveUserData({ token: state.token, data }).then(result => {
+            const response = result.response
+            if (response.success) {
+              resolve(response.data)
+            } else {
+              reject(response.message)
+            }
+          }).catch(err => {
+            reject(err)
+          })
+        } catch (error) {
+          reject(error)
+        }
+      })
+    },
+    deleteUser ({ state, commit }, id) {
+      return new Promise((resolve, reject) => {
+        try {
+          if (!state.token) reject(new Error('no_autorized'))
+          if (state.lastListSearch) {
+            abortRequest()
+          }
+          deleteUser({ token: state.token, id }).then(result => {
             const response = result.response
             if (response.success) {
               resolve(response.data)

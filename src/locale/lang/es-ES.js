@@ -643,13 +643,28 @@ export default {
   },
   users: {
     title: 'Usuarios',
+    title_list: 'Lista de usuarios',
+    user_count: 'usuarios',
     profile: {
-      title: 'Profile'
+      title: 'Perfil'
     },
     table: {
       name: 'Nombre',
+      username: 'Usuario',
+      role: 'Role',
+      active: 'Estatus',
+      last_login: 'Ultimo inicio de sesion',
       description: 'Descripción',
       available_online: 'Disponible en linea'
+    },
+    status: {
+      disabled: 'Inactivo',
+      active: 'Activo'
+    },
+    delete: {
+      title: 'Confirmación de eliminación',
+      content: '¿Esta seguro que desea eliminar el usuario: {username}?',
+      button: 'Eliminar'
     }
   },
   settings: {

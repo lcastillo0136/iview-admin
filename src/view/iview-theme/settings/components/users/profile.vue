@@ -148,6 +148,7 @@
                     <i-col span="12">
                       <FormItem :label="$t('profile.personal_info.bday')" prop="bday">
                         <DatePicker type="date" :options="bday_options" :placeholder="$t('profile.personal_info.bday_placeholder')" v-model="profile.bday" :format="$t('i.datepicker.format')" style="width: 100%"></DatePicker>
+                        {{ profile.bday | moment("from", "now", true) }}
                       </FormItem>
                     </i-col>
                   </Row>
@@ -250,7 +251,7 @@
                   <Row :gutter="20">
                     <i-col span="12">
                       <FormItem :label="$t('profile.account_info.username')" prop="username">
-                        <Input v-model="profile.username"></Input>
+                        <Input v-model="profile.username" icon="md-refresh" @on-click="refreshUsername()" ></Input>
                       </FormItem>
                     </i-col>
                     <i-col span="12">
@@ -403,10 +404,9 @@
 <script>
 import { mapActions, mapMutations } from 'vuex'
 import Editor from '_c/editor'
-import { decrypt, encrypt } from '@/libs/util'
+import { decrypt } from '@/libs/util'
 import PictureInput from 'vue-picture-input'
-import config from '@/config'
-const { homeName } = config
+import generateUsername from 'generate-username'
 
 export default {
   name: 'UsersAddSettings',
@@ -626,18 +626,6 @@ export default {
       })
     },
     saveUser () {
-      this.closeTag({
-        name: 'users_add_page',
-        params: {
-        }
-      })
-      this.$router.push({
-        name: 'profile_page',
-        params: {
-          profile: encrypt(2)
-        }
-      }).catch(() => {})
-      return
       Promise.all([
         this.$refs.profile_form && this.$refs.profile_form.validate(),
         this.$refs.account_form && this.$refs.account_form.validate()
@@ -660,6 +648,11 @@ export default {
             if (this.$route.params && this.$route.params.profile) {
               this.loadUser(response.id)
             } else {
+              this.closeTag({
+                name: 'users_add_page',
+                params: {
+                }
+              })
             }
           }).catch((err) => {
             if (err.data) {
@@ -800,7 +793,6 @@ export default {
       }
     },
     init () {
-      console.log(this.$route.params.profile)
       this.loading = true
       this.loadGroups().then(() => {
         if (this.$route.params.profile) {
@@ -832,7 +824,7 @@ export default {
           this.profile.tel_oficina = null
           this.profile.terms_and_conditions = false
           this.profile.title = null
-          this.profile.username = ''
+          this.profile.username = generateUsername()
           this.profile.password = ''
           this.profile.confirm_password = ''
           this.profile.address = []
@@ -841,6 +833,9 @@ export default {
         }
         this.loading = false
       })
+    },
+    refreshUsername () {
+      this.profile.username = generateUsername()
     }
   },
   created () {

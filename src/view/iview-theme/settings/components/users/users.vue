@@ -1,173 +1,50 @@
 <template>
   <v-card flat>
     <v-card-text>
-      <div class="text-h4 font-weight-black">User List</div>
+      <div class="text-h4 font-weight-black">{{ $t('users.title_list') }}</div>
       <Row class="mt-6">
-        <i-col span="2" class="grey--text"><span class="ivu-tag-color-success">431</span> users</i-col>
-        <i-col span="2" class="grey--text"><span class="ivu-tag-color-success">22</span> projects</i-col>
-        <i-col span="2" class="grey--text"><span class="ivu-tag-color-success">33</span> roles</i-col>
-
-        <i-col span="3" class="grey--text" offset="9">Project</i-col>
-        <i-col span="3" class="grey--text">Date Added</i-col>
-        <i-col span="3" class="grey--text">Role</i-col>
+        <i-col span="2" class="grey--text"><span class="ivu-tag-color-success">{{ users_list.length }}</span> {{ $t('users.user_count') }}</i-col>
       </Row>
       <v-divider class="mt-1 mb-10"></v-divider>
       <Row :gutter="10">
         <i-col span="24">
-          <Row type="flex" class=" ml-1 mr-1" :gutter="18">
-            <i-col class="text-center">
-              <Avatar icon="md-account" class="visible-false">
+          <i-table :columns="columns" :data="users_list" border :loading="loading">
+            <template slot-scope="{ row, index }" slot="avatar">
+              <Avatar :src="row.avatar" class="dis-block mx-md-auto">
+                {{ row.first_name | avatar }}
               </Avatar>
-            </i-col>
-            <i-col span="4">
-              <div class="text-caption font-weight-light grey--text text--darken-1 mb-1" @click.prevent="toggleSort('first_name')">
-                NAME
-                <template v-if="sort.column == 'first_name'">
-                  <span >
-                    <v-icon small v-if="sort.type=='asc'">
-                      mdi-sort-ascending
-                    </v-icon>
-                    <v-icon small v-if="sort.type=='desc'">
-                      mdi-sort-descending
-                    </v-icon>
-                  </span>
-                </template>
-              </div>
-              <span class="font-weight-medium">
-              </span>
-            </i-col>
-            <i-col span="4">
-              <div class="text-caption font-weight-light grey--text text--darken-1 mb-1" @click.prevent="toggleSort('username')">
-                LOGIN
-                <template v-if="sort.column == 'username'">
-                  <span >
-                    <v-icon small v-if="sort.type=='asc'">
-                      mdi-sort-ascending
-                    </v-icon>
-                    <v-icon small v-if="sort.type=='desc'">
-                      mdi-sort-descending
-                    </v-icon>
-                  </span>
-                </template>
-              </div>
-              <span class="font-weight-medium">
-              </span>
-            </i-col>
-            <i-col span="3">
-              <div class="text-caption font-weight-light grey--text text--darken-1 mb-1"></div>
-              <span class="font-weight-medium">
-              </span>
-            </i-col>
-
-            <i-col span="4">
-              <div class="text-caption font-weight-light grey--text text--darken-1 mb-1" @click.prevent="toggleSort('role')">
-                ROLE
-                <template v-if="sort.column == 'role'">
-                  <span >
-                    <v-icon small v-if="sort.type=='asc'">
-                      mdi-sort-ascending
-                    </v-icon>
-                    <v-icon small v-if="sort.type=='desc'">
-                      mdi-sort-descending
-                    </v-icon>
-                  </span>
-                </template>
-              </div>
-              <span class="font-weight-medium">
-              </span>
-            </i-col>
-            <i-col span="3">
-              <div class="text-caption font-weight-light grey--text text--darken-1 mb-1" @click.prevent="toggleSort('active')">
-                STATUS
-                <template v-if="sort.column == 'active'">
-                  <span >
-                    <v-icon small v-if="sort.type=='asc'">
-                      mdi-sort-ascending
-                    </v-icon>
-                    <v-icon small v-if="sort.type=='desc'">
-                      mdi-sort-descending
-                    </v-icon>
-                  </span>
-                </template>
-              </div>
-              <span class="font-weight-medium">
-              </span>
-            </i-col>
-            <i-col span="4">
-              <div class="text-caption font-weight-light grey--text text--darken-1 mb-1" @click.prevent="toggleSort('last_login')">
-                LAST LOGIN
-                <template v-if="sort.column == 'last_login'">
-                  <span >
-                    <v-icon small v-if="sort.type=='asc'">
-                      mdi-sort-ascending
-                    </v-icon>
-                    <v-icon small v-if="sort.type=='desc'">
-                      mdi-sort-descending
-                    </v-icon>
-                  </span>
-                </template>
-              </div>
-              <span class="font-weight-medium">
-              </span>
-            </i-col>
-          </Row>
-        </i-col>
-      </Row>
-      <Row :gutter="10">
-        <i-col span="24">
-          <!-- Using a dynamic class -->
-          <v-hover v-for="user in users_list" :key="user.id" class="user__list">
-            <template v-slot:default="{ hover }">
-              <v-card :elevation="hover ? 7 : 2" class="transition-swing">
-                <v-card-text>
-                  <Row type="flex" class="" :gutter="18">
-                    <i-col class="text-center">
-                      <Avatar :src="user.avatar">
-                        {{ user.first_name | avatar }}
-                      </Avatar>
-                    </i-col>
-                    <i-col span="4">
-                      <div class="text-caption font-weight-light text--disabled mb-1">Name</div>
-                      <span class="font-weight-medium">
-                        {{ user.first_name }} {{ user.last_name }}
-                      </span>
-                    </i-col>
-                    <i-col span="4">
-                      <div class="text-caption font-weight-light text--disabled mb-1">Login</div>
-                      <span class="font-weight-medium">
-                        {{ user.username }}
-                      </span>
-                    </i-col>
-                    <i-col span="3">
-                      <div class="text-caption font-weight-light text--disabled mb-1"></div>
-                      <span class="font-weight-medium">
-                      </span>
-                    </i-col>
-
-                    <i-col span="4">
-                      <div class="text-caption font-weight-light text--disabled mb-1">Role</div>
-                      <span class="font-weight-medium">
-                        {{ user.Role.name }}
-                      </span>
-                    </i-col>
-                    <i-col span="3">
-                      <div class="text-caption font-weight-light text--disabled mb-1">Status</div>
-                      <span class="font-weight-medium">
-                        <Tag color="success" v-if="user.active">Active</Tag>
-                        <Tag color="error" v-if="!user.active">Disabled</Tag>
-                      </span>
-                    </i-col>
-                    <i-col span="4">
-                      <div class="text-caption font-weight-light text--disabled mb-1">Last Login</div>
-                      <span class="font-weight-medium">
-                        <Time :time="user.last_login" />
-                      </span>
-                    </i-col>
-                  </Row>
-                </v-card-text>
-              </v-card>
             </template>
-          </v-hover>
+            <template slot-scope="{ row, index }" slot="name">
+              {{ row.title }} {{ row.first_name }} {{ row.last_name }}
+            </template>
+            <template slot-scope="{ row, index }" slot="role">
+              {{ row.Role.name }}
+            </template>
+            <template slot-scope="{ row, index }" slot="active" >
+              <Tag color="success" v-if="row.active">{{ $t('users.status.active') }}</Tag>
+              <Tag color="error" v-if="!row.active">{{ $t('users.status.disabled') }}</Tag>
+            </template>
+            <template slot-scope="{ row, index }" slot="last_login">
+              <span class="font-weight-medium" v-if="row.last_login">
+                <Time :time="row.last_login" />
+              </span>
+              <span class="font-weight-medium" v-else>
+                ----
+              </span>
+            </template>
+            <template slot-scope="{ row, index }" slot="actions">
+              <div>
+                <Button type="primary" size="small" icon="md-create" @click.prevent="openUser(row)"></Button>
+                <Divider type="vertical"></Divider>
+                <Button type="error" size="small" icon="md-trash" @click.prevent="borrarUser(row)"></Button>
+              </div>
+            </template>
+          </i-table>
+          <div style="margin: 10px;overflow: hidden">
+            <div style="float: right;">
+              <Page :total.sync="pagination.total" :current.sync="pagination.page" @on-change="changePage({})" @on-page-size-change="changePage({ limit: $event })" show-sizer show-total></Page>
+            </div>
+          </div>
         </i-col>
       </Row>
     </v-card-text>
@@ -176,10 +53,23 @@
         mdi-plus
       </v-icon>
     </v-btn>
+    <Modal v-model="deleteModal" width="360">
+      <p slot="header" style="color:#f60;text-align:center">
+        <Icon type="ios-information-circle"></Icon>
+        <span>{{ $t('users.delete.title') }}</span>
+      </p>
+      <div style="text-align:center">
+        <p>{{ $t('users.delete.content', { username: selected_user.username }) }}</p>
+      </div>
+      <div slot="footer">
+        <Button type="error" size="large" long @click="deleteOkUserGroup()">{{ $t('users.delete.button') }}</Button>
+      </div>
+    </Modal>
   </v-card>
 </template>
 <script>
 import { mapActions } from 'vuex'
+import { encrypt } from '@/libs/util'
 
 export default {
   name: 'UsersSettings',
@@ -190,15 +80,64 @@ export default {
     return {
       users: [],
       columns: [{
+        title: '  ',
+        slot: 'avatar',
+        width: 64
+      }, {
         title: this.$t('users.table.name'),
-        key: 'name'
+        slot: 'name',
+        sortable: true,
+        renderHeader: (h, props) => {
+          return h('span', {
+            domProps: {
+              innerHTML: this.$t('users.table.name')
+            }
+          })
+        }
       }, {
-        title: this.$t('users.table.description'),
-        key: 'description'
+        title: this.$t('users.table.username'),
+        key: 'username',
+        sortable: true,
+        renderHeader: (h, props) => {
+          return h('span', {
+            domProps: {
+              innerHTML: this.$t('users.table.username')
+            }
+          })
+        }
       }, {
-        title: this.$t('users.table.available_online'),
-        slot: 'available_online',
-        width: 150
+        title: this.$t('users.table.role'),
+        slot: 'role',
+        sortable: true,
+        renderHeader: (h, props) => {
+          return h('span', {
+            domProps: {
+              innerHTML: this.$t('users.table.role')
+            }
+          })
+        }
+      }, {
+        title: this.$t('users.table.active'),
+        slot: 'active',
+        sortable: true,
+        renderHeader: (h, props) => {
+          return h('span', {
+            domProps: {
+              innerHTML: this.$t('users.table.active')
+            }
+          })
+        }
+      }, {
+        title: this.$t('users.table.last_login'),
+        slot: 'last_login',
+        sortable: true,
+        renderHeader: (h, props) => {
+          return h('span', {
+            domProps: {
+              innerHTML: this.$t('users.table.last_login')
+            }
+          })
+        }
       }, {
         title: '  ',
         slot: 'actions',
@@ -214,6 +153,7 @@ export default {
         type: 'asc'
       },
       loading: false,
+      deleteModal: false,
       fab: false
     }
   },
@@ -231,14 +171,42 @@ export default {
             } else {
               return u1.first_name < u.first_name ? 1 : -1
             }
+          case 'username':
+            if (this.sort.type === 'asc') {
+              return u.username < u1.username ? 1 : -1
+            } else {
+              return u1.username < u.username ? 1 : -1
+            }
+          case 'role':
+            if (this.sort.type === 'asc') {
+              return u.Role.name < u1.Role.name ? 1 : -1
+            } else {
+              return u1.Role.name < u.Role.name ? 1 : -1
+            }
+          case 'active':
+            if (this.sort.type === 'asc') {
+              return u.active < u1.active ? 1 : -1
+            } else {
+              return u.active > u1.active ? 1 : -1
+            }
+          case 'last_login':
+            if (this.sort.type === 'asc') {
+              return u.last_login < u1.last_login ? 1 : -1
+            } else {
+              return u1.last_login < u.last_login ? 1 : -1
+            }
         }
         return 0
       })
+    },
+    selected_user () {
+      return this.users.find(f => f.selected) || {}
     }
   },
   methods: {
     ...mapActions([
-      'getUsersList'
+      'getUsersList',
+      'deleteUser'
     ]),
     loadData () {
       return new Promise((resolve, reject) => {
@@ -268,6 +236,37 @@ export default {
       this.$router.push({
         path: '/users/add'
       }).catch(() => {})
+    },
+    openUser (user) {
+      this.$router.push({
+        name: 'profile_page',
+        params: {
+          profile: encrypt(user.id)
+        }
+      }).catch(() => {})
+    },
+    borrarUser (user) {
+      this.deleteModal = true
+
+      if (this.selected_user.id) this.selected_user.selected = false
+
+      this.$set(this.users.find(f => f.id === user.id), 'selected', true)
+    },
+    deleteOkUserGroup () {
+      this.deleteModal = false
+      this.deleteUser(this.selected_user.id).then((data) => {
+        this.loadData().then((loadedData) => {
+        })
+      }).catch((err) => {
+        this.$Notice.error({
+          title: _this.$t('users.errors.delete_error'),
+          desc: err.toString()
+        })
+      })
+    },
+    changePage (pagination) {
+      if (pagination.limit) this.pagination.limit = pagination.limit
+      this.loadData()
     }
   },
   created () {

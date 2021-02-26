@@ -15,6 +15,7 @@ import { saveErrorLogger, getGuestAccess } from '@/api/data'
 import router from '@/router'
 import routers from '@/router/routers'
 import config from '@/config'
+import Vue from 'vue'
 const { homeName } = config
 
 const closePage = (state, route) => {
@@ -89,6 +90,7 @@ export default {
     },
     setLocal (state, lang) {
       localSave('local', lang)
+      Vue.moment().locale(lang.substr(0, 2))
       state.local = lang
     },
     addError (state, error) {

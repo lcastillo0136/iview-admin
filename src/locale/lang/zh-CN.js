@@ -646,13 +646,28 @@ export default {
   },
   users: {
     title: 'Users',
+    title_list: 'User List',
+    user_count: 'users',
     profile: {
       title: 'Profile'
     },
     table: {
       name: 'Name',
+      username: 'Login',
+      role: 'Role',
+      active: 'Status',
+      last_login: 'Last Login',
       description: 'Description',
       available_online: 'Available Online'
+    },
+    status: {
+      disabled: 'Disabled',
+      active: 'Active'
+    },
+    delete: {
+      title: 'Delete user',
+      content: 'Are you sure you want to delete this user: {username}?',
+      button: 'Delete'
     }
   },
   settings: {

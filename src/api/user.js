@@ -118,6 +118,14 @@ export const saveUserData = ({ token, data }) => {
   })
 }
 
+export const deleteUser = ({ token, id }) => {
+  return axios.request({
+    url: `users/${id}`,
+    headers: { Authorization: `Bearer ${token}` },
+    method: 'delete'
+  })
+}
+
 export const abortRequest = () => {
   axios.abort()
 }
